@@ -1,0 +1,126 @@
+.navmobile {
+  background-color: var(--neutral-100) !important;
+  display: none;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.navmobile svg {
+  cursor: pointer;
+}
+
+.navmobile .navmobile-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.navmobile .navmobile-logo p {
+  margin-right: .5rem;
+}
+
+.navmobile .navmobile-logo p span {
+  color: var(--primery);
+}
+
+.navmobile .navmobile-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navmobile .navmobile-profile img {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: linear-gradient(148.5deg, #ff4a4f 46.44%, #fc8585 75.12%);
+  padding: 0.2rem;
+}
+
+.navmobile .navmobile-profile p {
+  margin-right: 0.3rem;
+}
+
+/* aside-mobie */
+.bg-aside-mobile {
+  background-color: rgba(0, 0, 0, 0.31);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: none;
+}
+.aside-mobile {
+  width: 80%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  background: var(--neutral-50);
+  border-left: 8px solid var(--primery);
+  border-radius: 2rem 0rem 0rem 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.aside-mobile .title {
+  padding: 1.5rem;
+}
+
+.bg-aside-mobile .aside-mobile .list-aside {
+  margin-top: 1rem;
+}
+
+.bg-aside-mobile .aside-mobile .list-aside ul li {
+  margin-top: 0.2rem;
+}
+
+.bg-aside-mobile .aside-mobile .list-aside ul li a {
+  display: flex;
+  padding: 1rem;
+}
+
+.bg-aside-mobile .aside-mobile .list-aside ul li a p {
+  margin-right: 1rem;
+}
+
+.bg-aside-mobile .aside-mobile .logout-list-aside {
+  position: absolute;
+  bottom: 2rem;
+  right: 0.5rem;
+  padding: 1rem;
+}
+
+.bg-aside-mobile .aside-mobile .logout-list-aside a {
+  display: flex;
+}
+
+.bg-aside-mobile .aside-mobile .logout-list-aside a p {
+  margin-right: 1rem;
+}
+.bg-aside-mobile .aside-mobile .flag {
+  width: 60px;
+  height:60px;
+  background-color: var(--primery);
+  transform: rotate(189.3rad);
+  position: absolute;
+  left: -2rem;
+  top: 42%;
+  border-radius: 8px;
+}
+.bg-aside-mobile .aside-mobile .flag::after {
+  content: " ";
+  background-color: var(--neutral-50);
+  position: absolute;
+  width: 3px;
+  height: 1.5rem;
+  top: 2px;
+  right: 15px;
+  border-radius: 8px;
+  transform: rotate(-47deg);
+}
+/* aside-mobie */

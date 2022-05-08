@@ -1,0 +1,174 @@
+/*RTL css*/
+@font-face {
+    font-family:'IRANSansWeb';
+    font-style: normal;
+    font-weight: 700;
+    src: url(../fonts/IRANSansWeb_Bold.eot?7626d015e15844db7d1f54c8e415461a);
+    src: url(../fonts/IRANSansWeb_Bold.eot?7626d015e15844db7d1f54c8e415461a) format("embedded-opentype"), url(../fonts/IRANSansWeb_Bold.woff2?6ec03a37e370c0d7f4f6bbdba0feac23) format("woff2"), url(../fonts/IRANSansWeb_Bold.woff?a762a767a3459fec2195da1373ebf0b1) format("woff"), url(../fonts/IRANSansWeb_Bold.ttf?4ff441e3b8c51acd2261585feca1d8c8) format("truetype");
+}
+@font-face {
+    font-family: 'IRANSansWeb';
+    font-style: normal;
+    font-weight: 500;
+    src: url(../fonts/IRANSansWeb_Medium.eot?1121c0520a30a7295ffe21dd3fe77a60);
+    src: url(../fonts/IRANSansWeb_Medium.eot?1121c0520a30a7295ffe21dd3fe77a60) format("embedded-opentype"), url(../fonts/IRANSansWeb_Medium.woff2?bb6a9fe5edb6791184821d992bffdcf4) format("woff2"), url(../fonts/IRANSansWeb_Medium.woff?74e2ab212452657f2fc66bd08873884b) format("woff"), url(../fonts/IRANSansWeb_Medium.ttf?7a75459b25fca9937df9110d7e049133) format("truetype");
+}
+@font-face {
+    font-family: 'IRANSansWeb';
+    font-style: normal;
+    font-weight: 300;
+    src: url(../fonts/IRANSansWeb_Light.eot?60f95f28d8469e5df0398ba1d3e9708e);
+    src: url(../fonts/IRANSansWeb_Light.eot?60f95f28d8469e5df0398ba1d3e9708e) format("embedded-opentype"), url(../fonts/IRANSansWeb_Light.woff2?414e7148a634bfc82a601e3dacf84e96) format("woff2"), url(../fonts/IRANSansWeb_Light.woff?469a8f6aa5b4631045b7d922102392ac) format("woff"), url(../fonts/IRANSansWeb_Light.ttf?eeb1edcad9b20c19bd1eecd1c371e4f8) format("truetype");
+}
+@font-face {
+    font-family: 'IRANSansWeb';
+    font-style: normal;
+    font-weight: 200;
+    src: url(../fonts/IRANSansWeb_UltraLight.eot?b8efb89efe7dc02c439a362d17c9dc5e);
+    src: url(../fonts/IRANSansWeb_UltraLight.eot?b8efb89efe7dc02c439a362d17c9dc5e) format("embedded-opentype"), url(../fonts/IRANSansWeb_UltraLight.woff2?5010d0152420ca7bd3acb1a9d668a57e) format("woff2"), url(../fonts/IRANSansWeb_UltraLight.woff?153b7b5a1579526611373210b6fd8754) format("woff"), url(../fonts/IRANSansWeb_UltraLight.ttf?eeb1edcad9b20c19bd1eecd1c371e4f8) format("truetype");
+}
+@font-face {
+    font-family:'IRANSansWeb';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/IRANSansWeb.eot?e43cfbc1a67d90e910398ded8345cd32);
+    src: url(../fonts/IRANSansWeb.eot?e43cfbc1a67d90e910398ded8345cd32) format("embedded-opentype"), url(../fonts/IRANSansWeb.woff2?c6f46673e2449eb071e2c098c5190c2a) format("woff2"), url(../fonts/IRANSansWeb.woff?df14582918ca379a280e453bb3cc6ba5) format("woff"), url(../fonts/IRANSansWeb.ttf?ac22d187130d6c3433a49a1e98bfa968)
+}
+body {
+    font-family: 'IRANSansWeb', Vazir, Tahoma, Arial, sans-serif !important;
+}
+.btn span{
+    font-family: IRANSansWeb;
+    font-size: .9rem;
+}
+.margin-b{
+    margin: 2.5rem 0 1.5rem
+}
+.sidebar .status{
+     right: 25px;
+}
+.sidebar .discussions .single .data span{
+    padding-left: 5px;
+    padding-top: 2px;
+}
+.sidebar .discussions .single.active,
+.sidebar #contacts > a.active,
+.sidebar .notifications .notification.active {
+    border-right: 3px solid #FD3E57;
+    border-left: 0;
+    padding-right:  5px;
+}
+.sidebar .contacts .contact .avatar-md,
+.sidebar .discussions .single .avatar-md,
+.sidebar .notifications .notification .avatar-md {
+    margin:  0 0 0 15px;
+}
+.list-group, #accordionSettings {
+    padding-left: 10px;
+}
+.list-group.chat-items{
+    padding-right: 5px;
+}
+.new.bg-red{
+    margin: -5px .5rem 5px 0;
+}
+.btn-calls .col-6:nth-child(1) {
+    padding-right: 15px;
+    padding-left: 5px;
+}
+.btn-calls .col-6:nth-child(2) {
+    padding-left: 15px;
+    padding-right: 5px;
+}
+.form-inline .btn-vip{
+    margin: 0 -44px 0 0;
+}
+.sidebar .category .data {
+    margin-right: 13px;
+}
+.settings .category .data{
+    text-align: right;
+}
+.sidebar .settings .categories .category .content .upload .data .avatar-xl {
+    margin-left: 20px;
+    margin-right: 0;
+}
+.sidebar .settings .categories .category .content .parent .field:last-child {
+    margin-left: 0;
+    margin-bottom: 20px;
+}
+.sidebar .settings .categories .category .content .parent .field {
+    margin-left: 15px;
+    margin-right: 0;
+}
+.user-select .user h5{
+    margin-right: 1rem;
+}
+.sidebar .discussions .single .data p{
+    font-size: 12px;
+    line-height: 1.9;
+    max-width: 250px;
+    text-align: right
+}
+.main .chat .content .message .text p ,
+.main .chat .content .message .text .attachment,
+.sidebar .contacts .contact .data,
+.main .chat .content .message span,
+.sidebar .settings .categories .category .content .set .details,
+.sidebar .contacts h1,
+.sidebar .notifications .notification .data{
+    text-align: right;
+}
+.main .chat .content .message .text .attachment .attach{
+    margin-right: 0;
+    margin-left: 15px;
+}
+.main .chat .content .message.me span{
+    text-align: left;
+}
+
+.main .chat .content .message .avatar-md {
+    margin-right: 0;
+    margin-left: 15px;
+}
+.main .chat .top .inside .data {
+    margin-left: auto;
+    text-align: right;
+    margin-right: 0;
+}
+.main .chat .top .inside .btn{
+    margin-right: 0;
+    margin-left: 10px;
+}
+.main .chat .top .inside .status{
+    right: 100px !important;
+    left: revert;
+}
+.main .chat .bottom .btn.attach{
+    margin-left: 0;
+    margin-right: 20px;
+}
+.btn-group.add-group{
+    left: 0;
+    right: revert;
+}
+.navigation .inside > .nav.menu > a, .navigation .inside > .nav.menu > button{
+    font-weight: 500;
+}
+.requests .title h1 {
+    font-size: 17px;
+}
+.tab-pane > figure {
+    cursor: pointer;
+}
+.LR-content h3{
+    font-size: 1rem;
+}
+
+@media (max-width:991px) {
+    figure .fa-ellipsis-v{
+        position: absolute;
+        left: 0;
+        padding: .8rem;
+    }
+}

@@ -1,0 +1,182 @@
+/* if no categories */
+.content section .categories .title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content section .categories .title button {
+  background-color: var(--primery);
+  border: none;
+  color: var(--neutral-50);
+  padding: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.content section .categories .noCategories {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content section .categories .noCategories p {
+  width: 40%;
+  text-align: center;
+  line-height: 2rem;
+}
+
+/* ! responsive */
+@media only screen and (max-width: 800px) {
+  .content section .categories .noCategories p {
+    width: 100%;
+    line-height: 2rem;
+  }
+}
+/* if no categories */
+
+/* ! modal  */
+.modal-create-category {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.24);
+  display: none;
+}
+
+.modal-create-category .form > * {
+  margin-top: 1rem;
+}
+
+.modal-create-category .form {
+  background-color: var(--neutral-50);
+  padding: 1rem;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 15%;
+}
+
+.modal-create-category .form .title {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-create-category .form .title p {
+  font-weight: bolder;
+}
+
+.modal-create-category .form .title svg {
+  font-size: 2rem;
+}
+
+.modal-create-category .category-modal-form {
+  width: 90%;
+}
+
+.modal-create-category .category-modal-form > * {
+  margin-top: 2rem;
+}
+
+.modal-create-category .category-modal-form .input {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.modal-create-category .category-modal-form .input input {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--neutral-100);
+}
+
+.modal-create-category .category-modal-form .input label {
+  color: var(--body-100) !important;
+  margin-bottom: 0.5rem;
+}
+
+.modal-create-category .category-modal-form button {
+  border: none;
+  background-color: var(--secondary);
+  width: 100%;
+  padding: 1rem;
+  color: var(--neutral-100);
+  border-radius: 4px;
+}
+/* ! responsive */
+@media only screen and (max-width: 1024px) {
+  .modal-create-category .form {
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .modal-create-category .form {
+    width: 80%;
+    margin-top: 30%;
+  }
+}
+/* ! modal  */
+
+/* if categories */
+.list-categories {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.categories .item-categories {
+  background-color: var(--neutral-50);
+  padding: 0.5rem;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.categories .item-categories .ud-category {
+  display: flex;
+  flex-direction: column;
+}
+
+.categories .item-categories .ud-category > * {
+  margin-top: 0.5rem;
+}
+
+.categories .item-categories .detail-category {
+  display: flex;
+  flex-direction: column;
+}
+
+.categories .item-categories .detail-category span {
+    margin-top: .5rem;
+}
+
+/* ! responsive */
+@media only screen and (max-width: 1024px) {
+  .list-categories {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media only screen and (max-width: 900px) {
+  .list-categories {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media only screen and (max-width: 600px) {
+  .list-categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* if categories */

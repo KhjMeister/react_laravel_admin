@@ -1,0 +1,14 @@
+main .container .content {
+  padding: 1rem;
+  margin-top: 20px;
+}
+
+/* ! responsive */
+@media only screen and (max-width: 1024px) {
+  /* Welcome page */
+  main .container .content section img {
+    width: 95%;
+    margin: auto;
+  }
+  /* Welcome page */
+}

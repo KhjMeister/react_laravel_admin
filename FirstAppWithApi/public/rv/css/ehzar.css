@@ -1,0 +1,40 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    text-align: right;
+}
+.box-security{
+    width: 330px;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    margin-top: 5rem;;
+}
+.img-security{
+    width: 250px;
+    height: auto;
+}
+.margin-top{
+    margin-top: 20px;
+}
+.input-security{
+    padding: 10px 20px;
+    height: 48px;
+}
+.input-security::placeholder{
+    text-align: right!important;
+    font-size: 12px;
+}
+.btn-security{
+    width:300px;
+    background: #F14242;
+    color: #FFFFFF;
+    border: 1px solid #F14242;
+     margin-bottom: 30px;
+}
+.btn-security:hover{
+    background: rgba(200,0,5,1);
+    border:1px solid  rgba(200,0,5,1);;
+}
