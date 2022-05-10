@@ -202,9 +202,9 @@ class Contact extends Component
         }
     }
 
-    public function selectCategory($id)
+    public function selectedCategory($id)
     {
-        $contacts = Categories::find(1)->contacts;
-        dump($contacts);
+        $this->contacts = Categories::find(1)->contacts;
+        
     }
 }

@@ -22,4 +22,9 @@ class Contacts extends Model
     protected $hidden = [
         'status',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'ca_id');
+    }
 }
