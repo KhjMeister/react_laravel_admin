@@ -3,13 +3,18 @@
         <div class="contacts-detail">
             <div class="item-contacts">
                 <h5>مخاطبین</h5>
-                <p>
-                    همه دسته بندی ها
-                    <svg width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1.5L6 7.5L8.5 4.5L11 1.5" stroke="#4D4D4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                        
-                </p>
+                
+                <select style="width:180px;background-color:#f7f7f7;font-size:15px;" class="dropdown-content link-mouse-hover">
+                    @if(!$this->categories==null)
+                    <option wire:click="getAllContacts">همه دسته بندی ها</option>
+                        @foreach ($categories as $category)
+                            <option wire:click="selectedCategory({{ $category->id }})" >{{ $category->name }}</option>
+                        @endforeach
+                    @else
+                        <option >دسنه بندی وجود ندارد</option>
+                    @endif
+                </select>
+
             <div class="item-detail">
                     <button wire:click="resetForm" class="btn-contacts" id="myBtn" >
                         اضافه کردن

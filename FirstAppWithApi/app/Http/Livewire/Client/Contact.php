@@ -47,7 +47,7 @@ class Contact extends Component
 
     public function mount()
     {
-        $this->selectCategory();
+        
         $this->u_id = Auth::user()->id;
         if($this->categoryVisibility()){
             $this->categories = null;
@@ -204,7 +204,7 @@ class Contact extends Component
 
     public function selectedCategory($id)
     {
-        $this->contacts = Categories::find(1)->contacts;
+        $this->contacts = Categories::find($id)->contacts;
         
     }
 }
