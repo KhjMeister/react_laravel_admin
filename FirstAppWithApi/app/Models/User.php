@@ -31,7 +31,7 @@ class User extends Authenticatable implements JWTSubject
         // 'social_type'
     ];
 
-    public function category()
+    public function categories()
     {
         return $this->hasMany(Category::class);
     }
@@ -67,4 +67,6 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims() {
         return [];
     }  
+
+    
 }

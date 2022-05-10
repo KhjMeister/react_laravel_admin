@@ -1,0 +1,18 @@
+main .container .content section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main .container .content section p {
+    margin-top: 24px;    
+}
+main .container .content section p {
+    font-size: larger;
+    font-weight: bolder;
+}
+
+main .container .content section p span {
+    color: var(--primery);
+} 

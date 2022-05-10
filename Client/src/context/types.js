@@ -19,3 +19,14 @@ export const LOGIN_SUCCESS    = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL       = 'LOGIN_FAIL';
 export const LOGOUT           = 'LOGOUT';
 export const CLEAR_ERRORS     = 'CLEAR_ERRORS';
+
+export const GET_CATEGORIES    = 'GET_CATEGORIES';
+export const CLEAR_CATEGORIES  = 'CLEAR_CATEGORIES';
+export const ADD_CATEGORY     = 'ADD_CATEGORY';
+export const DELETE_CATEGORY  = 'DELETE_CATEGORY';
+export const SET_CURRENT_CAT     = 'SET_CURRENT_CAT';
+export const CLEAR_CURRENT_CAT   = 'CLEAR_CURRENT_CAT';
+export const CATEGORY_ERROR   = 'CATEGORY_ERROR';
+export const UPDATE_CATEGORY  = 'UPDATE_CATEGORY';
+export const FILTER_CATEGORIES = 'FILTER_CATEGORIES';
+export const CLEAR_FILTER_CAT    = 'CLEAR_FILTER_CAT';

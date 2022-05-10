@@ -1,0 +1,86 @@
+@import url("https://v1.fontapi.ir/css/Shabnam");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Shabnam", sans-serif;
+  font-style: normal;
+}
+
+body {
+  background-color: var(--neutral-100) !important;
+  direction: rtl;
+}
+
+:root {
+  --primery: #ff4a4f;
+  --secondary: #ff9928;
+  --neutral-50: #fff;
+  --neutral-100: #f7f7f7;
+  --body-50: #8c8c8c;
+  --body-100: #4d4d4d;
+  --body-200: #000;
+  --body-300: #333333;
+  --body-400: #aaaaaa;
+}
+
+h1 {
+  font-size: 32px !important;
+}
+h2 {
+  font-size: 28px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 21px;
+}
+h5 {
+  font-size: 19px;
+}
+h6 {
+  font-size: 16px;
+}
+.p1 {
+  font-size: 14px;
+}
+.p2 {
+  font-size: 12px;
+}
+.p3 {
+  font-size: 10px;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.accent {
+  accent-color: #ff4a4f;
+  width: 20px;
+  height: 20px;
+}

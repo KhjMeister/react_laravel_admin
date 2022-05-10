@@ -14,6 +14,7 @@ import {
     CLEAR_ERRORS
 } from '../types';
 
+const Url = 'http://localhost:8000/api/auth';
 const AuthState = props =>{
     const initialState = {
        token: localStorage.getItem('token'),
@@ -31,7 +32,7 @@ const AuthState = props =>{
             setAuthToken(localStorage.token);
         }
         try {
-            const res = await axios.get('http://localhost:8000/api/auth/user-profile');
+            const res = await axios.get(Url+'/user-profile');
             dispatch({type:USER_LOADED, payload:res.data})
         } catch (err) {
             dispatch({type:AUTH_ERROR});
@@ -47,7 +48,7 @@ const AuthState = props =>{
         }
 
         try {
-            const res = await axios.post('http://localhost:8000/api/auth/register',formData, config);
+            const res = await axios.post(Url+'/register',formData, config);
             dispatch({
                 type:REGISTER_SUCCESS,
                 payload:res.data
@@ -71,7 +72,7 @@ const AuthState = props =>{
             }
         };
         try {
-            const res = await axios.post('http://localhost:8000/api/auth/login',formData, config);
+            const res = await axios.post(Url+'/login',formData, config);
             dispatch({
                 type:LOGIN_SUCCESS,
                 payload:res.data

@@ -5,6 +5,8 @@ import './assets/App.css';
 
 import Navbar from './components/layouts/Navbar';
 import Sidbar from './components/layouts/Sidbar';
+import MobileNavbar from './components/layouts/MobileNavbar';
+import MobileSidbar from './components/layouts/MobileSidbar';
 import  Alerts  from "./components/layouts/Alerts";
 
 import PrivateRoute from './components/routing/PrivateRoute';
@@ -25,35 +27,37 @@ if(localStorage.token){
   setAuthToken(localStorage.token);
 }
 
+
+
 const App = () => {
-  
 
     return (
       <AuthState>
         <ContactState>
           <AlertState>
             <Router>
-            <div className="fix-header fix-sidebar card-no-border">
-              <div id="main-wrapper">
-                <Navbar />
-                <Sidbar />
-                
-                <div className="page-wrapper">
-                  <div className="container-fluid">
-                    <Alerts />
-                    <Switch>
-                      <PrivateRoute exact path="/" component={Dashboard} />
-                      <PrivateRoute exact path="/profile" component={Profile} />
-                      <PrivateRoute exact path="/contacts" component={ContactsP} />
-                      <Route exact path="/login" component={Login} />
-                      <Route exact path="/register" component={Register} />
+            
+            
+            <div className="panel-layout">
+              <MobileNavbar />
+              <Sidbar />
+              <main>
+                  <div className="container">
+                     <Navbar />
+                          <Alerts />
+                          <Switch>
+                            <PrivateRoute exact path="/" component={Dashboard} />
+                            <PrivateRoute exact path="/profile" component={Profile} />
+                            <PrivateRoute exact path="/contacts" component={ContactsP} />
+                            <Route exact path="/login" component={Login} />
+                            <Route exact path="/register" component={Register} />
 
-                    </Switch>
+                          </Switch>    
                   </div>
-                </div>
-
-              </div>
+              </main>
+                <MobileSidbar />
             </div>
+
           </Router>
         </AlertState>
       </ContactState>

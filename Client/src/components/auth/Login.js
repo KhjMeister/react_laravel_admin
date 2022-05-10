@@ -1,6 +1,11 @@
 import React,{Fragment,useState,useContext,useEffect} from 'react'
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
+
+import descktopLoginPic from '../../assets/images/IMG-20210104-WA0002 1.jpg';
+import mobileLoginPic from '../../assets/images/mobilelogin.jpg';
+import '../../assets/css/login.css';
+
 const Login = props => {
     const alertContext = useContext(AlertContext);
     const authContext = useContext(AuthContext);
@@ -42,41 +47,46 @@ const Login = props => {
         }
     };
     return (
-        <Fragment>                  
-        <div className="row">
-            <div className="col-lg-12 col-xlg-12 col-md-12">
-                <div className="card">
-                    <div className="card-header" >
-                        <h4 className=" card-title "> ورود </h4>
+        <>
+         <div className="login_content">
+            <div className="img-login">
+                <img className="descktop" src={descktopLoginPic} alt="" />
+                <img className="mobile" src={mobileLoginPic} alt="" />
+            </div>
+            <div className="form-login">
+                <div className="items">
+                    <div className="detail">
+                        <h1>خوش آمدید</h1>
+                        <span>به ویدیو رایان</span>
+                        <p>
+                            ویدیو رایان وبسایتی برای ایجاد کنفرانس ها و وبینار
+                            <br /> مدیریت دسته بندی ها
+                            <br />
+                            مدیریت کاربران
+                            <br />
+                            مدیریت جلسات
+                            <br />
+                        </p>
                     </div>
-                    <div className="card-body">
-                        <form className="form-horizontal form-material"   onSubmit={onSubmit}>
-                            
-                            <div className="form-group">
-                                <label htmlFor="email" className="col-md-12">ایمیل</label>
-                                <div className="col-md-12">
-                                    <input id="email" name="email" value={email} onChange={onChange} required type="email" placeholder="ایمیل خود را وارد کنید" className="form-control form-control-line"   />
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="password" className="col-md-12">پسورد</label>
-                                <div className="col-md-12">
-                                    <input id="password" name="password" value={password} required onChange={onChange} type="password" placeholder="پسورد خود را وارد کنید"  className="form-control form-control-line" />
-                                </div>
-                            </div>
-
-                            <div className="form-group">
-                                <div className="col-sm-12">
-                                    <button type="submit" className="btn btn-outline-info">ورود</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    <form  onSubmit={onSubmit}>
+                        <div className="form-group">
+                            <label for="email">ایمیل </label>
+                            <input id="email" name="email" value={email} onChange={onChange} required type="email" placeholder=" ایمیل خود را وارد کنید" />
+                        </div>
+                        <div className="form-group">
+                            <label for="password">کلمه عبور</label>
+                            <input id="password" name="password" value={password} required onChange={onChange} type="password" placeholder="پسورد خود را وارد کنید"  />
+                        </div>
+                        <button type="submit"> ورود </button>
+                    </form>
                 </div>
             </div>
-            
+            <div className="after_login">
+            </div> 
         </div>
-</Fragment>
+        
+
+</>
     )
 }
 

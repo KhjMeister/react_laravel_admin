@@ -1,4 +1,4 @@
-import React,{ Fragment, useContext } from 'react';
+import React,{ useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
@@ -17,68 +17,42 @@ import ContactContext from '../../context/contact/contactContext';
     }
 
     const authLinks = (
-        <Fragment>
-            <a onClick={onLogout} className="nav-link hidden-sm-down waves-effect waves-dark" href="#!">
-                <i className="fa fa-sign-out"></i>
-            </a>
-        </Fragment>
+        <>
+            <nav>
+                <div className="detail">
+                    <img src="https://picsum.photos/200" alt="" />
+                    <p>علی ریکی</p>
+                    <div className="notify">
+                        <p>جلسات باقی مانده</p>
+                        <div className="notify-number">
+                            <span>5</span>
+                        </div>
+                    </div>
+                </div>
+                <a onClick={onLogout} href="#!" className="logout">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M9.75286 13.3343C9.41547 13.3343 9.0919 13.466 8.85333 13.7004C8.61477 13.9348 8.48074 14.2528 8.48074 14.5843V15.251C8.48074 15.8477 8.23949 16.42 7.81007 16.842C7.38064 17.2639 6.79822 17.501 6.19092 17.501H4.83399C4.2267 17.501 3.64427 17.2639 3.21485 16.842C2.78543 16.42 2.54418 15.8477 2.54418 15.251V4.75098C2.54418 4.15424 2.78543 3.58194 3.21485 3.15999C3.64427 2.73803 4.2267 2.50098 4.83399 2.50098H6.19092C6.79822 2.50098 7.38064 2.73803 7.81007 3.15999C8.23949 3.58194 8.48074 4.15424 8.48074 4.75098V5.41764C8.48074 5.74916 8.61477 6.06711 8.85333 6.30153C9.0919 6.53595 9.41547 6.66764 9.75286 6.66764C10.0902 6.66764 10.4138 6.53595 10.6524 6.30153C10.891 6.06711 11.025 5.74916 11.025 5.41764V4.75098C11.0236 3.4916 10.5139 2.28419 9.60763 1.39368C8.70136 0.50317 7.47258 0.00230013 6.19092 0.000976563L4.83399 0.000976562C3.55234 0.00230013 2.32356 0.50317 1.41729 1.39368C0.511019 2.28419 0.00128595 3.4916 -6.10352e-05 4.75098L-6.10352e-05 15.251C0.00128595 16.5103 0.511019 17.7178 1.41729 18.6083C2.32356 19.4988 3.55234 19.9997 4.83399 20.001H6.19092C7.47258 19.9997 8.70136 19.4988 9.60763 18.6083C10.5139 17.7178 11.0236 16.5103 11.025 15.251V14.5843C11.025 14.2528 10.891 13.9348 10.6524 13.7004C10.4138 13.466 10.0902 13.3343 9.75286 13.3343Z"
+                            fill="#4D4D4D" />
+                        <path
+                            d="M19.1333 7.93858L15.2441 4.11692C15.1259 4.00086 14.9856 3.90881 14.8312 3.84602C14.6769 3.78323 14.5114 3.75094 14.3444 3.75098C14.1773 3.75102 14.0119 3.78339 13.8575 3.84625C13.7032 3.90911 13.563 4.00122 13.4448 4.11733C13.2063 4.35183 13.0724 4.66983 13.0724 5.00138C13.0725 5.16554 13.1054 5.32809 13.1694 5.47975C13.2334 5.63141 13.3271 5.76919 13.4453 5.88525L16.3381 8.72775L5.93637 8.75108C5.59898 8.75108 5.27541 8.88278 5.03684 9.1172C4.79827 9.35162 4.66425 9.66956 4.66425 10.0011C4.66425 10.3326 4.79827 10.6505 5.03684 10.885C5.27541 11.1194 5.59898 11.2511 5.93637 11.2511L16.383 11.2278L13.4427 14.1169C13.2041 14.3513 13.07 14.6692 13.0699 15.0008C13.0698 15.3323 13.2038 15.6503 13.4423 15.8848C13.6808 16.1193 14.0044 16.2511 14.3418 16.2512C14.6792 16.2513 15.0029 16.1196 15.2415 15.8853L19.1308 12.0636C19.6868 11.5164 19.9993 10.7749 19.9998 10.0016C20.0003 9.22834 19.6887 8.48644 19.1333 7.93858Z"
+                            fill="#4D4D4D" />
+                    </svg>
+                    <p>خروج</p>
+                </a>
+            </nav>
+        </>
     );
     const guestLinks = (
-        <Fragment>
-           <Link className="nav-link hidden-sm-down waves-effect waves-dark" to="/login">
-                <i className="fa fa-user"></i>
-            </Link>
-            <Link className="nav-link hidden-sm-down waves-effect waves-dark" to="/register">
-                <i className="fa fa-users"></i>
-            </Link>
-        </Fragment>
+        <>
+           
+        </>
     );
 
     return (
-        <Fragment>
-            <div className="topbar">
-            <div className="navbar top-navbar navbar-expand-md navbar-light">
-               
-                <div className="navbar-header">
-                    <Link className="navbar-brand" to="/">
-                       
-                            <img src="images/logo-icon.png" alt="homepage" className="dark-logo" />
-                            
-                            <img src="images/logo-light-icon.png" alt="homepage" className="light-logo" />
-                        
-                        
-                        <span>
-                         
-                            <img src="images/logo-text.png" alt="homepage" className="dark-logo" />
-                            
-                            <img src="images/logo-light-text.png" className="light-logo" alt="homepage" />
-                        </span> 
-                    </Link>
-                </div>
-                
-                <div className="navbar-collapse">
-                    
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item"> <Link className="nav-link nav-toggler hidden-md-up waves-effect waves-dark" to="/"><i className="fa fa-bars"></i></Link> </li>
-                       
-                        <li className="nav-item hidden-xs-down search-box"> 
-                            {isAuthenticated ? authLinks : guestLinks}
-                            
-                        </li>
-                    </ul>
-                    
-                    <ul className="navbar-nav my-lg-0">
-                        
-                        
-                        <li className="nav-item dropdown u-pro">
-                            
-                           
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        </Fragment>
+        <>
+            {isAuthenticated ? authLinks : guestLinks}  
+        </>
     )
 }
 

@@ -1,0 +1,65 @@
+main nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+}
+
+main nav .detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main nav .detail img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(148.5deg, #ff4a4f 46.44%, #fc8585 75.12%);
+  padding: 0.3rem;
+}
+
+main nav .detail p {
+  margin-right: 0.5rem;
+}
+
+main nav .detail .notify {
+  margin-right: 60px;
+  margin-top: 0.3rem;
+  display: flex;
+
+}
+
+main nav .detail .notify .notify-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 19px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--secondary);
+  margin-right: 1rem;
+}
+
+main nav .detail .notify .notify-number span {
+  color: var(--neutral-50);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+main nav .logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main nav .logout svg {
+  margin-left: 1rem;
+}
+
+/* ! responsive */
+@media only screen and (max-width: 1024px) {
+  main nav {
+    display: none;
+  }
+}

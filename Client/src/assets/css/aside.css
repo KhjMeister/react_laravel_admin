@@ -1,0 +1,41 @@
+aside .title {
+  width: 80%;
+  margin: auto;
+  margin-top: 24px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+aside .title p {
+  margin-right: 1rem;
+  font-weight: 700 !important;
+}
+
+aside .title p span {
+  color: var(--primery);
+  font-weight: 700;
+}
+
+aside .list-aside ul {
+  margin-top: 40px;
+}
+
+aside .list-aside ul li {
+  margin-top: 16px;
+}
+
+aside .list-aside ul li a {
+  display: flex;
+  padding: .8rem;
+  justify-content: start;
+  align-items: center;
+}
+
+aside .list-aside ul li a svg {
+    margin-right: 24px;
+}
+
+aside .list-aside ul li a p {
+    margin-right: .5rem;
+}

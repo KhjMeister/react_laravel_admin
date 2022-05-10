@@ -1,0 +1,38 @@
+.panel-layout {
+  width: 100%;
+  min-height: auto;
+  position: relative;
+}
+
+.panel-layout aside {
+  width: 20%;
+  height: 100vh;
+  position: fixed;
+  background-color: var(--neutral-50) !important;
+}
+
+.panel-layout main {
+  width: 80%;
+  min-height: 100vh;
+  position: absolute;
+  left: 0;
+  background-color: var(--neutral-100) !important;
+}
+
+.panel-layout main .container {
+  width: 92%;
+  margin: auto;
+}
+
+/* ! responsive */
+@media only screen and (max-width: 1024px) {
+  .panel-layout aside {
+    display: none;
+  }
+  .panel-layout main {
+    width: 100%;
+  }
+  .navmobile {
+    display: flex !important;
+  }
+}

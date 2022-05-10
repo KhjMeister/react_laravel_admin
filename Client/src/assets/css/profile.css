@@ -1,0 +1,122 @@
+.content {
+    margin-top: -2rem !important;
+}
+.content section .detail-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  width: 60%;
+  margin: auto;
+  margin-top: 3rem;
+}
+
+.content section .detail-profile .img-profile img {
+  border: 1px solid var(--body-400);
+  border-radius: 50%;
+  padding: 0.2rem;
+}
+
+form {
+  width: 80%;
+}
+
+form > * {
+  margin-top: 1rem;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-group .item-form-group {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.full-with {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-form-group label {
+  color: var(--body-400);
+  margin-bottom: 0.5rem;
+}
+
+.item-form-group input {
+  padding: 0.7rem;
+  border-radius: 2px;
+  border: none;
+  border: 1px solid var(--body-400);
+  background-color: transparent;
+}
+
+.item-form-group input::placeholder {
+  color: #4d4d4d;
+}
+
+form button {
+  background-color: var(--primery);
+  border: none;
+  width: 100%;
+  color: var(--neutral-50);
+  border-radius: 4px;
+  padding: 0.5rem 0;
+  margin-top: 3rem;
+}
+
+/* ! responsive */
+@media only screen and (max-width: 900px) {
+  .content section .detail-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .content section .detail-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  form .responsive-flex {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  form .responsive-flex .item-form-group {
+    width: 100%;
+    margin-top: 0.3rem;
+  }
+
+  .item-form-group label {
+    font-size: 0.6rem !important;
+  }
+
+  form button {
+    background-color: var(--primery);
+    border: none;
+    width: 100%;
+    color: var(--neutral-50);
+    border-radius: 4px;
+    padding: 0.5rem 0;
+    margin-top: 2rem;
+  }
+}
