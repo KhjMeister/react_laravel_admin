@@ -18,9 +18,5 @@ class CategoryController extends Controller
         return view('client.category');
         
     }
-    public function getAllCategories()
-    {
-        return response()->json(auth()->user()->categories()::all());
-        
-    }
+    
 }

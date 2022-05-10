@@ -1,5 +1,5 @@
 <div>
-    @if($createPart)
+    @if($createPart===0)
     <div class="content">
         <section>
             <div class="title">
@@ -11,28 +11,28 @@
                         alt="">
                     <p>وبینار</p>
                     <span>برای ایجاد وبینار لطفا کلیک کنید</span>
-                    <a href=""> وبینار</a>
+                    <a wire:click="changeCreateStatus(1)" href="#"> وبینار</a>
                 </div>
                 <div class="item-box confronce">
                     <img src="./client/assets/images/Conference-pana (1) 1.png" width="250" height="250" alt="">
                     <p>کنفرانس</p>
                     <span>برای ایجاد کنفرانس لطفا کلیک کنید</span>
-                    <a href=""> کنفرانس</a>
+                    <a wire:click="changeCreateStatus(2)"> کنفرانس</a>
                 </div>
                 <div class="item-box vebinar">
                     <img src="./client/assets/images/Meeting-amico 1 (1).png" width="250" height="250" alt="">
                     <p>حضوری</p>
                     <span>برای ایجاد جلسه حضوری لطفا کلیک کنید</span>
-                    <a href=""> حضوری</a>
+                    <a wire:click="changeCreateStatus(3)"> حضوری</a>
                 </div>
             </div>
         </section>
     </div>
-    @else
+    @elseif($createPart===1)
     <div class="content">
         <section>
             <div class="title">
-                <div class="back">
+                <div wire:click="changeCreateStatus(0)" class="back">
                     <p>ایجاد جلسه</p>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +49,7 @@
                 <div class="box">
                     <div class="title">
                         <p>عنوان جلسه</p>
-                        <button id="add-contact">افزودن مخاطب</button>
+                        <button id="add-contact" >افزودن مخاطب</button>
                     </div>
                     <div class="name-session">
                         <input type="search" name="" id="" placeholder="عنوان جلسه را وارد کنید">
@@ -113,7 +113,7 @@
                 </div>
             </div>
         </section>
-        <div class="modal-box" id="modal">
+        <div wire:ignore.self class="modal-box " id="modal">
             <div class="box-addContact" id="clsModal">
                 <div class="box-addContact-container">
                     <div class="" id="closeModal">
@@ -123,7 +123,7 @@
                         </svg>
                     </div>
                     <div class="title">
-                        <button>افزودن</button>
+                        <button class="link-mouse-hover">افزودن</button>
                         <div class="">
                             <select name="" id="">
                                 <option value="">همه دسته بندی ها</option>
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                     <div class="search">
-                        <input type="text" placeholder="جست و جو در مخاطبین">
+                        <input type="text" wire:model="search" placeholder="جست و جو در مخاطبین">
                         <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M19.635 17.8725L15.7637 13.9996C18.6604 10.1286 17.8706 4.64234 13.9996 1.74566C10.1286 -1.15102 4.64234 -0.361187 1.74566 3.50978C-1.15102 7.38076 -0.361187 12.8671 3.50979 15.7637C6.61927 18.0906 10.8901 18.0906 13.9996 15.7637L17.8725 19.6366C18.3592 20.1233 19.1483 20.1233 19.635 19.6366C20.1217 19.1499 20.1217 18.3609 19.635 17.8742L19.635 17.8725ZM8.78697 15.0162C5.34663 15.0162 2.55772 12.2273 2.55772 8.78697C2.55772 5.34663 5.34663 2.55772 8.78697 2.55772C12.2273 2.55772 15.0162 5.34663 15.0162 8.78697C15.0126 12.2257 12.2258 15.0126 8.78697 15.0162Z"
@@ -150,230 +150,30 @@
                             <p>مدرس</p>
                         </div>
                         <div class="items-contact">
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">09332839823</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">09332839823</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">09332839823</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">09332839823</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">09332839823</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">09332839823</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">09332839823</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">09332839823</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">09332839823</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">09332839823</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">09332839823</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">09332839823</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">09332839823</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                <div class="">
-                                    <input class="accent" type="checkbox">
-                                </div>
-                                <div class="">
-                                    <p>خسرو رسولی</p>
-                                </div>
-                                <div class="">
-                                    <p style="font-size: small;">0911111111</p>
-                                </div>
-                                <div class="">
-                                    <p>
-                                        <input class="accent" type="radio">
-                                    </p>
-                                </div>
-                            </div>
+                            @if(!$contacts==null)
+                                @foreach ($contacts as $con)
+                                    <div class="item-contact" style="display: flex;justify-content: space-between;">
+                                        <div class="">
+                                            <input class="accent" type="checkbox">
+                                        </div>
+                                        <div class="">
+                                            <p>{{ $con->username }}</p>
+                                        </div>
+                                        <div class="">
+                                            <p style="font-size: small;">{{ $con->phone }}</p>
+                                        </div>
+                                        <div class="">
+                                            <p>
+                                                <input class="accent" type="radio">
+                                            </p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <p >کاربری وجود ندارد</p>
+                            @endif
+                            
+                            
                         </div>
                     </div>
                 </div>

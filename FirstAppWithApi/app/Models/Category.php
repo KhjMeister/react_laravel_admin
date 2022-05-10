@@ -18,4 +18,9 @@ class Category extends Model
     // protected $hidden = [
     //     'status',  
     // ];
+
+    public function contacts()
+    {
+        return $this->hasMany(Contacts::class,'ca_id');
+    }
 }

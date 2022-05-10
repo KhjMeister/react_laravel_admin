@@ -18,12 +18,9 @@
         btn.addEventListener("click", () => {
             modalAddContact.style.display = "block"
         });
-
         closeModal.addEventListener("click", () => {
             modalAddContact.style.display = "none"
         });
-
-
    </script>
 @endpush
 

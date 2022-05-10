@@ -148,8 +148,7 @@ class Sessions extends Component
                 'session_type' => 1
             ]); 
             $this->session_type = 1;
-        }
-        
+        }   
     }
     public function zakhire()
     {

@@ -27,14 +27,14 @@ class Contact extends Component
         'semat'=>'required|min:5',
     ];
     protected $messages = [
-        'ca_id.required' => 'دسته بندی را انتخاب کنید',
+        'ca_id.required' => 'دسته بندی را ایجاد کنید',
     ];
     public function render()
     {
         return view('livewire.client.contact',[
             'contacts' => Contacts::where([
-                ['u_id', '=', $this->u_id],
-                ['username', 'like', '%'.$this->search.'%']
+                    ['u_id', '=', $this->u_id],
+                    ['username', 'like', '%'.$this->search.'%']
                 ])->orWhere([
                     ['u_id', '=', $this->u_id],
                     ['phone', 'like', '%'.$this->search.'%']
@@ -45,17 +45,9 @@ class Contact extends Component
         ]);
     }
 
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-    
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
     public function mount()
     {
+        $this->selectCategory();
         $this->u_id = Auth::user()->id;
         if($this->categoryVisibility()){
             $this->categories = null;
@@ -72,8 +64,17 @@ class Contact extends Component
             if($this->contactsVisibility()){
                 $this->contacts_visablity = true;
             }
-
+            
         }
+    }
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+    
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
     }
     public function resetForm()
     {
@@ -199,5 +200,11 @@ class Contact extends Component
             ]);
          
         }
+    }
+
+    public function selectCategory($id)
+    {
+        $contacts = Categories::find(1)->contacts;
+        dump($contacts);
     }
 }
