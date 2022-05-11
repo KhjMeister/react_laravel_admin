@@ -17,6 +17,7 @@ class Session extends Component
     use WithPagination;
 
     public $createPart = 1;
+    public $level = 1;
     public $categories,$u_id;
     public $username,$phone,$semat;
     public $baseUrl = "http://localhost:8000/meetting/"; 
@@ -107,9 +108,9 @@ class Session extends Component
             // Sessions::create($validatedData);
             $this->session_id = DB::table('sessions')->insertGetId([ 
                 'name'         =>  $validatedData['name'],
-                'session_type' => $this->session_type,
                 'start_time'   => $validatedData['start_time'],
                 'start_date'   => $validatedData['start_date'],
+                'session_type' => $this->session_type,
                 'sess_token'   => $this->sess_token,
                 'video_link'   => $this->video_link,
                 'total_number' => $this->total_number,
@@ -119,6 +120,12 @@ class Session extends Component
                 'end_at'       => $this->end_at,
                 'jalase_type'  => $this->jalase_type,
                 ]);  
+            $this->dispatchBrowserEvent('alert',[
+                'type'=>'success',
+                'message'=>"جلسه ایجاد شد مخاطبانتان را اضافه کنید"
+            ]);
+            $this->level = 2;
+
         }catch(\Exception $e){
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'error',

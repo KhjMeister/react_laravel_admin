@@ -45,6 +45,7 @@
                     </svg>
                 </div>
             </div>
+            @if($this->level===1)
             <div class="boxes">
                 <form class="box" wire:submit.prevent="createSession">
                     <div class="title">
@@ -121,6 +122,9 @@
                     </div>
                 </form>
             </div>
+            @elseif($this->level===2)
+                asdad
+            @endif
         </section>
         <div wire:ignore.self class="modal-box " id="modal">
             <div class="box-addContact" id="clsModal">
