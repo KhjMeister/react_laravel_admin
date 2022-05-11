@@ -92,10 +92,10 @@
 }
 
 .content section .boxes .box .date-session {
-  display: flex;
-  align-items: flex-start;
+  /* display: flex;
+  align-items: flex-start; */
   margin-top: 1rem;
-  padding: 1.5rem 0rem;
+  padding: 0.8rem 0rem;
 }
 
 .content section .boxes .box .date-session .item {
@@ -111,6 +111,13 @@
 .content section .boxes .box .date-session p {
   margin-right: 2rem;
 }
+.content section .boxes .box .date-session .item input {
+  margin-right: 1rem;
+}
+
+.content section .boxes .box .date-session input {
+  margin-right: 2rem;
+}
 
 .content section .boxes .box .submit-details {
   display: flex;
@@ -120,13 +127,14 @@
 }
 
 .content section .boxes .box .submit-details button {
-  width: 70%;
+  width: 100%;
   border: none;
   border-radius: 4px;
   padding: 1.2rem;
   background-color: var(--primery);
   color: var(--neutral-50);
   cursor: pointer;
+ 
 }
 
 .content section .boxes .box .submit-details .share-box {

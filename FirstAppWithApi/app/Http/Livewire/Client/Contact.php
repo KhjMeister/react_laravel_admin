@@ -113,6 +113,13 @@ class Contact extends Component
     {
         $this->contacts = Contacts::where([
             ['u_id', '=', $this->u_id],
+            ['username', 'like', '%'.$this->search.'%']
+        ])->orWhere([
+            ['u_id', '=', $this->u_id],
+            ['phone', 'like', '%'.$this->search.'%']
+        ])->orWhere([
+            ['u_id', '=', $this->u_id],
+            ['semat', 'like', '%'.$this->search.'%']
         ])->get();  
     }
     public function getCategory($id)
@@ -172,12 +179,10 @@ class Contact extends Component
         $this->username= $contact->username;
         $this->phone= $contact->phone;
         $this->semat= $contact->semat;
-
     } 
     public function updateContact()
     {
         // $validatedData = $this->validate();
-
         try{
             
             Contacts::where('id',$this->cid)->update([

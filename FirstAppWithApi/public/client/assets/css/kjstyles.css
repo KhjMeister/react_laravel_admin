@@ -39,3 +39,17 @@
   ::-webkit-scrollbar-thumb:hover {
     background: var(--body-400); 
   }
+.input_wrapper{
+  background: #fbfbfb;
+  padding: 0.2rem;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.time_input{
+  border: none;
+  width: 90%;
+  background-color: transparent;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}

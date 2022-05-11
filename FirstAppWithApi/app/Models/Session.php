@@ -15,12 +15,16 @@ class Session extends Model
         'sess_token',
         'video_link',
         'u_id',
-        'total_number',
         'end_at',
-        'is_started',
-        'is_ended',
         'start_time',
         'start_date',
+        'jalase_type',
+        'session_type',
+        'total_number',
+        'is_started',
+        'is_ended',
+        'end_at',
+        
     ];
 
 }
