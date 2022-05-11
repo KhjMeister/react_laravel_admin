@@ -8,6 +8,8 @@ use App\Models\Category as Categories;
 use App\Models\Contacts;
 use App\Models\Session as Sessions;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 
 class Session extends Component

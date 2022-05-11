@@ -52,7 +52,8 @@
                         <!-- <button id="btn" > بعدی</button> -->
                     </div>
                     <div class="name-session">
-                        <input wire:model="name" type="search" placeholder="عنوان جلسه را وارد کنید">
+                        <input class="@error('name') is-invalid @enderror" wire:model="name" type="search" placeholder="عنوان جلسه را وارد کنید">
+                        @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
                     </div>
                     <div class="type-session">
                         <label for="">نوع جلسه</label>
@@ -77,7 +78,8 @@
                             </svg>
                             <p>تاریخ جلسه</p>
                             <div class="input_wrapper">
-                                <input wire:model="start_date" class="time_input" type="date" placeholder="12 فروردین" >
+                                <input wire:model="start_date" class="time_input @error('start_date') is-invalid @enderror" type="date" placeholder="12 فروردین" >
+                                @error('start_date') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                         </div>
                         <!-- <p>31 فروردین 1400</p> -->
@@ -92,7 +94,8 @@
                             </svg>
                             <p>زمان جلسه</p>
                             <div class="input_wrapper">
-                                <input wire:model="start_time" class="time_input" type="time" placeholder="12-2-13">
+                                <input wire:model="start_time" class="time_input @error('start_time') is-invalid @enderror" type="time" placeholder="12-2-13">
+                                @error('start_time') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                         </div>
                         <!-- <p> 4 بعد از ظهر</p> -->
