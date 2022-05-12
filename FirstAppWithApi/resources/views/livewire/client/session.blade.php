@@ -176,7 +176,7 @@
                                 @foreach ($contacts as $con)
                                     <div class="item-contact" style="display: flex;justify-content: space-between;">
                                         <div>
-                                            <input class="accent" type="checkbox" wire:click="addUsersToSession({{ $contact->id }})" id="my_check_{{ $contact->id }}">
+                                            <input class="accent" type="checkbox" wire:click="addUsersToSession({{ $con->id }})" >
                                         </div>
                                         <div>
                                             <p>{{ $con->username }}</p>
