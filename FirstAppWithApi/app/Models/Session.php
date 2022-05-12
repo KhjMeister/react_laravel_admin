@@ -27,4 +27,9 @@ class Session extends Model
         
     ];
 
+    public function contacts()
+    {
+        return $this->belongsToMany(Contacts::class,'Session_contact','s_id', 'c_id');
+    }
+
 }

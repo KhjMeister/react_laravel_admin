@@ -23,4 +23,5 @@ class Category extends Model
     {
         return $this->hasMany(Contacts::class,'ca_id');
     }
+   
 }
