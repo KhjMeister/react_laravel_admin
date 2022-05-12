@@ -50,10 +50,10 @@
                 <form class="box" wire:submit.prevent="createSession">
                     <div class="title">
                         <p>عنوان جلسه</p>
-                        <!-- <button id="btn" > بعدی</button> -->
+                        <button > بعدی</button>
                     </div>
                     <div class="name-session">
-                        <input class="@error('name') is-invalid @enderror" wire:model="name" type="search" placeholder="عنوان جلسه را وارد کنید">
+                        <input class="@error('name') is-invalid @enderror" wire:model="name" name="name" type="search" placeholder="عنوان جلسه را وارد کنید">
                         @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
                     </div>
                     <div class="type-session">
@@ -65,7 +65,7 @@
                             </div>
                             <div class="item sec">
                                 <input class="accent" type="checkbox" wire:click="changeSessionState(0)" {{ $session_type==1 ? 'checked' : '' }}>
-                                <span>جلسه عمومی</span>
+                                <span>جلسه خصوصی</span>
                             </div>
                         </div>
                     </div>
@@ -79,11 +79,11 @@
                             </svg>
                             <p>تاریخ جلسه</p>
                             <div class="input_wrapper">
-                                <input wire:model="start_date" class="time_input @error('start_date') is-invalid @enderror" type="date" placeholder="12 فروردین" >
+                                <input wire:model="start_date" name="start_date" class="time_input @error('start_date') is-invalid @enderror" type="date" placeholder="12 فروردین" >
                                 @error('start_date') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                         </div>
-                        <!-- <p>31 فروردین 1400</p> -->
+                       
                     </div>
                     <div class="date-session">
                         <div class="item">
@@ -95,15 +95,15 @@
                             </svg>
                             <p>زمان جلسه</p>
                             <div class="input_wrapper">
-                                <input wire:model="start_time" class="time_input @error('start_time') is-invalid @enderror" type="time" placeholder="12-2-13">
+                                <input wire:model="start_time" name="start_time" class="time_input @error('start_time') is-invalid @enderror" type="time" placeholder="12-2-13">
                                 @error('start_time') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                         </div>
-                        <!-- <p> 4 بعد از ظهر</p> -->
+                        
                     </div>
-                    <div class="submit-details">
+                    <!-- <div class="submit-details">
                         <button>بعدی </button>
-                        <!-- <div class="share-box">
+                        <div class="share-box">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -118,38 +118,47 @@
                                     d="M15.4167 0H4.58333C3.36816 0.00132347 2.20314 0.484634 1.34389 1.34389C0.484634 2.20314 0.00132347 3.36816 0 4.58333L0 13.75C0.00132347 14.9652 0.484634 16.1302 1.34389 16.9894C2.20314 17.8487 3.36816 18.332 4.58333 18.3333H15.4167C16.6318 18.332 17.7969 17.8487 18.6561 16.9894C19.5154 16.1302 19.9987 14.9652 20 13.75V4.58333C19.9987 3.36816 19.5154 2.20314 18.6561 1.34389C17.7969 0.484634 16.6318 0.00132347 15.4167 0ZM15.4167 2.5C15.9221 2.50168 16.4092 2.68879 16.7858 3.02583L11.3692 8.4425C11.0013 8.79389 10.5121 8.98996 10.0033 8.98996C9.49458 8.98996 9.0054 8.79389 8.6375 8.4425L3.22083 3.02583C3.59571 2.69031 4.08025 2.50331 4.58333 2.5H15.4167ZM15.4167 15.8333H4.58333C4.0308 15.8333 3.5009 15.6138 3.11019 15.2231C2.71949 14.8324 2.5 14.3025 2.5 13.75V5.8475L6.86583 10.2133C7.2773 10.625 7.76584 10.9515 8.30353 11.1743C8.84123 11.3971 9.41756 11.5118 9.99958 11.5118C10.5816 11.5118 11.1579 11.3971 11.6956 11.1743C12.2333 10.9515 12.7219 10.625 13.1333 10.2133L17.5 5.8475V13.75C17.5 14.3025 17.2805 14.8324 16.8898 15.2231C16.4991 15.6138 15.9692 15.8333 15.4167 15.8333Z"
                                     fill="#FF9928" />
                             </svg>
-                        </div> -->
-                    </div>
+                        </div>
+                    </div> -->
                 </form>
             </div>
             @elseif($this->level===2)
-                asdad
-            @endif
-        </section>
-        <div wire:ignore.self class="modal-box " id="modal">
+
+            <!-- <div class="boxes">
+                <form class="box" wire:submit.prevent="createSession">
+                    <div class="title">
+                        <p>اضافه کردن مخاطبان</p>
+                        
+                    </div>
+                    
+                    <div class="submit-details">
+                        <button>بعدی </button>
+                        
+                    </div>
+                </form>
+            </div>  -->
+
             <div class="box-addContact" id="clsModal">
                 <div class="box-addContact-container">
-                    <div class="" id="closeModal">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </div>
+                    
                     <div class="title">
                         <button class="link-mouse-hover">افزودن</button>
-                        <div class="">
-                            <select name="" id="">
-                                <option value="">همه دسته بندی ها</option>
-                                <option value="">تست</option>
-                                <option value="">تست</option>
-                                <option value="">تست</option>
-                                <option value="">تست</option>
-                            </select>
+                        <div>
+                        <select class="dropdown-content link-mouse-hover">
+                            @if(!$this->categories==null)
+                            <option wire:click.prevent="getAllContacts">همه دسته بندی ها</option>
+                                @foreach ($categories as $category)
+                                    <option wire:click="selectedCategory({{ $category->id }})" >{{ $category->name }}</option>
+                                @endforeach
+                            @else
+                                <option >دسنه بندی وجود ندارد</option>
+                            @endif
+                </select>
                         </div>
                     </div>
                     <div class="search">
-                        <input type="text" wire:model="search" placeholder="جست و جو در مخاطبین">
-                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <input wire:keydown="getAllContacts" type="text" wire:model="search" placeholder="جست و جو در مخاطبین">
+                        <svg  width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M19.635 17.8725L15.7637 13.9996C18.6604 10.1286 17.8706 4.64234 13.9996 1.74566C10.1286 -1.15102 4.64234 -0.361187 1.74566 3.50978C-1.15102 7.38076 -0.361187 12.8671 3.50979 15.7637C6.61927 18.0906 10.8901 18.0906 13.9996 15.7637L17.8725 19.6366C18.3592 20.1233 19.1483 20.1233 19.635 19.6366C20.1217 19.1499 20.1217 18.3609 19.635 17.8742L19.635 17.8725ZM8.78697 15.0162C5.34663 15.0162 2.55772 12.2273 2.55772 8.78697C2.55772 5.34663 5.34663 2.55772 8.78697 2.55772C12.2273 2.55772 15.0162 5.34663 15.0162 8.78697C15.0126 12.2257 12.2258 15.0126 8.78697 15.0162Z"
                                 fill="#4D4D4D" />
@@ -166,16 +175,16 @@
                             @if(!$contacts==null)
                                 @foreach ($contacts as $con)
                                     <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                        <div class="">
-                                            <input class="accent" type="checkbox">
+                                        <div>
+                                            <input class="accent" type="checkbox" wire:click="addUsersToSession({{ $contact->id }})" id="my_check_{{ $contact->id }}">
                                         </div>
-                                        <div class="">
+                                        <div>
                                             <p>{{ $con->username }}</p>
                                         </div>
-                                        <div class="">
+                                        <div>
                                             <p style="font-size: small;">{{ $con->phone }}</p>
                                         </div>
-                                        <div class="">
+                                        <div>
                                             <p>
                                                 <input class="accent" type="radio">
                                             </p>
@@ -191,6 +200,10 @@
                     </div>
                 </div>
             </div>
+            @endif
+        </section>
+        <div wire:ignore.self class="modal-box " id="modal">
+           
         </div>
     </div>
     @endif

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Category as Categories;
 use App\Models\Contacts;
 use App\Models\Session as Sessions;
+use App\Models\Session_contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class Session extends Component
     use WithPagination;
 
     public $createPart = 1;
-    public $level = 1;
+    public $level = 2;
     public $categories,$u_id;
     public $username,$phone,$semat;
     public $baseUrl = "http://localhost:8000/meetting/"; 
@@ -66,6 +67,7 @@ class Session extends Component
     public function mount()
     {
         $this->u_id = Auth::user()->id;
+        $this->getAllCategories();
     }
 
     public function updatingSearch()
@@ -134,4 +136,54 @@ class Session extends Component
         }
     }
 
+    public function getAllContacts()
+    {
+        $this->contacts = Contacts::where([
+            ['u_id', '=', $this->u_id],
+            ['username', 'like', '%'.$this->search.'%']
+        ])->orWhere([
+            ['u_id', '=', $this->u_id],
+            ['phone', 'like', '%'.$this->search.'%']
+        ])->orWhere([
+            ['u_id', '=', $this->u_id],
+            ['semat', 'like', '%'.$this->search.'%']
+        ])->get();  
+    }
+    public function selectedCategory($id)
+    {
+        $this->contacts = Categories::find($id)->contacts;
+        
+    }
+    public function getAllCategories()
+    {
+        $this->categories = Categories::where([
+            ['u_id', '=', $this->u_id],
+        ])->get();    
+    }
+
+    public function addUsersToSession($contact_id)
+    {
+        if($sc = $this->getContactId($contact_id)){
+            Session_contact::find($sc->id)->delete();
+            $this->total_number -= 1;
+            
+        }else{
+            Session_contact::create([
+            'c_id'       => $contact_id,
+            's_id'       => $this->session_id,
+            'token'      => rand(11111, 99999),
+            'sms_status' => 0
+            ]);
+            $this->total_number += 1;            
+        }
+    }
+    public function getContactId($contact_id)
+    {
+        $var = Session_contact::where([['c_id',$contact_id],['s_id',$this->session_id]])->first();
+        if(isset($var)){
+            return  Session_contact::where([['c_id',$contact_id],['s_id',$this->session_id]])->first();
+        }else{
+            return  false;
+        }
+    }
 }

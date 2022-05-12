@@ -158,31 +158,31 @@
 
 /* !box 2 */
 
-.modal-box {
+/* .modal-box {
   display: none;
-}
+} */
 
 .box-addContact {
-  background: rgba(0, 0, 0, 0.252);
-  padding: 1rem;
-  position: absolute;
+  /* background: rgba(0, 0, 0, 0.252); */
+  padding:0 1rem 1rem 1rem;
+  /* position: absolute; */
   top: 0;
   right: 0;
   left: 0;
-  height: 100vh;
+  /* height: 100vh; */
   margin: auto;
-  z-index: 885;
+  /* z-index: 885; */
 }
 
 .box-addContact-container {
   background-color: var(--neutral-50);
   padding: 0 2rem;
-  width: 40%;
+  width: 50%;
   height: 90%;
-  margin-top: 50%;
+  /* margin-top: ; */
   margin: auto;
   border-radius: 4px;
-  z-index: 888;
+  /* z-index: 888; */
   overflow: hidden;
 }
 
@@ -211,6 +211,7 @@
 
 .box-addContact .title select {
   border: none;
+  background-color: var(--neutral-50);
 }
 
 .box-addContact .search {
