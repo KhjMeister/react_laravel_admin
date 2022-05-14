@@ -125,10 +125,8 @@
                 <div class="inside-box">
                 <img src="./client/assets/images/Conference-pana (1) 1.png" width="250" height="250" alt="">
                     <p>کنفرانس</p>
-                    <span>کنفرانس ایجاد کنید </span>
-                    <span>کنفرانس ایجاد کنید </span>
-                    <span>کنفرانس ایجاد کنید </span>
-                    <span>کنفرانس ایجاد کنید </span>
+                    <span>روابط قوی‌تری ایجاد کنید، همکاری‌های فوق‌العاده‌ای ایجاد کنید و تجربه‌ای جذاب از جلسه را با ویدیو و صدای HD برای حداکثر 1000 شرکت‌کننده ایجاد کنید.</span>
+                   
                     </div>
                 </div>
             </div>
@@ -182,7 +180,7 @@
                                         </div>
                                         <div>
                                             <p>
-                                                <input name="ostad_flag" class="accent" type="radio">
+                                                <input wire:click="changeOstadFlag({{ $con->id }})" name="ostad_flag" class="accent" type="radio">
                                             </p>
                                         </div>
                                     </div>

@@ -18,7 +18,7 @@ class Session extends Component
     use WithPagination;
 
     public $createPart = 1;
-    public $level = 1;
+    public $level = 2;
     public $categories,$u_id;
     public $username,$phone,$semat;
     public $baseUrl = "http://localhost:8000/meetting/"; 
@@ -198,5 +198,43 @@ class Session extends Component
     public function changeToSendMessages()
     {
         $this->level = 3;
+    }
+
+    public function changeOstadFlag($cid)
+    {
+        $flag =False;
+        $lastcid=0;
+        if(!$this->session_id==Null){
+            $sesscont = Session_contact::where([['s_id',$this->session_id]])->get();
+            try {
+                foreach ($sesscont as $key ) {
+                    if(!$key->ostad_flag==0){
+                        $flag = True;
+                        $lastcid=$key->c_id;
+                        break;
+                    }
+                }
+                if($flag==False){
+                    $this->changOneFlag($cid,1,$this->session_id);
+                }else{
+                    $this->changOneFlag($cid,1,$this->session_id);
+                    $this->changOneFlag($lastcid,0,$this->session_id);
+                }
+            } catch (\Exception $e) {
+                $this->dispatchBrowserEvent('alert',[
+                    'type'=>'error',
+                    'message'=>"مشکلی پیش آمده لطفا دوباره امتحان کنید!!"
+                ]);
+            }
+            
+        }
+    }
+
+    public function changOneFlag($cid,$ostadFlag,$s_id)
+    {
+        
+        Session_contact::where([['c_id',$cid],['s_id',$s_id]])->update([
+            'ostad_flag' => $ostadFlag
+        ]); 
     }
 }
