@@ -35,6 +35,7 @@ class Sessions extends Component
     {   
         $this->user_id = Auth::user()->id;
         $this->user    = User::find($this->user_id)->first();
+        
     
         $this->createSession();
     }

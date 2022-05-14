@@ -2,28 +2,28 @@
     @if($createPart===0)
     <div class="content">
         <section>
-            <div class="title">
+            <!-- <div class="title">
                 ایجاد جلسه
-            </div>
+            </div> -->
             <div class="boxes">
                 <div class="item-box vebinar">
                     <img src="./client/assets/images/Conference speaker-pana (2) 1.png" width="250" height="250"
                         alt="">
                     <p>وبینار</p>
                     <span>برای ایجاد وبینار لطفا کلیک کنید</span>
-                    <a wire:click="changeCreateStatus(1)" href="#"> وبینار</a>
+                    <a  href="#"> وبینار</a>
                 </div>
                 <div class="item-box confronce">
                     <img src="./client/assets/images/Conference-pana (1) 1.png" width="250" height="250" alt="">
                     <p>کنفرانس</p>
                     <span>برای ایجاد کنفرانس لطفا کلیک کنید</span>
-                    <a wire:click="changeCreateStatus(2)"> کنفرانس</a>
+                    <a wire:click="changeCreateStatus(1)" class="link-mouse-hover"> کنفرانس</a>
                 </div>
                 <div class="item-box vebinar">
                     <img src="./client/assets/images/Meeting-amico 1 (1).png" width="250" height="250" alt="">
                     <p>حضوری</p>
                     <span>برای ایجاد جلسه حضوری لطفا کلیک کنید</span>
-                    <a wire:click="changeCreateStatus(3)"> حضوری</a>
+                    <a > حضوری</a>
                 </div>
             </div>
         </section>
@@ -33,7 +33,7 @@
         <section>
             <div class="title">
                 <div wire:click="changeCreateStatus(0)" class="back">
-                    <p>ایجاد جلسه</p>
+                    <!-- <p>ایجاد جلسه</p>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -42,7 +42,7 @@
                         <path
                             d="M16 11.9995C16.0007 12.7315 15.7332 13.4384 15.248 13.9865C14.957 14.3135 14.674 14.6235 14.471 14.8265L11.647 17.6995C11.4588 17.8763 11.2095 17.9735 10.9513 17.9706C10.6931 17.9678 10.446 17.8652 10.2617 17.6843C10.0775 17.5034 9.97031 17.2582 9.96272 17.0001C9.95513 16.742 10.0477 16.4909 10.221 16.2995L13.05 13.4195C13.237 13.2315 13.491 12.9515 13.75 12.6605C13.9111 12.4778 14.0001 12.2426 14.0001 11.999C14.0001 11.7554 13.9111 11.5202 13.75 11.3375C13.492 11.0475 13.238 10.7675 13.057 10.5855L10.221 7.69952C10.0477 7.50811 9.95513 7.25706 9.96272 6.99895C9.97031 6.74084 10.0775 6.49567 10.2617 6.31476C10.446 6.13386 10.6931 6.03124 10.9513 6.0284C11.2095 6.02556 11.4588 6.12272 11.647 6.29952L14.476 9.17752C14.676 9.37752 14.956 9.68452 15.245 10.0105C15.732 10.5585 16.0007 11.2664 16 11.9995Z"
                             fill="#666666" />
-                    </svg>
+                    </svg> -->
                 </div>
             </div>
             @if($this->level===1)
@@ -134,25 +134,11 @@
             </div>
             @elseif($this->level===2)
 
-            <!-- <div class="boxes">
-                <form class="box" wire:submit.prevent="createSession">
-                    <div class="title">
-                        <p>اضافه کردن مخاطبان</p>
-                        
-                    </div>
-                    
-                    <div class="submit-details">
-                        <button>بعدی </button>
-                        
-                    </div>
-                </form>
-            </div>  -->
-
             <div class="box-addContact" id="clsModal">
                 <div class="box-addContact-container">
                     
                     <div class="title">
-                        <button class="link-mouse-hover">افزودن</button>
+                        <button class="link-mouse-hover" wire:click="changeToSendMessages">بعدی</button>
                         <div>
                         <select class="dropdown-content link-mouse-hover">
                             @if(!$this->categories==null)
@@ -210,11 +196,23 @@
                     </div>
                 </div>
             </div>
+            @elseif($this->level===3)
+             <div class="boxes">
+                <form class="box3" wire:submit.prevent="createSession">
+                    <div class="title">
+                        <p> ارسال پیام به مخاطبان</p>
+                        
+                    </div>
+                    
+                    <div class="submit-details">
+                        <button>ارسال پیام </button>
+                        
+                    </div>
+                </form>
+            </div> 
             @endif
         </section>
-        <div wire:ignore.self class="modal-box " id="modal">
-           
-        </div>
+
     </div>
     @endif
 </div>

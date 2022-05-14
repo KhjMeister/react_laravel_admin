@@ -18,7 +18,7 @@ class Session extends Component
     use WithPagination;
 
     public $createPart = 1;
-    public $level = 1;
+    public $level = 3;
     public $categories,$u_id;
     public $username,$phone,$semat;
     public $baseUrl = "http://localhost:8000/meetting/"; 
@@ -67,6 +67,7 @@ class Session extends Component
     public function mount()
     {
         $this->u_id = Auth::user()->id;
+        $this->session_id = 6;
         $this->getAllCategories();
     }
 
@@ -166,6 +167,10 @@ class Session extends Component
         if($sc = $this->getContactId($contact_id)){
             Session_contact::find($sc->id)->delete();
             $this->total_number -= 1;
+            $this->dispatchBrowserEvent('alert',[
+                'type'=>'success',
+                'message'=>"مخاطب از جلسه حذف شد"
+            ]);
             
         }else{
             Session_contact::create([
@@ -174,7 +179,11 @@ class Session extends Component
             'token'      => rand(11111, 99999),
             'sms_status' => 0
             ]);
-            $this->total_number += 1;            
+            $this->total_number += 1;     
+            $this->dispatchBrowserEvent('alert',[
+                'type'=>'success',
+                'message'=>"مخاطب به جلسه اضافه شد"
+            ]);       
         }
     }
     public function getContactId($contact_id)
@@ -185,5 +194,10 @@ class Session extends Component
         }else{
             return  false;
         }
+    }
+
+    public function changeToSendMessages()
+    {
+        $this->level = 3;
     }
 }
