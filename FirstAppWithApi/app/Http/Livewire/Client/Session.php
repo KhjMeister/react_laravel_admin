@@ -18,7 +18,7 @@ class Session extends Component
     use WithPagination;
 
     public $createPart = 1;
-    public $level = 3;
+    public $level = 1;
     public $categories,$u_id;
     public $username,$phone,$semat;
     public $baseUrl = "http://localhost:8000/meetting/"; 
@@ -67,7 +67,6 @@ class Session extends Component
     public function mount()
     {
         $this->u_id = Auth::user()->id;
-        $this->session_id = 6;
         $this->getAllCategories();
     }
 
@@ -123,6 +122,7 @@ class Session extends Component
                 'end_at'       => $this->end_at,
                 'jalase_type'  => $this->jalase_type,
                 ]);  
+
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
                 'message'=>"جلسه ایجاد شد مخاطبانتان را اضافه کنید"
@@ -153,7 +153,6 @@ class Session extends Component
     public function selectedCategory($id)
     {
         $this->contacts = Categories::find($id)->contacts;
-        
     }
     public function getAllCategories()
     {

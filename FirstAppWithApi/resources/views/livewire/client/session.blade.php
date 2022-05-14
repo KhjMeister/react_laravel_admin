@@ -182,7 +182,7 @@
                                         </div>
                                         <div>
                                             <p>
-                                                <input class="accent" type="radio">
+                                                <input name="ostad_flag" class="accent" type="radio">
                                             </p>
                                         </div>
                                     </div>
