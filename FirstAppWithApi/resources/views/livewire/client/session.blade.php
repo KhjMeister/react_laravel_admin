@@ -158,7 +158,8 @@
                                 fill="#4D4D4D" />
                         </svg>
                     </div>
-                    <div class="contacts">
+
+                    <!-- <div class="contacts">
                         <div class="title-contacts">
                             <p>انتخات</p>
                             <p>نام و نام خانوادگی</p>
@@ -187,11 +188,48 @@
                                 @endforeach
                             @else
                                 <p >کاربری وجود ندارد</p>
-                            @endif
-                            
-                            
+                            @endif   
                         </div>
                     </div>
+                     -->
+
+                     <div class="table">
+                        <table class="tablecontacts">
+                            <tr>
+                                <th>انتخاب</th>
+                                <th>نام مخاطب</th>
+                                <th>شماره موبایل</th>
+                                <th>سمت</th>
+                                <th>مدرس</th>
+                                
+                                
+                            </tr>
+                            @if(!$contacts==null)
+                            @foreach($contacts as $contact)
+                                <tr>
+                                    <td>
+                                        <input class="accent" type="checkbox" wire:click="addUsersToSession({{ $contact->id }})" >
+                                    </td>
+                                    <td>
+                                        {{ $contact->username }}
+                                    </td>
+                                    <td>
+                                        {{ $contact->phone }}
+                                    </td>
+                                    <td>
+                                        {{ $contact->semat }}
+                                    </td>
+                                    <td>
+                                        <input wire:click="changeOstadFlag({{ $contact->id }})" name="ostad_flag" class="accent" type="radio">
+                                    </td>
+                                </tr>
+                            @endforeach
+                            @else
+                                <p >کاربری وجود ندارد</p>
+                            @endif
+                        </table>
+                    </div>
+    <!-- ////////////////////// -->
                 </div>
             </div>
             @elseif($this->level===3)

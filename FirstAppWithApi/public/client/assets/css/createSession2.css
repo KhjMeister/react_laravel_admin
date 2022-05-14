@@ -175,9 +175,9 @@
 }
 
 .box-addContact-container {
-  background-color: var(--neutral-50);
+  /* background-color: var(--neutral-50); */
   padding: 0 2rem;
-  width: 50%;
+  /* width: 50%; */
   height: 90%;
   /* margin-top: ; */
   margin: auto;
@@ -211,7 +211,7 @@
 
 .box-addContact .title select {
   border: none;
-  background-color: var(--neutral-50);
+  background-color: var(--neutral-100);
 }
 
 .box-addContact .search {
