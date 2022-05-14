@@ -15,7 +15,10 @@ class SessionController extends Controller
 
     public function session()
     {
-        return view('client.session');
-        
+        return view('client.session');   
+    }
+    public function listSession()
+    {
+        return view('client.list-session');   
     }
 }

@@ -121,6 +121,16 @@
                         </div>
                     </div> -->
                 </form>
+                <div class="box2">
+                <div class="inside-box">
+                <img src="./client/assets/images/Conference-pana (1) 1.png" width="250" height="250" alt="">
+                    <p>کنفرانس</p>
+                    <span>کنفرانس ایجاد کنید </span>
+                    <span>کنفرانس ایجاد کنید </span>
+                    <span>کنفرانس ایجاد کنید </span>
+                    <span>کنفرانس ایجاد کنید </span>
+                    </div>
+                </div>
             </div>
             @elseif($this->level===2)
 

@@ -13,8 +13,7 @@ Route::get('/profile', [App\Http\Controllers\Client\ProfileController::class, 'p
 Route::get('/category', [App\Http\Controllers\Client\CategoryController::class, 'category'])->name('category');
 Route::get('/contact', [App\Http\Controllers\Client\ContactController::class, 'contact'])->name('contact');
 Route::get('/session', [App\Http\Controllers\Client\SessionController::class, 'session'])->name('session');
-
-Route::get('/categories', [App\Http\Controllers\Client\CategoryController::class, 'getAllCategories'])->name('categories');
+Route::get('/listsession', [App\Http\Controllers\Client\SessionController::class, 'listSession'])->name('listSession');
 
 // Route::get('/session', [App\Http\Controllers\SessionController::class, 'index'])->name('session');
 // Route::get('/sess/{sessid}', [App\Http\Controllers\SessionController::class, 'sessionedit'])->name('sess');

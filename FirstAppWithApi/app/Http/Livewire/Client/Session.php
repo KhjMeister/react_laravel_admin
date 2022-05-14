@@ -18,7 +18,7 @@ class Session extends Component
     use WithPagination;
 
     public $createPart = 1;
-    public $level = 2;
+    public $level = 1;
     public $categories,$u_id;
     public $username,$phone,$semat;
     public $baseUrl = "http://localhost:8000/meetting/"; 
