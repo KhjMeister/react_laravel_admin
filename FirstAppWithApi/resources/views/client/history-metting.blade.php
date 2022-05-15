@@ -12,6 +12,6 @@
 
 @section('content')
 
-    <livewire:client.hostory-metting />
+    <livewire:client.history-metting />
         
 @endsection
