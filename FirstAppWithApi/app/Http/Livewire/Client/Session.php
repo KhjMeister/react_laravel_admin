@@ -24,17 +24,17 @@ class Session extends Component
     public $baseUrl = "http://localhost:8000/meetting/"; 
     public $search = '';
     public $session_type=0;
-    public  $session_id,
-            $jalase_type,
-            $name,
-            $sess_token,
-            $video_link,
-            $total_number,
-            $end_at,
-            $is_started,
-            $is_ended,
-            $start_time,
-            $start_date;      
+    public $session_id,
+           $jalase_type,
+           $name,
+           $sess_token,
+           $video_link,
+           $total_number,
+           $end_at,
+           $is_started,
+           $is_ended,
+           $start_time,
+           $start_date;      
 
     protected $rules = [
         'name'       =>'required|min:4|unique:sessions',

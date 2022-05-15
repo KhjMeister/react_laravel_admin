@@ -14,8 +14,9 @@ class ListSession extends Component
     use WithPagination;
     public $search="";
     public $descAsc=false;
+    public $editSessionFlag= false;
     public $session,$session_id,$start_time,$start_date;
-    
+
 
     public function render()
     {
@@ -32,6 +33,10 @@ class ListSession extends Component
     {
         $this->u_id = Auth::user()->id;
     }
+    public function backTosessionList()
+    {
+        $this->editSessionFlag = False;
+    }
     public function getAllSession()
     {
         $this->allsessions = Sessions::where([
@@ -40,10 +45,15 @@ class ListSession extends Component
             ['name', 'like', '%'.$this->search.'%']
         ])->get();
     }
-    public function editeSession($sid)
+    public function editeSessionContacts($sid)
     {
-        
+        $this->editSessionFlag = True;
+        $this->session_id =$sid;
+        $this->session  = Sessions::find($sid);
     }
+        // foreach ($this->session->contacts as $contact) {
+        // }
+
     public function getSessionsByAscOrDesc($flag)
     {
         if($flag=="asc"){
@@ -75,4 +85,48 @@ class ListSession extends Component
             ]);
         }
     }
+    // public function changeOstadFlag($cid)
+    // {
+    //     $flag =False;
+    //     $lastcid=0;
+    //     if(!$this->session_id==Null){
+    //         $sesscont = Session_contact::where([['s_id',$this->session_id]])->get();
+    //         try {
+    //             foreach ($sesscont as $key ) {
+    //                 if(!$key->ostad_flag==0){
+    //                     $flag = True;
+    //                     $lastcid=$key->c_id;
+    //                     break;
+    //                 }
+    //             }
+    //             if($flag==False){
+    //                 $this->changOneFlag($cid,1,$this->session_id);
+    //                 $this->dispatchBrowserEvent('alert',[
+    //                     'type'=>'success',
+    //                     'message'=>" استاد با موفقیت تعیین شد!!"
+    //                 ]);
+    //             }else{
+    //                 $this->changOneFlag($cid,1,$this->session_id);
+    //                 $this->changOneFlag($lastcid,0,$this->session_id);
+    //                 $this->dispatchBrowserEvent('alert',[
+    //                     'type'=>'success',
+    //                     'message'=>" استاد با موفقیت تغییر کرد!!"
+    //                 ]);
+    //             }
+    //         } catch (\Exception $e) {
+    //             $this->dispatchBrowserEvent('alert',[
+    //                 'type'=>'error',
+    //                 'message'=>"مشکلی پیش آمده لطفا دوباره امتحان کنید!!"
+    //             ]);
+    //         }
+            
+    //     }
+    // }
+    // public function changOneFlag($cid,$ostadFlag,$s_id)
+    // {
+        
+    //     Session_contact::where([['c_id',$cid],['s_id',$s_id]])->update([
+    //         'ostad_flag' => $ostadFlag
+    //     ]); 
+    // }
 }

@@ -134,20 +134,19 @@
 
             <div class="box-addContact" id="clsModal">
                 <div class="box-addContact-container">
-                    
                     <div class="title">
                         <button class="link-mouse-hover" wire:click="changeToSendMessages">بعدی</button>
                         <div>
-                        <select class="dropdown-content link-mouse-hover">
-                            @if(!$this->categories==null)
-                            <option wire:click.prevent="getAllContacts">همه دسته بندی ها</option>
-                                @foreach ($categories as $category)
-                                    <option wire:click="selectedCategory({{ $category->id }})" >{{ $category->name }}</option>
-                                @endforeach
-                            @else
-                                <option >دسنه بندی وجود ندارد</option>
-                            @endif
-                </select>
+                            <select class="dropdown-content link-mouse-hover">
+                                @if(!$this->categories==null)
+                                <option wire:click.prevent="getAllContacts">همه دسته بندی ها</option>
+                                    @foreach ($categories as $category)
+                                        <option wire:click="selectedCategory({{ $category->id }})" >{{ $category->name }}</option>
+                                    @endforeach
+                                @else
+                                    <option >دسنه بندی وجود ندارد</option>
+                                @endif
+                            </select>
                         </div>
                     </div>
                     <div class="search">
@@ -158,41 +157,6 @@
                                 fill="#4D4D4D" />
                         </svg>
                     </div>
-
-                    <!-- <div class="contacts">
-                        <div class="title-contacts">
-                            <p>انتخات</p>
-                            <p>نام و نام خانوادگی</p>
-                            <p>شماره موبایل</p>
-                            <p>مدرس</p>
-                        </div>
-                        <div class="items-contact">
-                            @if(!$contacts==null)
-                                @foreach ($contacts as $con)
-                                    <div class="item-contact" style="display: flex;justify-content: space-between;">
-                                        <div>
-                                            <input class="accent" type="checkbox" wire:click="addUsersToSession({{ $con->id }})" >
-                                        </div>
-                                        <div>
-                                            <p>{{ $con->username }}</p>
-                                        </div>
-                                        <div>
-                                            <p style="font-size: small;">{{ $con->phone }}</p>
-                                        </div>
-                                        <div>
-                                            <p>
-                                                <input wire:click="changeOstadFlag({{ $con->id }})" name="ostad_flag" class="accent" type="radio">
-                                            </p>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @else
-                                <p >کاربری وجود ندارد</p>
-                            @endif   
-                        </div>
-                    </div>
-                     -->
-
                      <div class="table">
                         <table class="tablecontacts">
                             <tr>
@@ -201,8 +165,6 @@
                                 <th>شماره موبایل</th>
                                 <th>سمت</th>
                                 <th>مدرس</th>
-                                
-                                
                             </tr>
                             @if(!$contacts==null)
                             @foreach($contacts as $contact)
@@ -229,7 +191,6 @@
                             @endif
                         </table>
                     </div>
-    <!-- ////////////////////// -->
                 </div>
             </div>
             @elseif($this->level===3)

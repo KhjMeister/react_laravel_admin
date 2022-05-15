@@ -151,6 +151,45 @@ margin-top: 2.7rem;
 tr {
   margin-top: 1rem;
 }
+
+.box-addContact {
+  /* background: rgba(0, 0, 0, 0.252); */
+  padding:0 1rem 1rem 1rem;
+  /* position: absolute; */
+  top: 0;
+  right: 0;
+  left: 0;
+  /* height: 100vh; */
+  margin: auto;
+  /* z-index: 885; */
+}
+
+.box-addContact-container {
+  /* background-color: var(--neutral-50); */
+  padding: 0 2rem;
+  /* width: 50%; */
+  height: 90%;
+  /* margin-top: ; */
+  margin: auto;
+  border-radius: 4px;
+  /* z-index: 888; */
+  overflow: hidden;
+}
+.box-addContact .title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.box-addContact .title .button {
+  border: none;
+  padding: 0.7rem 2rem;
+  background-color: var(--primery);
+  color: var(--neutral-50);
+  border-radius: 4px;
+}
 @media only screen and (max-width: 800px) {  
   .table { 
       overflow-x: scroll;  

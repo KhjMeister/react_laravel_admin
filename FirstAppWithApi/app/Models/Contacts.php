@@ -28,8 +28,13 @@ class Contacts extends Model
         return $this->belongsTo(Category::class, 'ca_id');
     }
 
-    public function session()
+    public function sesscunt()
     {
-        return $this->belongsToMany(Session::class,'Session_contact','c_id', 's_id');
+        return $this->belongsTo(Session_contact::class, 'ca_id');
     }
+
+    // public function session()
+    // {
+    //     return $this->belongsToMany(Session::class,'Session_contact','c_id', 's_id');
+    // }
 }
