@@ -209,6 +209,9 @@ class Editsess extends Component
             session()->flash('message', 'sendMessage');
          
     }
+            // farazsms =  	1GZLY56f6u34CdC4G-7YG4KIqwn9xLcRZdRqtzcniaE= 
+            // Akbari_id   123deamond
+
 
     public function getThisSessionContacts()
     {

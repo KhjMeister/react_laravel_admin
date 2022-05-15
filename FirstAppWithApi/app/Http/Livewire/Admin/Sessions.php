@@ -196,6 +196,8 @@ class Sessions extends Component
                 $api->SendSimple($receptor,$message,$lineNumber);
                 
             } 
+
+            // farazsms =  	L8znnX-dcl1R7mN8-PX45zfQXADWF-pQhoGtxCxIIFU= 
             
             session()->flash('message', 'sendMessage');
         }
