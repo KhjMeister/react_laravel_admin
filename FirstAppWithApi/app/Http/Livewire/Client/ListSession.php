@@ -45,7 +45,7 @@ class ListSession extends Component
             ['u_id',$this->u_id],
             ['is_ended',0],
             ['name', 'like', '%'.$this->search.'%']
-        ])->get();
+        ])->orderBy('start_date','desc')->get();
     }
     public function editeSessionContacts($sid)
     {
@@ -53,22 +53,7 @@ class ListSession extends Component
         $this->session_id =$sid;
         $this->session  = Sessions::find($sid);
     }
-        // foreach ($this->session->contacts as $contact) {
-        // }
 
-    public function getSessionsByAscOrDesc($flag)
-    {
-        if($flag=="asc"){
-            $this->descAsc =True;
-        }else{
-            $this->descAsc =False;
-        }
-        $this->allsessions = Sessions::where([
-            ['u_id',$this->u_id],
-            ['is_ended',0],
-            ['name', 'like', '%'.$this->search.'%']
-        ])->orderBy('start_date',$flag)->get();
-    }
     public function deleteSession($sid)
     {
         try{

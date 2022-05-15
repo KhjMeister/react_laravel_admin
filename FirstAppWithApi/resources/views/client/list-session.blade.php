@@ -1,7 +1,7 @@
 @extends('layouts.client.client')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('client/assets/css/historymeeting.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/listmeeting.css') }}">
 @endpush
 
 @push('scripts')
