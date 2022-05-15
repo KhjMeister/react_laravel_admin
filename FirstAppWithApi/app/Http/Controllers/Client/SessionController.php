@@ -21,4 +21,8 @@ class SessionController extends Controller
     {
         return view('client.list-session');   
     }
+    public function historyMetting()
+    {
+        return view('client.history-metting');   
+    }
 }
