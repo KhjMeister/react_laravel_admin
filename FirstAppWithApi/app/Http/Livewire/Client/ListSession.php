@@ -14,7 +14,9 @@ class ListSession extends Component
     use WithPagination;
     public $search="";
     public $descAsc=false;
+    public $ostadFlag ;
     public $editSessionFlag= false;
+    
     public $session,$session_id,$start_time,$start_date;
 
 
@@ -25,7 +27,7 @@ class ListSession extends Component
                 ['u_id',$this->u_id],
                 ['is_ended',0],
                 ['name', 'like', '%'.$this->search.'%']
-            ])->paginate(100)
+            ])->orderBy('start_date','desc')->paginate(100)
         ]);
     }
     
@@ -83,6 +85,18 @@ class ListSession extends Component
                 'type'=>'error',
                 'message'=>"مشکلی پیش آمده لطفا دوباره امتحان کنید!!"
             ]);
+        }
+    }
+    public function funOstadFlag($cid)
+    {
+        $sesscont = Session_contact::where('c_id',$cid)->first();
+        if($sesscont->ostad_flag==1)
+        {
+            return True;
+
+        }else{
+            return False;
+
         }
     }
     // public function changeOstadFlag($cid)

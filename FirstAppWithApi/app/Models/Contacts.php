@@ -28,10 +28,7 @@ class Contacts extends Model
         return $this->belongsTo(Category::class, 'ca_id');
     }
 
-    public function sesscunt()
-    {
-        return $this->belongsTo(Session_contact::class, 'ca_id');
-    }
+    
 
     // public function session()
     // {

@@ -102,7 +102,7 @@
                                 {{ $contact->semat }}
                             </td>
                             <!-- <td>
-                                <input checked wire:click="changeOstadFlag({{ $contact->id }})" name="ostad_flag" class="accent" type="radio">
+                                <input wire:init="funOstadFlag({{$contact->id}})" disabled {{ $this->ostadFlag ? 'checked' : '' }}  name="ostad_flag" class="accent" type="radio">
                             </td> -->
                             
                         </tr>

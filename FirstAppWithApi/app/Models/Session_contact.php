@@ -17,4 +17,9 @@ class Session_contact extends Model
         'token',
         'ostad_flag'
     ];
+
+    // public function contacts()
+    // {
+    //     return $this->belongsTo(Contacts::class, 'c_id');
+    // }
 }
