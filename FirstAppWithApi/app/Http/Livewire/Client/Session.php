@@ -39,13 +39,16 @@ class Session extends Component
     protected $rules = [
         'name'       =>'required|min:4|unique:sessions',
         'start_time'  =>'required',
-        'start_date'  =>'required',         
+        'start_date'  =>'required|date_format:Y-m-d|after:yesterday',         
     ];
 
     protected $messages = [
         'name.required'         => 'عنوان جلسه را باید وارد کنید',
+        'name.min'         => 'عنوان جلسه را باید بیشتر از 4 کاراکتر باشد',
+        'name.unique'         => 'عنوان جلسه  نباید تکراری باشد',
         'start_time.required'   => 'زمان شروع جلسه باید وارد شود',
         'start_date.required'   => 'تاریخ شروع جلسه باید وارد شود',
+        'start_date.after'   => 'تاریخ شروع جلسه باید از امروز به بعد باشد',
     ];
 
     public function render()

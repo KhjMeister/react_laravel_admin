@@ -14,11 +14,17 @@ class ListSession extends Component
     use WithPagination;
     public $search="";
     public $descAsc=false;
+    public $session,$session_id,$start_time,$start_date;
+    
 
     public function render()
     {
         return view('livewire.client.list-session',[
-            'allsessions'=>Sessions::where([['u_id',$this->u_id],['is_ended',0],['name', 'like', '%'.$this->search.'%']])->paginate(100)
+            'allsessions'=>Sessions::where([
+                ['u_id',$this->u_id],
+                ['is_ended',0],
+                ['name', 'like', '%'.$this->search.'%']
+            ])->paginate(100)
         ]);
     }
     
@@ -67,7 +73,6 @@ class ListSession extends Component
                 'type'=>'error',
                 'message'=>"مشکلی پیش آمده لطفا دوباره امتحان کنید!!"
             ]);
-        
         }
     }
 }
