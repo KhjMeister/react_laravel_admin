@@ -28,6 +28,8 @@ class Contact extends Component
     ];
     protected $messages = [
         'ca_id.required' => 'دسته بندی را ایجاد کنید',
+        'semat.required'=>'سمت را وارد کنید',
+        'semat.min'=>'سمت باید بیشتر از 5 کاراکتر باشد',
     ];
     public function render()
     {
@@ -153,7 +155,7 @@ class Contact extends Component
         try{
             Contacts::find($id)->delete();
             
-            $this->getAllContacts();
+            // $this->getAllContacts();
             
             if(!$this->contactsVisibility()){
                 $this->contacts_visablity = false;  
@@ -191,7 +193,7 @@ class Contact extends Component
                 'phone'=>$this->phone,
                 'semat'=>$this->semat,
             ]); 
-            $this->getAllContacts();
+            // $this->getAllContacts();
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
                 'message'=>"مخاطب با موفقیت ویرایش شد!!"

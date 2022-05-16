@@ -6,19 +6,16 @@
                 <button wire:click="resetForm" class="btn-category-modal">ساخت دسته بندی</button>
             </div>
             @if(!$categories_visablity)
-            <!-- ! no categories -->
-            <div class="noCategories">
-                <img src="./assets/images/Personal files-amico (1).png" alt="">
-                <p>
-                    شما هیچ دسته بندی ندارید برای ایجاد دست بندی برو روی دگمه
-                    ساخته دسته بندی کلیک کنید
-                </p>
-            </div>
-            <!-- ! no categories -->
+                <div class="noCategories">
+                    <img src="./assets/images/Personal files-amico (1).png" alt="">
+                    <p>
+                        شما هیچ دسته بندی ندارید برای ایجاد دست بندی برو روی دگمه
+                        ساخته دسته بندی کلیک کنید
+                    </p>
+                </div>
             @else
 
-            <div class="list-categories">
-               
+            <div class="list-categories" wire:poll.1000ms>       
             <!-- <div wire:loading>
                  <div class="spinner"></div>
             </div> -->

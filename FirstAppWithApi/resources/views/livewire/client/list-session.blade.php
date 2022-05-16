@@ -16,7 +16,7 @@
         </div>
     </section>
     <div class="table">
-        <table class="tablelistmeeting">
+        <table class="tablelistmeeting" wire:poll.1000ms>
             <tr>
                 <th>شماره جلسه</th>
                 <th>عنوان جلسه</th>

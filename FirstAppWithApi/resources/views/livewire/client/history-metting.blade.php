@@ -22,8 +22,8 @@
             </div>
         </div>
     </section>
-    <div class="table">
-        <table class="tablehistorymeeting">
+    <div class="table" >
+        <table class="tablehistorymeeting" wire:poll.1000ms>
             <tr>
                 <th>شماره جلسه</th>
                 <th>عنوان جلسه</th>

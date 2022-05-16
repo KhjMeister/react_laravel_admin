@@ -16,7 +16,10 @@ class Category extends Component
         'name'=>'required|min:4|unique:categories',
         'u_id'=>'required'
     ];
-    
+    public function render()
+    {
+        return view('livewire.client.category');
+    }
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
@@ -41,11 +44,6 @@ class Category extends Component
         }
     }
 
-    public function render()
-    {
-        return view('livewire.client.category');
-    }
-
     public function getAllCategories()
     {
         $this->categories = Categories::where([
@@ -58,7 +56,7 @@ class Category extends Component
         try{
             Categories::find($id)->delete();
             
-            $this->getAllCategories();
+            // $this->getAllCategories();
             
             if(!$this->categoryVisibility()){
                 $this->categories_visablity = false;  
@@ -126,7 +124,7 @@ class Category extends Component
             Categories::where('id',$this->c_id)->update([
                 'name' => $this->name
             ]); 
-            $this->getAllCategories();
+            // $this->getAllCategories();
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
                 'message'=>"دسته با موفقیت ویرایش شد!!"
