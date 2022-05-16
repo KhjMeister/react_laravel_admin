@@ -22,4 +22,8 @@ class Session_contact extends Model
     // {
     //     return $this->belongsTo(Contacts::class, 'c_id');
     // }
+    public function contacts()
+    {
+        return $this->belongsTo(Contacts::class, 'c_id');
+    }
 }

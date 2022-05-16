@@ -21,7 +21,7 @@ class Session extends Component
     public $level = 1;
     public $categories,$u_id;
     public $username,$phone,$semat;
-    public $baseUrl = "http://localhost:8000/meetting/"; 
+    public $baseUrl = "http://localhost:8000/metting/"; 
     public $search = '';
     public $session_type=0;
     public $session_id,

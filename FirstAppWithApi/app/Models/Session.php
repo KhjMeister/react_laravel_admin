@@ -31,5 +31,9 @@ class Session extends Model
     {
         return $this->belongsToMany(Contacts::class,'sesscont','s_id', 'c_id');
     }
+    public function sess_cuntact()
+    {
+        return $this->hasMany(Contacts::class,'c_id');
+    }
 
 }
