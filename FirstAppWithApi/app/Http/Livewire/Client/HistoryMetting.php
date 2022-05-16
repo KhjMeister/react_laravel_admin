@@ -24,7 +24,7 @@ class HistoryMetting extends Component
         return view('livewire.client.history-metting',[
             'allsessions'=>Sessions::where([
                 ['u_id',$this->u_id],
-                ['is_ended',0],
+                ['is_ended',1],
                 ['name', 'like', '%'.$this->search.'%']
             ])->orderBy('start_date','desc')->paginate(100)
         ]);
@@ -42,7 +42,7 @@ class HistoryMetting extends Component
     {
         $this->allsessions = Sessions::where([
             ['u_id',$this->u_id],
-            ['is_ended',0],
+            ['is_ended',1],
             ['name', 'like', '%'.$this->search.'%']
         ])->orderBy('start_date','desc')->get();
     }
@@ -62,7 +62,7 @@ class HistoryMetting extends Component
         }
         $this->allsessions = Sessions::where([
             ['u_id',$this->u_id],
-            ['is_ended',0],
+            ['is_ended',1],
             ['name', 'like', '%'.$this->search.'%']
         ])->orderBy('start_date',$flag)->get();
     }
