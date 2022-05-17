@@ -17,8 +17,20 @@ class Metting extends Component
     public $is_time = 1; //1 for not started , 2 for started  , 3 for ended
     public $link,$now;
     public $s_id,$session,$start_date,$start_time,$sesscunt,$c_id,$contact,$username;
-    public $its_now_date,$its_now_time,$now_date_fa;
-    public $its_start_date,$its_start_time,$start_date_fa;
+    public  $its_now_date,
+            $its_now_time,
+            $carbon_date_start,
+            $carbon_date_now,
+            $now_date_fa,
+            $its_start_date,
+            $its_start_time,
+            $start_date_fa,
+            $s_year,
+            $s_month,
+            $s_day;
+
+    public $startBtn=False;
+    public $jalaseBtn=False;
 
     public $user_type=0;
     public $jitci_link,$is_started,$is_ended;
@@ -48,9 +60,9 @@ class Metting extends Component
             $this->start_time = $this->session->start_time;
             $this->start_date = $this->session->start_date;
 
-            $this->setDate();
             $this->getStartTimes();
             $this->session_started();
+            $this->setDate();
         }else{
             return abort(404);
         }
@@ -73,28 +85,40 @@ class Metting extends Component
     }
     public function getStartTimes()
     {
-        $this->its_now_date = date('Y/M/D', strtotime(Carbon::now()));
-        $this->its_now_time = date('H:i', strtotime(Carbon::now()));
-        $jalaliDate=Jalalian::fromCarbon($carbonDate)->format('Y/m/d');
-        $this->its_start_date = date('Y/M/D', strtotime($this->start_date));
-        $this->its_start_time = date('H:i', strtotime($this->start_time));
-
+        
+        
+        // if($this->carbon_date_start->isSameDay( $this->carbon_date_now) ){
+        //     $this->shooo ="jsjjsjsjsj";
+        // }
+        
+        $this->s_year   = Jalalian::fromDateTime(date('Y/m/d', strtotime($this->start_date)))->getYear();
+        $this->s_month  = Jalalian::fromDateTime(date('Y/m/d', strtotime($this->start_date)))->getMonth();
+        $this->s_day    = Jalalian::fromDateTime(date('Y/m/d', strtotime($this->start_date)))->getDay();
+        $this->now_date_fa = $this->s_year.'/'.$this->s_month.'/'.$this->s_day;
         
         
     }
     public function setDate()
     { 
-        // $this->n_year   = Jalalian::fromDateTime(Carbon::now())->getYear();
-        // $this->n_month  = Jalalian::fromDateTime(Carbon::now())->getMonth();
-        // $this->n_day    = Jalalian::fromDateTime(Carbon::now())->getDay();
+        $this->its_now_date = date('Y/m/d', strtotime(Carbon::now()));
+        // $this->carbon_date_now =Carbon::parse($this->its_now_date);
+        $this->its_now_time = date('H:i', strtotime(Carbon::now()));
 
-        // $this->n_hour   = Jalalian::fromDateTime(Carbon::now())->getHour();
-        // $this->n_minute = Jalalian::fromDateTime(Carbon::now())->getMinute();
-        // $this->n_second = Jalalian::fromDateTime(Carbon::now())->getSecond();
+        $this->its_start_date = date('Y/m/d', strtotime($this->start_date));
+        // $this->carbon_date_start =Carbon::parse($this->its_start_date);
+        $this->its_start_time = date('H:i', strtotime($this->start_time));    
 
-        // $this->its_now = $this->n_hour.':'.$this->n_minute.':'.$this->n_second.'--'.$this->n_year.'/'.$this->n_month.'/'.$this->n_day;
-        
-        
+        if($this->its_start_date == $this->its_now_date ){
+            if($this->its_start_time == $this->its_now_time){
+                $this->startBtn =True;
+            }elseif($this->its_start_time <= $this->its_now_time){
+                $this->startBtn =True;
+            }elseif($this->its_start_time > $this->its_now_time){
+                $this->startBtn =False;
+            }
+        }elseif($this->its_start_date > $this->its_now_date ){
+                $this->startBtn =False;
+        }
     }
 
     // public function setAuthSession()

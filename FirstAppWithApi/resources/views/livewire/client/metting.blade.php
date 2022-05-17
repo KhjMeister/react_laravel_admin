@@ -1,4 +1,4 @@
-<div class="container" wire:poll.9000ms>
+<div class="container" >
     @if ($this->authenticated==False)
         <div class="otp-parent">
             <div class="item-right-otp">
@@ -18,15 +18,18 @@
         </div>
     @else
         @if ($this->ostad==True)
-            <div class="session-parent">
-              <div class="item-right-session">
+            <div class="session-parent" wire:poll.1000="setDate">
+              <div class="item-right-session" >
               
-             
-                  <h5> جلسه شروع نشده است .</h5>
+                  @if($this->startBtn===False)
+                        <h5> استاد عزیز جلسه شروع نشده است .</h5>
+                        <p>  تاریخ و ساعت شروع جلسه {{ $this->its_start_time }}  -  {{ $this->now_date_fa }}</p>
+                  @elseif($this->startBtn===True)
+                        <h5> استاد عزیز </h5>
+                        <p> با کلیک بر روی دکمه زیر جلسه را شروع نمایید </p> 
+                        <a href="{{ $this->jitci_link }}" target="_blank" class="metting-btn"> شروع جلسه </a>
+                  @endif
                   
-                  <p>  تاریخ و ساعت شروع جلسه {{ $this->its_start_time }}, {{ $this->its_start_date }}</p>
-                  <p> با کلیک بر روی دکمه زیر جلسه را شروع نمایید </p> 
-                  <a href="{{ $this->jitci_link }}" target="_blank" class="metting-btn"> شروع جلسه </a>
                  
               </div>
               <div class="item-left-session">
@@ -36,8 +39,7 @@
         @else
             <div class="session-parent">
               <div class="item-right-session">
-              
-             
+
                   <h5>جلسه شروع نشده است</h5>
                   <p> جلسه در روز چهارشنبه ساعت 8 شب برگزار خواهد شد.</p>
                  
