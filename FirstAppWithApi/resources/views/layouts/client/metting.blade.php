@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('client/assets/css/content.css') }}" />
     <link rel="stylesheet" href="{{ asset('client/assets/css/navmobile.css') }}" />
     <link rel="stylesheet" href="{{ asset('client/assets/css/contacts.css') }}" />
+    <link rel="stylesheet" href="{{ asset('client/assets/css/kjstyles.css') }}" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'صفحه اصلی') }}</title>
     @stack('styles')

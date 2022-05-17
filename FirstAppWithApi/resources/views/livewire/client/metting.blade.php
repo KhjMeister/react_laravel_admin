@@ -1,4 +1,4 @@
-<div class="container" wire:poll.5000ms>
+<div class="container" wire:poll.9000ms>
     @if ($this->authenticated==False)
         <div class="otp-parent">
             <div class="item-right-otp">
@@ -18,7 +18,21 @@
         </div>
     @else
         @if ($this->ostad==True)
-            osatd
+            <div class="session-parent">
+              <div class="item-right-session">
+              
+             
+                  <h5> جلسه شروع نشده است .</h5>
+                  
+                  <p>  تاریخ و ساعت شروع جلسه {{ $this->its_start_time }}, {{ $this->its_start_date }}</p>
+                  <p> با کلیک بر روی دکمه زیر جلسه را شروع نمایید </p> 
+                  <a href="{{ $this->jitci_link }}" target="_blank" class="metting-btn"> شروع جلسه </a>
+                 
+              </div>
+              <div class="item-left-session">
+                  <img src="{{asset('client/assets/images/Work time-pana 2.png')}}">
+              </div>
+            </div>
         @else
             <div class="session-parent">
               <div class="item-right-session">
