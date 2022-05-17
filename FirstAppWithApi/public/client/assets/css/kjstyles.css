@@ -1,3 +1,13 @@
+.title .back {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.back p {
+  margin-right: 1rem;
+}
 .is-invalid{
     border: 1px solid var(--primery) !important;
     animation: shake 300ms;
