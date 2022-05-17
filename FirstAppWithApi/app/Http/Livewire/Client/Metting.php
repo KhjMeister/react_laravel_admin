@@ -46,30 +46,38 @@ class Metting extends Component
     {
         if(Session::where([['sess_token','=',$this->link]])->first()){
             $this->session = Session::where([['sess_token','=',$this->link]])->first();
-            if( session('c_id')){
-                $this->c_id = session('c_id');
-                $this->authenticated=True;
-                if(session('ostad')){
-                    $this->ostad = True;
-                }
-            }
+            // if( session('c_id')){
+            //     $this->c_id = session('c_id');
+            //     $this->authenticated=True;
+            //     if(session('ostad')){
+            //         $this->ostad = True;
+            //     }
+            // }
             $this->s_id = $this->session->id;
             $this->jitci_link = "https://192.168.100.100:8081/".$this->session->sess_token;
-            $this->is_started = $this->session->is_started;
-            $this->is_ended = $this->session->is_ended;
+           
             $this->start_time = $this->session->start_time;
             $this->start_date = $this->session->start_date;
 
-            $this->getStartTimes();
+            
             $this->session_started();
-            $this->setDate();
+           
         }else{
             return abort(404);
         }
     }
-
+    public function SartSession()
+    {
+        Session::where('id',$this->s_id)->update([
+            'is_started'   => 1,
+        ]);
+    }
     public function session_started()
     {
+        $this->session = Session::where([['sess_token','=',$this->link]])->first();
+        $this->is_started = $this->session->is_started;
+        $this->is_ended = $this->session->is_ended;
+
         if($this->is_started===0 and $this->is_ended===0)
         {
             $this->is_time = 1;
@@ -82,11 +90,12 @@ class Metting extends Component
         {
             $this->is_time = 3;
         }
+        $this->setDate();
+        $this->getStartTimes();
+        
     }
     public function getStartTimes()
     {
-        
-        
         // if($this->carbon_date_start->isSameDay( $this->carbon_date_now) ){
         //     $this->shooo ="jsjjsjsjsj";
         // }
