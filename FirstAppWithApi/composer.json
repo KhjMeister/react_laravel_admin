@@ -9,6 +9,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "ghasedak/php": "dev-master",
         "guzzlehttp/guzzle": "^7.0.1",
+        "ippanel/php-rest-sdk": "^1.0",
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/socialite": "^5.2",

@@ -8,11 +8,11 @@
 @endpush
 
 @push('scripts')
-<script type="text/javascript" src="{{ asset('client/assets/js/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('client/assets/js/persian-datepicker.js') }}"></script>
-<script type="text/javascript">
+{{-- <script type="text/javascript" src="{{ asset('client/assets/js/jquery.min.js') }}"></script> --}}
+{{-- <script type="text/javascript" src="{{ asset('client/assets/js/persian-datepicker.js') }}"></script> --}}
+{{-- <script type="text/javascript">
     $('#input1').datepicker();
-</script>
+</script> --}}
    <script type="text/javascript">
         
         

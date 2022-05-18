@@ -205,6 +205,7 @@
                         <p> ارسال پیام به مخاطبان</p>
                         
                     </div>
+                   
                     
                     <div class="submit-details">
                         <button wire:click="sendMessageToContacts">ارسال پیام </button>

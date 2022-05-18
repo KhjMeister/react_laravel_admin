@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Category as Categories;
 use App\Models\Contacts;
 use App\Models\Session as Sessions;
-use App\Models\S;
+use App\Models\Session_contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +17,7 @@ class Session extends Component
 {
     use WithPagination;
 
-    public $createPart = 0;
+    public $createPart = 1;
     public $level = 1;
     public $categories,$u_id;
     public $candidate_contacts,$username,$phone,$semat;
@@ -34,7 +34,8 @@ class Session extends Component
            $is_started,
            $is_ended,
            $start_time,
-           $start_date;      
+           $start_date,
+           $thisSession;      
 
     protected $rules = [
         'name'       =>'required|min:4|unique:sessions',
@@ -70,10 +71,14 @@ class Session extends Component
     public function mount()
     {
         $this->u_id = Auth::user()->id;
-        $this->emit('your_event');
         $this->getAllCategories();
     }
-
+    public function getThisSession()
+    {
+        $this->thisSession = Sessions::where([
+            ['id',$this->session_id],
+        ])->first();
+    }
     public function updatingSearch()
     {
         $this->resetPage();
@@ -139,6 +144,8 @@ class Session extends Component
                 'message'=>"مشکلی پیش آمده لطفا دوباره امتحان کنید!!"
             ]);
         }
+        $this->getThisSession();
+
     }
 
     public function getAllContacts()
@@ -168,7 +175,7 @@ class Session extends Component
     public function addUsersToSession($contact_id)
     {
         if($sc = $this->getContactId($contact_id)){
-            S::find($sc->id)->delete();
+            Session_contact::find($sc->id)->delete();
             $this->total_number -= 1;
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
@@ -176,7 +183,7 @@ class Session extends Component
             ]);
             
         }else{
-            S::create([
+            Session_contact::create([
             'c_id'       => $contact_id,
             's_id'       => $this->session_id,
             'token'      => rand(11111, 99999),
@@ -191,9 +198,9 @@ class Session extends Component
     }
     public function getContactId($contact_id)
     {
-        $var = S::where([['c_id',$contact_id],['s_id',$this->session_id]])->first();
+        $var = Session_contact::where([['c_id',$contact_id],['s_id',$this->session_id]])->first();
         if(isset($var)){
-            return  S::where([['c_id',$contact_id],['s_id',$this->session_id]])->first();
+            return  Session_contact::where([['c_id',$contact_id],['s_id',$this->session_id]])->first();
         }else{
             return  false;
         }
@@ -202,6 +209,7 @@ class Session extends Component
     public function changeToSendMessages()
     {
         $this->level = 3;
+        $this->getThisSessionContacts();
     }
 
     public function changeOstadFlag($cid)
@@ -209,7 +217,7 @@ class Session extends Component
         $flag =False;
         $lastcid=0;
         if(!$this->session_id==Null){
-            $sesscont = S::where([['s_id',$this->session_id]])->get();
+            $sesscont = Session_contact::where([['s_id',$this->session_id]])->get();
             try {
                 foreach ($sesscont as $key ) {
                     if(!$key->ostad_flag==0){
@@ -220,9 +228,17 @@ class Session extends Component
                 }
                 if($flag==False){
                     $this->changOneFlag($cid,1,$this->session_id);
+                    $this->dispatchBrowserEvent('alert',[
+                        'type'=>'success',
+                        'message'=>"استاد تعیین شد !!"
+                    ]);
                 }else{
                     $this->changOneFlag($cid,1,$this->session_id);
                     $this->changOneFlag($lastcid,0,$this->session_id);
+                    $this->dispatchBrowserEvent('alert',[
+                        'type'=>'success',
+                        'message'=>"استاد تغییر کرد!!"
+                    ]);
                 }
             } catch (\Exception $e) {
                 $this->dispatchBrowserEvent('alert',[
@@ -237,29 +253,56 @@ class Session extends Component
     public function changOneFlag($cid,$ostadFlag,$s_id)
     {
         
-        S::where([['c_id',$cid],['s_id',$s_id]])->update([
+        Session_contact::where([['c_id',$cid],['s_id',$s_id]])->update([
             'ostad_flag' => $ostadFlag
         ]); 
     }
     public function sendMessageToContacts()
     {
-        $this->getThisSessionContacts();
-        try 
-        {
-            
+        // $apiKey = "1GZLY56f6u34CdC4G-7YG4KIqwn9xLcRZdRqtzcniaE=";
+        // $client = new \IPPanel\Client($apiKey);
+        $client = new \SoapClient("http://ippanel.com/class/sms/wsdlservice/server.php?wsdl");
+
             foreach ($this->candidate_contacts as $key ) {
-                $message = "شما به جلسه ".$this->name."دعوت شدید \n"."لینک :".$this->video_link ."\n کد احراز هویت شما: ".$key->token;
-                $lineNumber = "210002100";
-                $receptor = Contacts::where('id',$key->c_id)->first()->phone;
-                $api = new \Ghasedak\GhasedakApi('d33ec578d69afed02d099a74f507fc10e675241a7b9554f6e19755825347f1ca');
-                $api->SendSimple($receptor,$message,$lineNumber);
-            } 
-        } catch(\Ghasedak\Exceptions\ApiException $e){
-            echo $e->errorMessage();
-        }
+                // $message = "با سلام شما به جلسه ".$this->thisSession->name." دعوت شده اید.لینک دعوت شما ".$this->video_link." می باشد و همچنین کد احراز هویت شما ".$key->token." می باشد. با تشکر ویدیو رایان";
+                // $receptor = Contacts::where('id',$key->c_id)->first()->phone;
+                // $usersms = "09153257202"; 
+                // $passsms = "123deamond"; 
+                // $fromNum = "+98100009"; 
+                // $toNum = array($receptor); 
+                // // array_push($toNum,  );
+                // $pattern_code = "vungc8h5x1jgg9z"; 
+                // $input_data = array( "jalaseName" => $this->thisSession->name,
+                //                      "JalaseUrl"  => $this->video_link,
+                //                      "verificationCode" => $key->token
+                //                     ); 
+                // $client->sendPatternSms($fromNum,$toNum,$usersms,$passsms,$pattern_code,$input_data);
+                
+                // $patternValues = [
+                //     "jalaseName" => $this->thisSession->name,
+                //     "JalaseUrl"  => $this->video_link,
+                //     "verificationCode" => $key->token
+                // ];
+
+                // $bulkID = $client->sendPattern(
+                //     "vungc8h5x1jgg9z",  
+                //     "+98100009",      
+                //     $toNum,  
+                //     $patternValues,  
+                // );
+            }  
+                // $apiKey = "1GZLY56f6u34CdC4G-7YG4KIqwn9xLcRZdRqtzcniaE=";
+               
+            
+                
+            $this->dispatchBrowserEvent('alert',[
+                'type'=>'success',
+                'message'=>"پیام به مخاطبانتان ارسال شد!"
+            ]);
+       
     }
     public function getThisSessionContacts()
     {
-        $this->candidate_contacts = Session_contact::where('s_id',$this->s_id)->get();
+        $this->candidate_contacts = Session_contact::where('s_id',$this->session_id)->get();
     }
 }
