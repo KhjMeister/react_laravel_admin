@@ -21,16 +21,22 @@
             <div class="session-parent" wire:poll.1000ms="setDate">
               <div class="item-right-session" >
               
-                  @if($this->startBtn===False)
-                        <h5> استاد عزیز جلسه شروع نشده است .</h5>
-                        <p>  تاریخ و ساعت شروع جلسه {{ $this->its_start_time }}  -  {{ $this->now_date_fa }}</p>
-                  @elseif($this->startBtn===True)
-                        <h5> استاد عزیز </h5>
-                        <p> با کلیک بر روی دکمه زیر جلسه را شروع نمایید </p> 
-                        <a wire:click="SartSession" href="{{ $this->jitci_link }}" target="_blank" class="metting-btn"> شروع جلسه </a>
-                    @if ($this->is_time == 2 )
-                        
-                    @endif
+                  @if ($this->is_time == 3)
+                   <h5> استاد عزیز جلسه  پایان یافته است .</h5>
+                            
+                  @else
+                    @if($this->startBtn===False)
+                            <h5> استاد عزیز جلسه شروع نشده است .</h5>
+                            <p>  تاریخ و ساعت شروع جلسه {{ $this->its_start_time }}  -  {{ $this->now_date_fa }}</p>
+                        @elseif($this->startBtn===True)
+                                <h5> استاد عزیز </h5>
+                                <p> با کلیک بر روی دکمه زیر جلسه را شروع نمایید </p> 
+                                <a wire:click="SartSession" href="{{ $this->jitci_link }}" target="_blank" class="metting-btn"> شروع جلسه </a>
+                            @if ($this->is_time == 2 )
+                                
+                            @endif
+
+                        @endif
 
                   @endif
                   
@@ -44,10 +50,10 @@
             <div class="session-parent" wire:poll.1000ms="session_started">
               <div class="item-right-session">
 
-                   @if($this->startBtn===False)
+                @if($this->startBtn===False)
                         <h5> جلسه شروع نشده است .</h5>
                         <p>  تاریخ و ساعت شروع جلسه {{ $this->its_start_time }}  -  {{ $this->now_date_fa }}</p>
-                  @elseif($this->startBtn===True)
+                @elseif($this->startBtn===True)
 
                     @if ($this->is_time == 2 )
                         <h5> {{ $this->username }} عزیز </h5>
@@ -61,7 +67,7 @@
                         <h5> جلسه تمام شده است .</h5>
                     @endif
                         
-                  @endif
+                @endif
 
               </div>
               <div class="item-left-session">

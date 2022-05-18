@@ -1,10 +1,13 @@
-<div>
+<div >
+
     @if($createPart===0)
-    <div class="content">
+    <div class="content" >
         <section>
             <!-- <div class="title">
                 ایجاد جلسه
             </div> -->
+                 
+
             <div class="boxes">
                 <div class="item-box vebinar">
                     <img src="./client/assets/images/Conference speaker-pana (2) 1.png" width="250" height="250"
@@ -78,8 +81,9 @@
                                     fill="black" />
                             </svg>
                             <p>تاریخ جلسه</p>
-                            <div class="input_wrapper">
-                                <input wire:model="start_date" name="start_date" class="time_input @error('start_date') is-invalid @enderror" type="date" placeholder="12 فروردین" >
+                            <div class="input_wrapper" >
+                                <input id="input1" type="date" placeholder="12 فروردین"  wire:model="start_date"  class="time_input @error('start_date') is-invalid @enderror" >
+                                
                                 @error('start_date') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                         </div>
@@ -95,7 +99,8 @@
                             </svg>
                             <p>زمان جلسه</p>
                             <div class="input_wrapper">
-                                <input wire:model="start_time" name="start_time" class="time_input @error('start_time') is-invalid @enderror" type="time" placeholder="12-2-13">
+                                <input id="time" type="time"  wire:model="start_time" class="time_input @error('start_time') is-invalid @enderror"  >
+                                
                                 @error('start_time') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                         </div>

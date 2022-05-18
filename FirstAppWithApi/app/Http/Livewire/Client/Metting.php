@@ -54,7 +54,7 @@ class Metting extends Component
             //     }
             // }
             $this->s_id = $this->session->id;
-            $this->jitci_link = "https://192.168.100.100:8081/".$this->session->sess_token;
+            $this->jitci_link = "https://video.videorayan.com/".$this->session->sess_token;
            
             $this->start_time = $this->session->start_time;
             $this->start_date = $this->session->start_date;
@@ -68,9 +68,23 @@ class Metting extends Component
     }
     public function SartSession()
     {
+        $this->start_btn = 0;
+        $this->end_btn   = 1;
         Session::where('id',$this->s_id)->update([
             'is_started'   => 1,
         ]);
+    }
+    public function end_session()
+    {
+        $this->start_btn = 0;
+        $this->end_btn   = 0;
+       
+        Session::where('id',$this->session->id)->update([
+            'is_started'   => 1,
+            'is_ended'     => 1,
+            'end_at'     => $this->its_now,
+        ]);
+        session()->flash('message', 'ended_session');
     }
     public function session_started()
     {
@@ -155,7 +169,6 @@ class Metting extends Component
                             // $this->setOstadSession();
                         }
                         // $this->setAuthSession();
-
                     }
                 }
             }
@@ -188,5 +201,7 @@ class Metting extends Component
         $this->contact = Contacts::where([['id',$this->c_id]])->first();
         $this->username= $this->contact->username;
     }
+
+
 
 }

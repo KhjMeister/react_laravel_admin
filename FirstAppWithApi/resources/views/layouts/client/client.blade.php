@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- css stable -->
     <!-- <link rel="stylesheet" href="{{ asset('client/assets/css/font.css') }}"> -->
     <link rel="stylesheet" href="{{ asset('client/assets/css/global.css') }}">
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('client/assets/css/navmobile.css') }}">
     <link rel="stylesheet" href="{{ asset('client/assets/css/kjstyles.css') }}">
     <link rel="stylesheet" href="{{ asset('client/assets/css/spinner.css') }}">
+    
     <!-- css stable -->
     
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -401,6 +403,7 @@
     @livewireScripts
 
     <script src="{{ asset('client/assets/js/navbar.js') }}"></script>
+    
     
     @stack('scripts')
     <script src="{{ asset('client/assets/js/sweetalert2.js') }}"></script>

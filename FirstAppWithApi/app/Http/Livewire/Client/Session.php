@@ -70,6 +70,7 @@ class Session extends Component
     public function mount()
     {
         $this->u_id = Auth::user()->id;
+        $this->emit('your_event');
         $this->getAllCategories();
     }
 
