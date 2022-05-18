@@ -30,7 +30,7 @@ class Metting extends Component
             $s_day;
 
     public $startBtn=False;
-    public $jalaseBtn=False;
+    public $endBtn=False;
 
     public $user_type=0;
     public $jitci_link,$is_started,$is_ended;
@@ -66,29 +66,23 @@ class Metting extends Component
             return abort(404);
         }
     }
-    public function SartSession()
+    public function sartSession()
     {
-        $this->start_btn = 0;
-        $this->end_btn   = 1;
         Session::where('id',$this->s_id)->update([
             'is_started'   => 1,
         ]);
+        $this->endBtn=True;
     }
     public function end_session()
-    {
-        $this->start_btn = 0;
-        $this->end_btn   = 0;
-       
-        Session::where('id',$this->session->id)->update([
-            'is_started'   => 1,
-            'is_ended'     => 1,
-            'end_at'     => $this->its_now,
+    {       
+        Session::where('id',$this->s_id)->update([
+            'is_ended'     => 1
         ]);
         session()->flash('message', 'ended_session');
     }
     public function session_started()
     {
-        $this->session = Session::where([['sess_token','=',$this->link]])->first();
+        
         $this->is_started = $this->session->is_started;
         $this->is_ended = $this->session->is_ended;
 
@@ -123,6 +117,8 @@ class Metting extends Component
     }
     public function setDate()
     { 
+        $this->session = Session::where([['sess_token','=',$this->link]])->first();
+
         $this->its_now_date = date('Y/m/d', strtotime(Carbon::now()));
         // $this->carbon_date_now =Carbon::parse($this->its_now_date);
         $this->its_now_time = date('H:i', strtotime(Carbon::now()));

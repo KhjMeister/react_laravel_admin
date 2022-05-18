@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Category as Categories;
 use App\Models\Contacts;
 use App\Models\Session as Sessions;
-use App\Models\Session_contact;
+use App\Models\S;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +20,7 @@ class Session extends Component
     public $createPart = 0;
     public $level = 1;
     public $categories,$u_id;
-    public $username,$phone,$semat;
+    public $candidate_contacts,$username,$phone,$semat;
     public $baseUrl = "http://localhost:8000/metting/"; 
     public $search = '';
     public $session_type=0;
@@ -168,7 +168,7 @@ class Session extends Component
     public function addUsersToSession($contact_id)
     {
         if($sc = $this->getContactId($contact_id)){
-            Session_contact::find($sc->id)->delete();
+            S::find($sc->id)->delete();
             $this->total_number -= 1;
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
@@ -176,7 +176,7 @@ class Session extends Component
             ]);
             
         }else{
-            Session_contact::create([
+            S::create([
             'c_id'       => $contact_id,
             's_id'       => $this->session_id,
             'token'      => rand(11111, 99999),
@@ -191,9 +191,9 @@ class Session extends Component
     }
     public function getContactId($contact_id)
     {
-        $var = Session_contact::where([['c_id',$contact_id],['s_id',$this->session_id]])->first();
+        $var = S::where([['c_id',$contact_id],['s_id',$this->session_id]])->first();
         if(isset($var)){
-            return  Session_contact::where([['c_id',$contact_id],['s_id',$this->session_id]])->first();
+            return  S::where([['c_id',$contact_id],['s_id',$this->session_id]])->first();
         }else{
             return  false;
         }
@@ -209,7 +209,7 @@ class Session extends Component
         $flag =False;
         $lastcid=0;
         if(!$this->session_id==Null){
-            $sesscont = Session_contact::where([['s_id',$this->session_id]])->get();
+            $sesscont = S::where([['s_id',$this->session_id]])->get();
             try {
                 foreach ($sesscont as $key ) {
                     if(!$key->ostad_flag==0){
@@ -237,8 +237,29 @@ class Session extends Component
     public function changOneFlag($cid,$ostadFlag,$s_id)
     {
         
-        Session_contact::where([['c_id',$cid],['s_id',$s_id]])->update([
+        S::where([['c_id',$cid],['s_id',$s_id]])->update([
             'ostad_flag' => $ostadFlag
         ]); 
+    }
+    public function sendMessageToContacts()
+    {
+        $this->getThisSessionContacts();
+        try 
+        {
+            
+            foreach ($this->candidate_contacts as $key ) {
+                $message = "شما به جلسه ".$this->name."دعوت شدید \n"."لینک :".$this->video_link ."\n کد احراز هویت شما: ".$key->token;
+                $lineNumber = "210002100";
+                $receptor = Contacts::where('id',$key->c_id)->first()->phone;
+                $api = new \Ghasedak\GhasedakApi('d33ec578d69afed02d099a74f507fc10e675241a7b9554f6e19755825347f1ca');
+                $api->SendSimple($receptor,$message,$lineNumber);
+            } 
+        } catch(\Ghasedak\Exceptions\ApiException $e){
+            echo $e->errorMessage();
+        }
+    }
+    public function getThisSessionContacts()
+    {
+        $this->candidate_contacts = Session_contact::where('s_id',$this->s_id)->get();
     }
 }

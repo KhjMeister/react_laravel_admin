@@ -207,7 +207,7 @@
                     </div>
                     
                     <div class="submit-details">
-                        <button>ارسال پیام </button>
+                        <button wire:click="sendMessageToContacts">ارسال پیام </button>
                         
                     </div>
                 </form>
