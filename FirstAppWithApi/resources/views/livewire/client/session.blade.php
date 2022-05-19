@@ -214,30 +214,30 @@
                         </svg>
                     </div>
                     <div class="users-invited">
-                        <table style="width:100%;overflow-y: scroll;">
+                        
+                        <div class="table selected_contacts">
+                        <table class="tablecontacts">
                             <tr>
-                                <td>نام و نام خانوادگی</td>
-                                <td>شماره تماس </td>
-                                <td>سمت</td>
+                                <th>نام و نام خانوادگی</th>
+                                <th>شماره تماس </th>
+                                <th>سمت</th>
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>  
-                            @foreach ($this->thisSession->contacts as $contact)
-                                <tr class="tabel-content">
-                                    <td>{{ $contact->username }}</td>
+                            @if(!$thisSession==null)
+                             @foreach ($this->thisSession->contacts as $contact)
+                                <tr>
+                                   <td>{{ $contact->username }}</td>
                                     <td>{{ $contact->phone }}</td>
                                     <td>{{ $contact->semat }}</td>
                                 </tr>
                             @endforeach
-                            
-
+                            @else
+                                <p >کاربری وجود ندارد</p>
+                            @endif
                         </table>
                     </div>
+                    </div>
                 </div>
-                <div class="box-two">
+                <div class="box-two" wire:poll.1000ms>
                     <div class="buttons">
                         <a class="link nth1" target="_blank" href="{{ $this->video_link }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none"
@@ -247,14 +247,14 @@
                             </svg>
                             <p>اشتراک گذاری</p>
                         </a>
-                        <button class="nth2" wire:click="sendMessageToContacts">
+                        <a class="nth2 link" wire:click="sendMessageToContacts">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                             <p>ارسال پیام</p>
-                        </button>
+                        </a>
                     </div>
                     <div class="img-box-two">
                         <img src="./client/assets/images/Get in touch-amico (1) 1.png" alt="">

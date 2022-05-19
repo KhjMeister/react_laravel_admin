@@ -11,6 +11,10 @@ body {
   background-color: var(--neutral-100) !important;
   direction: rtl;
 }
+th,td{
+  font-size: 0.85rem;
+}
+
 
 :root {
   --primery: #ff4a4f;
