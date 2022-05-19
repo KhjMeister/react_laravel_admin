@@ -22,7 +22,7 @@ class Session extends Component
     public $level = 1;
     public $categories,$u_id;
     public $candidate_contacts,$username,$phone,$semat;
-    public $baseUrl = "https://videorayan.com/metting/"; 
+    public $baseUrl = "http://localhost:8000/metting/"; 
     public $search = '';
     public $session_type=0;
     public $session_id,
@@ -261,25 +261,31 @@ class Session extends Component
     }
     public function sendMessageToContacts()
     {
+        $allreadySended = true;
         // $apiKey = "1GZLY56f6u34CdC4G-7YG4KIqwn9xLcRZdRqtzcniaE=";
         // $client = new \IPPanel\Client($apiKey);
         $client = new SoapClient("http://ippanel.com/class/sms/wsdlservice/server.php?wsdl");
 
             foreach ($this->candidate_contacts as $key ) {
                 // $message = "با سلام شما به جلسه ".$this->thisSession->name." دعوت شده اید.لینک دعوت شما ".$this->video_link." می باشد و همچنین کد احراز هویت شما ".$key->token." می باشد. با تشکر ویدیو رایان";
-                $receptor = Contacts::where('id',$key->c_id)->first()->phone;
-                $usersms = "09153257202"; 
-                $passsms = "123deamond"; 
-                $fromNum = "+9850002040325721"; 
-                $toNum = array($receptor); 
-                // // // array_push($toNum,  );
-                $pattern_code = "vungc8h5x1jgg9z"; 
-                $input_data = array( "jalaseName" => $this->thisSession->name,
-                                     "JalaseUrl"  => $this->video_link,
-                                     "verificationCode" => $key->token
-                                    ); 
-                $client->sendPatternSms($fromNum,$toNum,$usersms,$passsms,$pattern_code,$input_data);
-                $this->changeSmsStatus();
+                if($key->sms_status==0){
+                    $receptor = Contacts::where('id',$key->c_id)->first()->phone;
+                    $usersms = "09153257202"; 
+                    $passsms = "123deamond"; 
+                    $fromNum = "+9850002040325721"; 
+                    $toNum = array($receptor); 
+                    // // // array_push($toNum,  );
+                    $pattern_code = "vungc8h5x1jgg9z"; 
+                    $input_data = array( "jalaseName" => $this->thisSession->name,
+                                        "JalaseUrl"  => $this->video_link,
+                                        "verificationCode" => $key->token
+                                        ); 
+                    $client->sendPatternSms($fromNum,$toNum,$usersms,$passsms,$pattern_code,$input_data);
+                    $this->changeSmsStatus($key->id);
+                    
+                }
+               
+
             }
                 // $patternValues = [
                 //     "jalaseName" => $this->thisSession->name,
@@ -311,7 +317,7 @@ class Session extends Component
 
     public function changeSmsStatus($id)
     {
-        Session_contact::where(['id',$id])->update([
+        Session_contact::where([['id',$id]])->update([
             'sms_status' => 1
         ]); 
     }
