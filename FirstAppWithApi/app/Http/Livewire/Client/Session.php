@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
+use SoapClient;
 
 class Session extends Component
 {
@@ -21,7 +22,7 @@ class Session extends Component
     public $level = 1;
     public $categories,$u_id;
     public $candidate_contacts,$username,$phone,$semat;
-    public $baseUrl = "http://localhost:8000/metting/"; 
+    public $baseUrl = "https://videorayan.com/metting/"; 
     public $search = '';
     public $session_type=0;
     public $session_id,
@@ -36,7 +37,7 @@ class Session extends Component
            $start_time,
            $start_date,
            $thisSession;      
-
+    public $searchContact = '';
     protected $rules = [
         'name'       =>'required|min:4|unique:sessions',
         'start_time'  =>'required',
@@ -210,6 +211,7 @@ class Session extends Component
     {
         $this->level = 3;
         $this->getThisSessionContacts();
+       
     }
 
     public function changeOstadFlag($cid)
@@ -261,23 +263,23 @@ class Session extends Component
     {
         // $apiKey = "1GZLY56f6u34CdC4G-7YG4KIqwn9xLcRZdRqtzcniaE=";
         // $client = new \IPPanel\Client($apiKey);
-        $client = new \SoapClient("http://ippanel.com/class/sms/wsdlservice/server.php?wsdl");
+        $client = new SoapClient("http://ippanel.com/class/sms/wsdlservice/server.php?wsdl");
 
             foreach ($this->candidate_contacts as $key ) {
                 // $message = "با سلام شما به جلسه ".$this->thisSession->name." دعوت شده اید.لینک دعوت شما ".$this->video_link." می باشد و همچنین کد احراز هویت شما ".$key->token." می باشد. با تشکر ویدیو رایان";
-                // $receptor = Contacts::where('id',$key->c_id)->first()->phone;
-                // $usersms = "09153257202"; 
-                // $passsms = "123deamond"; 
-                // $fromNum = "+98100009"; 
-                // $toNum = array($receptor); 
-                // // array_push($toNum,  );
-                // $pattern_code = "vungc8h5x1jgg9z"; 
-                // $input_data = array( "jalaseName" => $this->thisSession->name,
-                //                      "JalaseUrl"  => $this->video_link,
-                //                      "verificationCode" => $key->token
-                //                     ); 
-                // $client->sendPatternSms($fromNum,$toNum,$usersms,$passsms,$pattern_code,$input_data);
-                
+                $receptor = Contacts::where('id',$key->c_id)->first()->phone;
+                $usersms = "09153257202"; 
+                $passsms = "123deamond"; 
+                $fromNum = "+9850002040325721"; 
+                $toNum = array($receptor); 
+                // // // array_push($toNum,  );
+                $pattern_code = "vungc8h5x1jgg9z"; 
+                $input_data = array( "jalaseName" => $this->thisSession->name,
+                                     "JalaseUrl"  => $this->video_link,
+                                     "verificationCode" => $key->token
+                                    ); 
+                $client->sendPatternSms($fromNum,$toNum,$usersms,$passsms,$pattern_code,$input_data);
+            }
                 // $patternValues = [
                 //     "jalaseName" => $this->thisSession->name,
                 //     "JalaseUrl"  => $this->video_link,
@@ -290,7 +292,7 @@ class Session extends Component
                 //     $toNum,  
                 //     $patternValues,  
                 // );
-            }  
+             
                 // $apiKey = "1GZLY56f6u34CdC4G-7YG4KIqwn9xLcRZdRqtzcniaE=";
                
             
@@ -305,4 +307,6 @@ class Session extends Component
     {
         $this->candidate_contacts = Session_contact::where('s_id',$this->session_id)->get();
     }
+
+    
 }

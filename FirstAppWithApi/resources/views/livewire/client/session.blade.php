@@ -199,20 +199,68 @@
                 </div>
             </div>
             @elseif($this->level===3)
-             <div class="boxes">
-                <form class="box3" wire:submit.prevent="createSession">
-                    <div class="title">
-                        <p> ارسال پیام به مخاطبان</p>
-                        
+             
+            <div class="boxes3">
+                <div class="box-one">
+                    <div class="title-box-one">
+                        <p>لیست مخاطبین دعوت شده</p>
                     </div>
-                   
-                    
-                    <div class="submit-details">
-                        <button wire:click="sendMessageToContacts">ارسال پیام </button>
-                        
+                    <div class="search">
+                        <input type="text" wire:model="searchContact">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
                     </div>
-                </form>
-            </div> 
+                    <div class="users-invited">
+                        <table style="width:100%;overflow-y: scroll;">
+                            <tr>
+                                <td>نام و نام خانوادگی</td>
+                                <td>شماره تماس </td>
+                                <td>سمت</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>  
+                            @foreach ($this->thisSession->contacts as $contact)
+                                <tr class="tabel-content">
+                                    <td>{{ $contact->username }}</td>
+                                    <td>{{ $contact->phone }}</td>
+                                    <td>{{ $contact->semat }}</td>
+                                </tr>
+                            @endforeach
+                            
+
+                        </table>
+                    </div>
+                </div>
+                <div class="box-two">
+                    <div class="buttons">
+                        <a class="nth1" href="{{ $this->video_link }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                            </svg>
+                            <p>اشتراک گذاری</p>
+                        </a>
+                        <button class="nth2" wire:click="sendMessageToContacts">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <p>ارسال پیام</p>
+                        </button>
+                    </div>
+                    <div class="img-box-two">
+                        <img src="./client/assets/images/Get in touch-amico (1) 1.png" alt="">
+                    </div>
+                </div>
+            </div>
             @endif
         </section>
 
