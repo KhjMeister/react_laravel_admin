@@ -71,7 +71,7 @@
   align-items: center;
 }
 
-.content section .boxes3 .box-two .buttons button,a {
+.content section .boxes3 .box-two .buttons button,.link {
   width: 90%;
   margin: auto;
   padding: 1rem;
@@ -86,7 +86,7 @@
 .content section .boxes3 .box-two .buttons button svg {
   margin-left: 1rem;
 }
-.content section .boxes3 .box-two .buttons a svg {
+.content section .boxes3 .box-two .buttons .link svg {
   margin-left: 1rem;
 }
 

@@ -18,7 +18,7 @@ class Session extends Component
 {
     use WithPagination;
 
-    public $createPart = 1;
+    public $createPart = 0;
     public $level = 1;
     public $categories,$u_id;
     public $candidate_contacts,$username,$phone,$semat;

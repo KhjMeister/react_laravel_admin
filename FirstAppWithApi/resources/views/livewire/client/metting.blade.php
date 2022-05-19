@@ -33,6 +33,7 @@
                         <p> با کلیک بر روی دکمه زیر جلسه را شروع نمایید </p> 
                         @if ($this->endBtn == True )
                             <button wire:click="end_session" class="metting-btn"> اتمام جلسه</button>
+                            <a wire:click="sartSession" href="{{ $this->jitci_link }}" target="_blank" class="metting-btn"> برو به جلسه </a>
                         @elseif($this->endBtn == False)
                             <a wire:click="sartSession" href="{{ $this->jitci_link }}" target="_blank" class="metting-btn"> شروع جلسه </a>
                         @endif                                                      

@@ -79,9 +79,11 @@ class Metting extends Component
             'is_ended'     => 1
         ]);
         $this->dispatchBrowserEvent('alert',[
-            'type'=>'error',
+            'type'=>'success',
             'message'=>"جلسه با موفقیت پایان یافت !!"
         ]);
+
+        $this->is_time = 3;
         
     }
     public function session_started()
