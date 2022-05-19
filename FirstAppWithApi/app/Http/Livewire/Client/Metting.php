@@ -78,11 +78,14 @@ class Metting extends Component
         Session::where('id',$this->s_id)->update([
             'is_ended'     => 1
         ]);
-        session()->flash('message', 'ended_session');
+        $this->dispatchBrowserEvent('alert',[
+            'type'=>'error',
+            'message'=>"جلسه با موفقیت پایان یافت !!"
+        ]);
+        
     }
     public function session_started()
     {
-        
         $this->is_started = $this->session->is_started;
         $this->is_ended = $this->session->is_ended;
 

@@ -28,20 +28,16 @@
                     @if($this->startBtn===False)
                             <h5> استاد عزیز جلسه شروع نشده است .</h5>
                             <p>  تاریخ و ساعت شروع جلسه {{ $this->its_start_time }}  -  {{ $this->now_date_fa }}</p>
-                        @elseif($this->startBtn===True)
-                                <h5> استاد عزیز </h5>
-                                <p> با کلیک بر روی دکمه زیر جلسه را شروع نمایید </p> 
-                                @if ($this->endBtn == True )
-                                    <button wire:click="end_session" class="metting-btn"> اتمام جلسه</button>
-                                @elseif($this->endBtn == False)
-                                    <a wire:click="sartSession" href="{{ $this->jitci_link }}" target="_blank" class="metting-btn"> شروع جلسه </a>
-                                @endif
-                                
-                            @if ($this->is_time == 2 )
-                                
-                            @endif
+                    @elseif($this->startBtn===True)
+                        <h5> استاد عزیز </h5>
+                        <p> با کلیک بر روی دکمه زیر جلسه را شروع نمایید </p> 
+                        @if ($this->endBtn == True )
+                            <button wire:click="end_session" class="metting-btn"> اتمام جلسه</button>
+                        @elseif($this->endBtn == False)
+                            <a wire:click="sartSession" href="{{ $this->jitci_link }}" target="_blank" class="metting-btn"> شروع جلسه </a>
+                        @endif                                                      
 
-                        @endif
+                    @endif
 
                   @endif
                   
