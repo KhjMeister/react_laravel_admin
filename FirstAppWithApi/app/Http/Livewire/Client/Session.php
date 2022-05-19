@@ -279,6 +279,7 @@ class Session extends Component
                                      "verificationCode" => $key->token
                                     ); 
                 $client->sendPatternSms($fromNum,$toNum,$usersms,$passsms,$pattern_code,$input_data);
+                $this->changeSmsStatus();
             }
                 // $patternValues = [
                 //     "jalaseName" => $this->thisSession->name,
@@ -308,5 +309,10 @@ class Session extends Component
         $this->candidate_contacts = Session_contact::where('s_id',$this->session_id)->get();
     }
 
-    
+    public function changeSmsStatus($id)
+    {
+        Session_contact::where(['id',$id])->update([
+            'sms_status' => 1
+        ]); 
+    }
 }
