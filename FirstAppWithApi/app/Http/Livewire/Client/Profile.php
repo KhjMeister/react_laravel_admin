@@ -53,7 +53,7 @@ class Profile extends Component
         try{
 
             User::find($this->user_id)->fill([
-                'name'=>$this->user->name,
+                'username'=>$this->user->name,
                 'name'=>$this->name,
                 'family'=>$this->family,
                 'phone'=>$this->phone,
