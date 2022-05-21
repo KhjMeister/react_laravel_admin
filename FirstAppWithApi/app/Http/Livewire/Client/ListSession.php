@@ -12,6 +12,9 @@ use Livewire\WithPagination;
 class ListSession extends Component
 {
     use WithPagination;
+    public $createPart = 0;
+    public $level = 1;
+    
     public $search="";
     public $descAsc=false;
     public $ostadFlag ;
