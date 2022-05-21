@@ -51,6 +51,7 @@ class Session extends Component
         'start_time.required'   => 'زمان شروع جلسه باید وارد شود',
         'start_date.required'   => 'تاریخ شروع جلسه باید وارد شود',
         'start_date.after'   => 'تاریخ شروع جلسه باید از امروز به بعد باشد',
+        'start_date.date_format'   => 'فرمت تاریخ اشتباه است',
     ];
 
     public function render()

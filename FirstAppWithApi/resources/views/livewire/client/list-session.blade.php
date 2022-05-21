@@ -146,7 +146,7 @@
         <div class="box-addContact" id="clsModal">
             <div class="box-addContact-container">
                 <div class="title">
-                    <button class="link-mouse-hover" wire:click="changeToSendMessages">بعدی</button>
+                    <button class="link-mouse-hover" wire:click="$set('level', 3)">بعدی</button>
                     <div>
                         <select class="dropdown-content link-mouse-hover">
                             @if(!$this->categories==null)
@@ -206,13 +206,13 @@
         </div>
         @elseif($this->level===3)
             
-        <div class="boxes3">
+        {{-- <div class="boxes3">
             <div class="box-one">
                 <div class="title-box-one">
                     <p>لیست مخاطبین دعوت شده</p>
                 </div>
                 <div class="search">
-                    <input type="text" wire:model="searchContact">
+                    <input type="text" wire:model="search">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -228,8 +228,8 @@
                             <th>شماره تماس </th>
                             <th>سمت</th>
                         </tr>
-                        @if(!$thisSession==null)
-                            @foreach ($this->thisSession->contacts as $contact)
+                        @if(!$session==null)
+                            @foreach ($this->session->contacts as $contact)
                             <tr>
                                 <td>{{ $contact->username }}</td>
                                 <td>{{ $contact->phone }}</td>
@@ -243,7 +243,7 @@
                 </div>
                 </div>
             </div>
-            <div class="box-two" wire:poll.1000ms>
+            <div class="box-two" >
                 <div class="buttons">
                     <a class="link nth1" target="_blank" href="{{ $this->video_link }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none"
@@ -266,7 +266,7 @@
                     <img src="./client/assets/images/Get in touch-amico (1) 1.png" alt="">
                 </div>
             </div>
-        </div>
+        </div> --}}
         @endif
     </section>
 

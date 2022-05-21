@@ -200,7 +200,7 @@
             </div>
             @elseif($this->level===3)
              
-            <div class="boxes3">
+            {{-- <div class="boxes3">
                 <div class="box-one">
                     <div class="title-box-one">
                         <p>لیست مخاطبین دعوت شده</p>
@@ -237,7 +237,7 @@
                     </div>
                     </div>
                 </div>
-                <div class="box-two" wire:poll.1000ms>
+                <div class="box-two">
                     <div class="buttons">
                         <a class="link nth1" target="_blank" href="{{ $this->video_link }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none"
@@ -260,7 +260,7 @@
                         <img src="./client/assets/images/Get in touch-amico (1) 1.png" alt="">
                     </div>
                 </div>
-            </div>
+            </div> --}}
             @endif
         </section>
 
