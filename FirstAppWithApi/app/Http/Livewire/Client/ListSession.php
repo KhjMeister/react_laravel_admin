@@ -165,6 +165,38 @@ class ListSession extends Component
             $this->session_type = 1;
         }   
     }
+    public function getThisSessionContacts()
+    {
+        $this->candidate_contacts = Session_contact::where('s_id',$this->session_id)->get();
+    }
+    public function changeToSendMessages()
+    {
+        $this->level = 3;
+        $this->getThisSessionContacts();
+       
+    }
+    public function checkContactInSession($cid)
+    {
+        $var = Session_contact::where([['c_id',$cid],['s_id',$this->session_id]])->first();
+        if(isset($var)){
+            return  True;
+        }else{
+            return  false;
+        }
+    }
+    public function checkContactIsOstad($cid)
+    {
+        $var = Session_contact::where([['c_id',$cid],['s_id',$this->session_id]])->first();
+        if(isset($var)){
+            if($var->sms_status==1)
+                return  True;
+            else
+                return False;
+        }else{
+            return  false;
+        }
+    }
+    
     public function updateSession()
     {
         $validatedData = $this->validate();
@@ -267,6 +299,53 @@ class ListSession extends Component
                 'message'=>"مخاطب به جلسه اضافه شد"
             ]);       
         }
+    }
+    public function sendMessageToContacts()
+    {
+        $allreadySended = true;
+        // $apiKey = "1GZLY56f6u34CdC4G-7YG4KIqwn9xLcRZdRqtzcniaE=";
+        // $client = new \IPPanel\Client($apiKey);
+        $client = new SoapClient("http://ippanel.com/class/sms/wsdlservice/server.php?wsdl");
+
+            foreach ($this->candidate_contacts as $key ) {
+                // $message = "با سلام شما به جلسه ".$this->thisSession->name." دعوت شده اید.لینک دعوت شما ".$this->video_link." می باشد و همچنین کد احراز هویت شما ".$key->token." می باشد. با تشکر ویدیو رایان";
+                if($key->sms_status==0){
+                    $receptor = Contacts::where('id',$key->c_id)->first()->phone;
+                    $usersms = "09153257202"; 
+                    $passsms = "123deamond"; 
+                    $fromNum = "+9850002040325721"; 
+                    $toNum = array($receptor); 
+                    // // // array_push($toNum,  );
+                    $pattern_code = "vungc8h5x1jgg9z"; 
+                    $input_data = array( "jalaseName" => $this->thisSession->name,
+                                        "JalaseUrl"  => $this->video_link,
+                                        "verificationCode" => $key->token
+                                        ); 
+                    $client->sendPatternSms($fromNum,$toNum,$usersms,$passsms,$pattern_code,$input_data);
+                    $this->changeSmsStatus($key->id);
+                    
+                }
+               
+
+            }
+                
+            $this->dispatchBrowserEvent('alert',[
+                'type'=>'success',
+                'message'=>"پیام به مخاطبانتان ارسال شد!"
+            ]);
+            $this->getThisSession();
+       
+    }
+    public function changeSmsStatus($id)
+    {
+        Session_contact::where([['id',$id]])->update([
+            'sms_status' => 1
+        ]); 
+    }
+
+    public function getThisSession()
+    {
+        $this->session = Sessions::find($this->session_id);
     }
     
 }

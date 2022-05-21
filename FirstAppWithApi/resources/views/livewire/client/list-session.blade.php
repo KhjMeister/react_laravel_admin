@@ -7,7 +7,7 @@
                 
             </div>
             <div class="item-search" style="position: relative;">
-                <input wire:keydown="getAllSession" wire:model="search" type="search" class="search"
+                <input wire:keydown="getAllSession" wire:model.debounce.1000ms="search" type="search" class="search"
                 placeholder="جست وجو در جلسات ....">
                     <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19.635 17.8725L15.7637 13.9996C18.6604 10.1286 17.8706 4.64234 13.9996 1.74566C10.1286 -1.15102 4.64234 -0.361187 1.74566 3.50978C-1.15102 7.38076 -0.361187 12.8671 3.50979 15.7637C6.61927 18.0906 10.8901 18.0906 13.9996 15.7637L17.8725 19.6366C18.3592 20.1233 19.1483 20.1233 19.635 19.6366C20.1217 19.1499 20.1217 18.3609 19.635 17.8742L19.635 17.8725ZM8.78697 15.0162C5.34663 15.0162 2.55772 12.2273 2.55772 8.78697C2.55772 5.34663 5.34663 2.55772 8.78697 2.55772C12.2273 2.55772 15.0162 5.34663 15.0162 8.78697C15.0126 12.2257 12.2258 15.0126 8.78697 15.0162Z" fill="#4D4D4D"/>
@@ -81,7 +81,7 @@
                     <button > بعدی</button>
                 </div>
                 <div class="name-session">
-                    <input class="@error('name') is-invalid @enderror" wire:model="name" name="name" type="search" placeholder="عنوان جلسه را وارد کنید">
+                    <input class="@error('name') is-invalid @enderror" wire:model.debounce.1000ms="name" name="name" type="search" placeholder="عنوان جلسه را وارد کنید">
                     @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
                 </div>
                 <div class="type-session">
@@ -146,7 +146,7 @@
         <div class="box-addContact" id="clsModal">
             <div class="box-addContact-container">
                 <div class="title">
-                    <button class="link-mouse-hover" wire:click="$set('level', 3)">بعدی</button>
+                    <button class="link-mouse-hover" wire:click="changeToSendMessages">بعدی</button>
                     <div>
                         <select class="dropdown-content link-mouse-hover">
                             @if(!$this->categories==null)
@@ -161,7 +161,7 @@
                     </div>
                 </div>
                 <div class="search">
-                    <input wire:keydown="getAllContacts" type="text" wire:model="search" placeholder="جست و جو در مخاطبین">
+                    <input wire:keydown="getAllContacts" type="text" wire:model.debounce.1000ms="search" placeholder="جست و جو در مخاطبین">
                     <svg  width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M19.635 17.8725L15.7637 13.9996C18.6604 10.1286 17.8706 4.64234 13.9996 1.74566C10.1286 -1.15102 4.64234 -0.361187 1.74566 3.50978C-1.15102 7.38076 -0.361187 12.8671 3.50979 15.7637C6.61927 18.0906 10.8901 18.0906 13.9996 15.7637L17.8725 19.6366C18.3592 20.1233 19.1483 20.1233 19.635 19.6366C20.1217 19.1499 20.1217 18.3609 19.635 17.8742L19.635 17.8725ZM8.78697 15.0162C5.34663 15.0162 2.55772 12.2273 2.55772 8.78697C2.55772 5.34663 5.34663 2.55772 8.78697 2.55772C12.2273 2.55772 15.0162 5.34663 15.0162 8.78697C15.0126 12.2257 12.2258 15.0126 8.78697 15.0162Z"
@@ -181,7 +181,7 @@
                         @foreach($contacts as $contact)
                             <tr>
                                 <td>
-                                    <input class="accent" type="checkbox" wire:click="addUsersToSession({{ $contact->id }})" >
+                                    <input @if ($this->checkContactInSession($contact->id)) checked='checked' @endif class="accent" type="checkbox" wire:click="addUsersToSession({{ $contact->id }})" >
                                 </td>
                                 <td>
                                     {{ $contact->username }}
@@ -193,7 +193,7 @@
                                     {{ $contact->semat }}
                                 </td>
                                 <td>
-                                    <input wire:click="changeOstadFlag({{ $contact->id }})" name="ostad_flag" class="accent" type="radio">
+                                    <input @if ($this->checkContactIsOstad($contact->id)) checked='checked' @endif wire:click="changeOstadFlag({{ $contact->id }})" name="ostad_flag" class="accent" type="radio">
                                 </td>
                             </tr>
                         @endforeach
@@ -206,13 +206,13 @@
         </div>
         @elseif($this->level===3)
             
-        {{-- <div class="boxes3">
+        <div class="boxes3">
             <div class="box-one">
                 <div class="title-box-one">
                     <p>لیست مخاطبین دعوت شده</p>
                 </div>
                 <div class="search">
-                    <input type="text" wire:model="search">
+                    <input type="text" wire:model.debounce.1000ms="search">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -227,6 +227,7 @@
                             <th>نام و نام خانوادگی</th>
                             <th>شماره تماس </th>
                             <th>سمت</th>
+                            <th>وضعیت ارسال پیامک </th>
                         </tr>
                         @if(!$session==null)
                             @foreach ($this->session->contacts as $contact)
@@ -234,6 +235,7 @@
                                 <td>{{ $contact->username }}</td>
                                 <td>{{ $contact->phone }}</td>
                                 <td>{{ $contact->semat }}</td>
+                                <td>  @if ($this->checkContactIsOstad($contact->id)) <span style="color:green;"> ارسال شده  </span> @else <span style="color:yellow;"> ارسال نشده است </span>  @endif  </td>
                             </tr>
                         @endforeach
                         @else
@@ -266,7 +268,7 @@
                     <img src="./client/assets/images/Get in touch-amico (1) 1.png" alt="">
                 </div>
             </div>
-        </div> --}}
+        </div>
         @endif
     </section>
 

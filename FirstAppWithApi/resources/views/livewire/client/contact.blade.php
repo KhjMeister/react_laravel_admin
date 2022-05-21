@@ -25,12 +25,12 @@
                             <form wire:submit.prevent="storeContact" class="form-group">
                                 <div > 
                                     <label  for="fullname">نام و نام خانوادگی:</label>
-                                    <input wire:model="username" class="@error('username') is-invalid @enderror" type="text" placeholder="نام و نام خانوادگی را وارد کنید">
+                                    <input wire:model.debounce.1000ms="username" class="@error('username') is-invalid @enderror" type="text" placeholder="نام و نام خانوادگی را وارد کنید">
                                     @error('username') <span class="invalid-feedback">{{ $message }}</span> @enderror
                                 </div>
                                 <div> 
                                 <label for="fullname">شماره موبایل:</label>
-                                <input wire:model="phone" class="@error('phone') is-invalid @enderror" type="text" placeholder="شماره موبایل را وارد کنید">
+                                <input wire:model.debounce.1000ms="phone" class="@error('phone') is-invalid @enderror" type="text" placeholder="شماره موبایل را وارد کنید">
                                 @error('phone') <span class="invalid-feedback">{{ $message }}</span> @enderror
                                 </div>
 
@@ -51,7 +51,7 @@
 
                             <div> 
                                 <label for="fullname">سمت</label>
-                                <input wire:model="semat" class="@error('semat') is-invalid @enderror" type="text" placeholder="سمت را مشخص نمایید">
+                                <input wire:model.debounce.1000ms="semat" class="@error('semat') is-invalid @enderror" type="text" placeholder="سمت را مشخص نمایید">
                                 @error('semat') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <button type="submit" class="btn-form">
@@ -72,12 +72,12 @@
                             <form wire:submit.prevent="updateContact" class="form-group">
                                 <div > 
                                     <label  for="fullname">نام و نام خانوادگی:</label>
-                                    <input wire:model="username" class="@error('username') is-invalid @enderror" type="text" placeholder="نام و نام خانوادگی را وارد کنید">
+                                    <input wire:model.debounce.1000ms="username" class="@error('username') is-invalid @enderror" type="text" placeholder="نام و نام خانوادگی را وارد کنید">
                                     @error('username') <span class="invalid-feedback">{{ $message }}</span> @enderror
                                 </div>
                                 <div> 
                                 <label  for="fullname">شماره موبایل:</label>
-                                <input wire:model="phone" class="@error('phone') is-invalid @enderror" type="text" placeholder="شماره موبایل را وارد کنید">
+                                <input wire:model.debounce.1000ms="phone" class="@error('phone') is-invalid @enderror" type="text" placeholder="شماره موبایل را وارد کنید">
                                 @error('phone') <span class="invalid-feedback">{{ $message }}</span> @enderror
                                 </div>
 
@@ -98,7 +98,7 @@
 
                             <div> 
                                 <label for="fullname">سمت</label>
-                                <input wire:model="semat" class="@error('semat') is-invalid @enderror" type="text" placeholder="سمت را مشخص نمایید">
+                                <input wire:model.debounce.1000ms="semat" class="@error('semat') is-invalid @enderror" type="text" placeholder="سمت را مشخص نمایید">
                                 @error('semat') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                             <button type="submit" class="btn-form">
@@ -113,7 +113,7 @@
             </div>
             
             <div class="item-search" style="position: relative;">
-                <input wire:keydown="getAllContacts" wire:model="search" type="search" class="search" placeholder="جستجو در مخاطبین ....">
+                <input wire:keydown="getAllContacts" wire:model.debounce.1000ms="search" type="search" class="search" placeholder="جستجو در مخاطبین ....">
                     <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19.635 17.8725L15.7637 13.9996C18.6604 10.1286 17.8706 4.64234 13.9996 1.74566C10.1286 -1.15102 4.64234 -0.361187 1.74566 3.50978C-1.15102 7.38076 -0.361187 12.8671 3.50979 15.7637C6.61927 18.0906 10.8901 18.0906 13.9996 15.7637L17.8725 19.6366C18.3592 20.1233 19.1483 20.1233 19.635 19.6366C20.1217 19.1499 20.1217 18.3609 19.635 17.8742L19.635 17.8725ZM8.78697 15.0162C5.34663 15.0162 2.55772 12.2273 2.55772 8.78697C2.55772 5.34663 5.34663 2.55772 8.78697 2.55772C12.2273 2.55772 15.0162 5.34663 15.0162 8.78697C15.0126 12.2257 12.2258 15.0126 8.78697 15.0162Z" fill="#4D4D4D"/>
                         </svg>
