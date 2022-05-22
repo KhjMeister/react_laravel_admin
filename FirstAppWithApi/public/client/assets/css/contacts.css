@@ -229,12 +229,18 @@ tr {
 /* ! responsive */
 @media only screen and (max-width: 468px) {
     #myBtn {
-        width: 20rem;
+        width: 23rem;
     }
   }
   @media only screen and (max-width: 400px) {
     #myBtn {
-        width: 15rem;
+        width: 21rem;
+        
+    }
+  }
+  @media only screen and (max-width: 360px) {
+    #myBtn {
+        width: 20rem;
         
     }
   }

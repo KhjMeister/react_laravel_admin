@@ -54,9 +54,24 @@
   left: 0;
   bottom: 0;
   display: none;
-  transition: all 0.3s ease;
-
+  animation: fading-in .5s  ;
 }
+
+@keyframes fading-in {
+  0%  { opacity:  0;   }
+    10% { opacity: .1;   }
+    20% { opacity: .2;   }
+    30% { opacity: .3;   }
+    40% { opacity: .4;   }
+    50% { opacity: .5;   }
+    60% { opacity: .6;   }
+    70% { opacity: .7;   }
+    80% { opacity: .8;   }
+    90% { opacity: .9;   }
+    100%{ opacity:  1;   }
+}
+
+
 .aside-mobile {
   width: 80%;
   height: 100vh;
@@ -67,8 +82,7 @@
   border-radius: 2rem 0rem 0rem 2rem;
   overflow-y: auto;
   overflow-x: hidden;
-  transition: all 0.3s ease;
-   
+
 }
 
 .aside-mobile .title {
