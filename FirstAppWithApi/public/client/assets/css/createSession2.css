@@ -253,6 +253,8 @@
     margin-top: 1rem;
     align-items: center;
     height: auto;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .box-addContact-container {
