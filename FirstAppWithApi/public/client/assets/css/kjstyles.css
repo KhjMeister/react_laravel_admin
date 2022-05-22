@@ -108,9 +108,10 @@
 
 .box2 {
   background-color: var(--neutral-50);
-  padding: 0 1.5rem 1.5rem 1.5rem;
+  /* padding: 0 1.5rem 1.5rem 1.5rem; */
   width: 39%;
   margin-right: 2px;
+  height: 85vh;
   
 }
 .inside-box{
@@ -222,5 +223,15 @@ tr {
 @media only screen and (max-width: 800px) {  
   .table { 
       overflow-x: scroll;  
+  }
+}
+
+
+@media only screen and (max-width: 826px) {
+  .box2{
+    display: none;
+  }
+  .content section .boxes .box {
+    width: 80%;
   }
 }

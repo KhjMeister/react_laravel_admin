@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('client/assets/css/content.css') }}">
     <link rel="stylesheet" href="{{ asset('client/assets/css/navmobile.css') }}">
     <link rel="stylesheet" href="{{ asset('client/assets/css/kjstyles.css') }}">
-    <link rel="stylesheet" href="{{ asset('client/assets/css/spinner.css') }}">
+   
     
     <!-- css stable -->
     

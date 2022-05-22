@@ -10,5 +10,10 @@ main .container .content {
     width: 95%;
     margin: auto;
   }
+  main .container .content {
+    margin: auto;
+    padding: 0;;
+  }
   /* Welcome page */
 }
+

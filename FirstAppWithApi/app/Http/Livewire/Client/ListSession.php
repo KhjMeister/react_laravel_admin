@@ -9,6 +9,7 @@ use App\Models\Session as Sessions;
 use App\Models\Session_contact;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
+use SoapClient;
 
 class ListSession extends Component
 {
@@ -184,11 +185,23 @@ class ListSession extends Component
             return  false;
         }
     }
-    public function checkContactIsOstad($cid)
+    public function checkSmsSended($cid)
     {
         $var = Session_contact::where([['c_id',$cid],['s_id',$this->session_id]])->first();
         if(isset($var)){
             if($var->sms_status==1)
+                return  True;
+            else
+                return False;
+        }else{
+            return  false;
+        }
+    }
+    public function checkContactIsOstad($cid)
+    {
+        $var = Session_contact::where([['c_id',$cid],['s_id',$this->session_id]])->first();
+        if(isset($var)){
+            if($var->ostad_flag==1)
                 return  True;
             else
                 return False;
@@ -302,13 +315,12 @@ class ListSession extends Component
     }
     public function sendMessageToContacts()
     {
-        $allreadySended = true;
-        // $apiKey = "1GZLY56f6u34CdC4G-7YG4KIqwn9xLcRZdRqtzcniaE=";
-        // $client = new \IPPanel\Client($apiKey);
+        
+        
         $client = new SoapClient("http://ippanel.com/class/sms/wsdlservice/server.php?wsdl");
 
             foreach ($this->candidate_contacts as $key ) {
-                // $message = "با سلام شما به جلسه ".$this->thisSession->name." دعوت شده اید.لینک دعوت شما ".$this->video_link." می باشد و همچنین کد احراز هویت شما ".$key->token." می باشد. با تشکر ویدیو رایان";
+              
                 if($key->sms_status==0){
                     $receptor = Contacts::where('id',$key->c_id)->first()->phone;
                     $usersms = "09153257202"; 
@@ -317,8 +329,8 @@ class ListSession extends Component
                     $toNum = array($receptor); 
                     // // // array_push($toNum,  );
                     $pattern_code = "vungc8h5x1jgg9z"; 
-                    $input_data = array( "jalaseName" => $this->thisSession->name,
-                                        "JalaseUrl"  => $this->video_link,
+                    $input_data = array( "jalaseName" => $this->session->name,
+                                        "JalaseUrl"  => $this->session->video_link,
                                         "verificationCode" => $key->token
                                         ); 
                     $client->sendPatternSms($fromNum,$toNum,$usersms,$passsms,$pattern_code,$input_data);

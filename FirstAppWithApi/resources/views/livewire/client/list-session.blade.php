@@ -235,7 +235,7 @@
                                 <td>{{ $contact->username }}</td>
                                 <td>{{ $contact->phone }}</td>
                                 <td>{{ $contact->semat }}</td>
-                                <td>  @if ($this->checkContactIsOstad($contact->id)) <span style="color:green;"> ارسال شده  </span> @else <span style="color:yellow;"> ارسال نشده است </span>  @endif  </td>
+                                <td>  @if ($this->checkSmsSended($contact->id)) <span style="color:green;"> ارسال شده  </span> @else <span style="color:yellow;"> ارسال نشده است </span>  @endif  </td>
                             </tr>
                         @endforeach
                         @else
