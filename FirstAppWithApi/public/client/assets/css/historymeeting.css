@@ -44,7 +44,7 @@
 }
 .content .historymeeting-detail .item-historymeeting .btn-historymeeting2{
     padding: 1rem;
-    background-color: var(--neutral-100);
+    /* background-color: var(--neutral-100); */
     border: none;
     border-radius: 8px;
     width: 120px;

@@ -25,7 +25,8 @@
   padding: 1rem 1.5rem 1.5rem 1.5rem;
   width: 80%;
   margin-left: auto;
-  height: 79vh;
+  height: 80vh;
+  margin-top: 1rem;
 }
 
 .content section .boxes .box .title {
@@ -291,7 +292,7 @@
   .content section .boxes .box {
     background-color: var(--neutral-50);
     padding: 1.5rem;
-    width: 90%;
+    width:80%;
     margin: auto;
   }
 

@@ -113,7 +113,7 @@
   /* padding: 0 1.5rem 1.5rem 1.5rem; */
   width: 39%;
   margin-right: 2px;
-  height: 85vh;
+  height: 84vh;
   
 }
 .inside-box{
@@ -264,6 +264,14 @@ tr {
 }
 @media only screen and (max-width: 360px) {
   h5{
-    font-size: .7rem;
+    font-size: .8rem;
+  }
+  .content .historymeeting-detail .item-historymeeting .btn-historymeeting2{
+    margin-right: 0 !important;
+    padding: 0.5rem !important;
+  }
+  .content .historymeeting-detail .item-historymeeting .btn-historymeeting{
+    margin-right: 0 !important;
+    padding: 0.5rem !important;
   }
 }
