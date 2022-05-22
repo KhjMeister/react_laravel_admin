@@ -229,13 +229,13 @@ tr {
 }
 
 
-@media only screen and (max-width: 826px) {
+@media only screen and (max-width: 1024px) {
   .box2{
     display: none;
   }
-  .content section .boxes .box {
-    width: 80%;
-  }
+  /* .content section .boxes .box { */
+    /* width: 100% !important; */
+  /* } */
 }
 @media only screen and (max-width: 696px) {
   .content section .boxes3{

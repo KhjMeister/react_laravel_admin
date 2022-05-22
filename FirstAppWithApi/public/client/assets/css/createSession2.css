@@ -267,7 +267,7 @@
   .content section .boxes .box {
     background-color: var(--neutral-50);
     padding: 1.5rem;
-    width: 80%;
+    /* width: 80%; */
     margin: auto;
   }
 
