@@ -6,6 +6,7 @@
   padding: 0.7rem 1rem;
   cursor: pointer;
 }
+
 .title .back {
   display: flex;
   flex-direction: row-reverse;
@@ -259,5 +260,10 @@ tr {
   }
   .content section .boxes3 .box-two img{
     display: none;
+  }
+}
+@media only screen and (max-width: 360px) {
+  h5{
+    font-size: .7rem;
   }
 }
