@@ -127,7 +127,7 @@ class Session extends Component
         // $this->s_day    = Jalalian::fromDateTime(date('Y/m/d', strtotime($this->start_date)))->getDay();
         // $this->now_date_en = $this->s_year.'/'.$this->s_month.'/'.$this->s_day;
         
-        $this->start_date   = Jalalian::fromFormat('d/m/Y', $this->start_date)->toCarbon('d/m/Y');
+        // $this->start_date   = Jalalian::fromFormat('d/m/Y', $this->start_date)->toCarbon('d/m/Y');
 
         $validatedData = $this->validate();
         try{

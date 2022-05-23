@@ -58,6 +58,7 @@ class Metting extends Component
            
             $this->start_time = $this->session->start_time;
             $this->start_date = $this->session->start_date;
+            $this->start_date = Jalalian::fromFormat('d/m/Y', $this->start_date)->toCarbon();
 
             
             $this->session_started();
@@ -116,8 +117,7 @@ class Metting extends Component
         $this->s_year   = Jalalian::fromDateTime(date('Y/m/d', strtotime($this->start_date)))->getYear();
         $this->s_month  = Jalalian::fromDateTime(date('Y/m/d', strtotime($this->start_date)))->getMonth();
         $this->s_day    = Jalalian::fromDateTime(date('Y/m/d', strtotime($this->start_date)))->getDay();
-        $this->now_date_fa = $this->s_year.'/'.$this->s_month.'/'.$this->s_day;
-        
+        $this->now_date_fa = $this->s_year.'/'.$this->s_month.'/'.$this->s_day;        
         
     }
     public function setDate()

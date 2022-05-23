@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Client;
+namespace App\Http\Livewire\Client\Edite;
 
 use Livewire\Component;
 use App\Models\Contacts;
@@ -10,11 +10,22 @@ use App\Models\Session_contact;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 use \Morilog\Jalali\Jalalian;
-
 use SoapClient;
 
-class ListSession extends Component
+
+class Editesession extends Component
 {
+    public function render()
+    {
+        return view('livewire.client.edite.editesession',[
+            'allsessions'=>Sessions::where([
+                ['u_id',$this->u_id],
+                ['is_ended',0],
+                ['name', 'like', '%'.$this->search.'%']
+            ])->orderBy('start_date','desc')->paginate(100)
+        ]);
+    }
+
     use WithPagination;
     public $level = 1;
     public $editSessionFlag= false;
@@ -67,17 +78,6 @@ class ListSession extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function render()
-    {
-        return view('livewire.client.list-session',[
-            'allsessions'=>Sessions::where([
-                ['u_id',$this->u_id],
-                ['is_ended',0],
-                ['name', 'like', '%'.$this->search.'%']
-            ])->orderBy('start_date','desc')->paginate(100)
-        ]);
-    }
-    
     public function mount()
     {
         $this->u_id = Auth::user()->id;
@@ -364,5 +364,7 @@ class ListSession extends Component
     {
         $this->session = Sessions::find($this->session_id);
     }
-    
+
+
+
 }
