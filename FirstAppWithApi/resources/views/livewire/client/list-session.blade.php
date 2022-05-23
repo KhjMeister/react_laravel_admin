@@ -107,7 +107,7 @@
                         </svg>
                         <p>تاریخ جلسه</p>
                         <div class="input_wrapper" >
-                            <input id="datepicker1" type="text" wire:keydown="changeinput" placeholder="01/03/1401"  onchange="this.dispatchEvent(new InputEvent('input'))"  wire:model="start_date"  class="time_input @error('start_date') is-invalid @enderror" >
+                            <input id="datepicker1" type="date" wire:keydown="changeinput" placeholder="01/03/1401"  onchange="this.dispatchEvent(new InputEvent('input'))"  wire:model="start_date"  class="time_input @error('start_date') is-invalid @enderror" >
 
                             
                             @error('start_date') <span class="invalid-feedback">{{ $message }}</span> @enderror
