@@ -9,6 +9,8 @@ use App\Models\Session as Sessions;
 use App\Models\Session_contact;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
+use \Morilog\Jalali\Jalalian;
+
 use SoapClient;
 
 class ListSession extends Component
@@ -34,7 +36,7 @@ class ListSession extends Component
            $start_date,
            $categories,
            $contacts;
-    
+    public $start_date_en;
     public $session;
 
     protected $rules = [
@@ -42,7 +44,9 @@ class ListSession extends Component
         'start_time'  =>'required',
         'start_date'  =>'required|date_format:Y-m-d|after:yesterday',         
     ];
-
+    protected $listeners = [
+        
+   ];
     protected $messages = [
         'name.required'         => 'عنوان جلسه را باید وارد کنید',
         'name.min'         => 'عنوان جلسه را باید بیشتر از 4 کاراکتر باشد',
@@ -209,16 +213,22 @@ class ListSession extends Component
             return  false;
         }
     }
-    
+    public function changeinput()
+    {
+        $this->start_date   = Jalalian::fromFormat('d/m/Y', $this->start_date)->toCarbon();
+        
+    }
     public function updateSession()
     {
+        
+        
         $validatedData = $this->validate();
         try{
             // Sessions::create($validatedData);
             Sessions::find($this->session_id)->fill([
                 'name'         => $validatedData['name'],
                 'start_time'   => $validatedData['start_time'],
-                'start_date'   => $validatedData['start_date'],
+                'start_date'   => $this->start_date,
                 'session_type' => $this->session_type,
                 ])->save();
 
@@ -315,8 +325,6 @@ class ListSession extends Component
     }
     public function sendMessageToContacts()
     {
-        
-        
         $client = new SoapClient("http://ippanel.com/class/sms/wsdlservice/server.php?wsdl");
 
             foreach ($this->candidate_contacts as $key ) {

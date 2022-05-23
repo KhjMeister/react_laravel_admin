@@ -402,6 +402,7 @@
     
     @livewireScripts
 
+
     <script src="{{ asset('client/assets/js/navbar.js') }}"></script>
     
     

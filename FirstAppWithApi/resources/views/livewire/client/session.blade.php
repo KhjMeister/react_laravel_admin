@@ -84,7 +84,7 @@
                             <p>تاریخ جلسه</p>
                             <div class="input_wrapper" >
                                 {{-- <input  id="datepicker" type="text" placeholder="12 فروردین" data-provide="datepicker" data-date-autoclose="true" data-date-format="mm/dd/yyyy"  onchange="this.dispatchEvent(new InputEvent('input'))"  wire:model="start_date"  class="time_input @error('start_date') is-invalid @enderror" > --}}
-                                <input  id="datepicker" type="text" placeholder="12 فروردین"  onchange="this.dispatchEvent(new InputEvent('input'))"  wire:model="start_date"  class="time_input @error('start_date') is-invalid @enderror" >
+                                <input  id="datepicker" type="text" placeholder="01/03/1401"   onchange="this.dispatchEvent(new InputEvent('input'))"  wire:model="start_date"  class="time_input @error('start_date') is-invalid @enderror" >
                                   
                                 @error('start_date') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
@@ -224,6 +224,8 @@
                                 <th>نام و نام خانوادگی</th>
                                 <th>شماره تماس </th>
                                 <th>سمت</th>
+                                <th>وضعیت ارسال پیامک </th>
+
                             </tr>
                             @if(!$thisSession==null)
                              @foreach ($this->thisSession->contacts as $contact)
@@ -231,6 +233,8 @@
                                    <td>{{ $contact->username }}</td>
                                     <td>{{ $contact->phone }}</td>
                                     <td>{{ $contact->semat }}</td>
+                                    <td>  @if ($this->checkSmsSended($contact->id)) <span style="color:green;"> ارسال شده  </span> @else <span style="color:yellow;"> ارسال نشده است </span>  @endif  </td>
+
                                 </tr>
                             @endforeach
                             @else

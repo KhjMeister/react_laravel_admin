@@ -39,10 +39,7 @@ class Session extends Component
            $start_time,
            $start_date,
            $thisSession;      
-    public $start_date_en,
-           $s_year,
-           $s_month,
-           $s_day;
+    public $start_date_en;
 
     public $searchContact = '';
     protected $rules = [
@@ -51,7 +48,7 @@ class Session extends Component
         'start_date'  =>'required|date_format:d/m/Y',         
     ];
     protected $listeners = [
-        'getLatitudeForInput'
+    
    ];
     protected $messages = [
         'name.required'         => 'عنوان جلسه را باید وارد کنید',
@@ -130,10 +127,7 @@ class Session extends Component
         // $this->s_day    = Jalalian::fromDateTime(date('Y/m/d', strtotime($this->start_date)))->getDay();
         // $this->now_date_en = $this->s_year.'/'.$this->s_month.'/'.$this->s_day;
         
-        $this->now_date_en   = Jalalian::fromFormat('d/m/Y', $this->start_date)->toCarbon();
-        
-
-        
+        $this->now_date_en   = Jalalian::fromFormat('d/m/Y', $this->start_date)->toCarbon('d/m/Y');
 
         $validatedData = $this->validate();
         try{
@@ -323,12 +317,25 @@ class Session extends Component
                 // $apiKey = "1GZLY56f6u34CdC4G-7YG4KIqwn9xLcRZdRqtzcniaE=";
                
             
+            $this->getThisSession();
                 
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
                 'message'=>"پیام به مخاطبانتان ارسال شد!"
             ]);
        
+    }
+    public function checkSmsSended($cid)
+    {
+        $var = Session_contact::where([['c_id',$cid],['s_id',$this->session_id]])->first();
+        if(isset($var)){
+            if($var->sms_status==1)
+                return  True;
+            else
+                return False;
+        }else{
+            return  false;
+        }
     }
     public function getThisSessionContacts()
     {
