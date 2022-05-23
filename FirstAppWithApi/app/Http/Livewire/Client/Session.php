@@ -11,6 +11,8 @@ use App\Models\Session_contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use \Morilog\Jalali\Jalalian;
+
 use Livewire\WithPagination;
 use SoapClient;
 
@@ -18,7 +20,7 @@ class Session extends Component
 {
     use WithPagination;
 
-    public $createPart = 0;
+    public $createPart = 1;
     public $level = 1;
     public $categories,$u_id;
     public $candidate_contacts,$username,$phone,$semat;
@@ -37,13 +39,20 @@ class Session extends Component
            $start_time,
            $start_date,
            $thisSession;      
+    public $start_date_en,
+           $s_year,
+           $s_month,
+           $s_day;
+
     public $searchContact = '';
     protected $rules = [
         'name'       =>'required|min:4|unique:sessions',
         'start_time'  =>'required',
-        'start_date'  =>'required|date_format:Y-m-d|after:yesterday',         
+        'start_date'  =>'required|date_format:d/m/Y',         
     ];
-
+    protected $listeners = [
+        'getLatitudeForInput'
+   ];
     protected $messages = [
         'name.required'         => 'عنوان جلسه را باید وارد کنید',
         'name.min'         => 'عنوان جلسه را باید بیشتر از 4 کاراکتر باشد',
@@ -98,7 +107,6 @@ class Session extends Component
         elseif($id===2){$this->createPart = 2;}
         elseif($id===3){$this->createPart = 3;}
     }
-
     public function changeSessionState($type)
     {
         if($type == 1){ 
@@ -116,13 +124,24 @@ class Session extends Component
         $this->is_ended    =  0;
         $this->is_started  =  0;
         $this->jalase_type =  1;
+
+        // $this->s_year   = Jalalian::fromDateTime(date('Y/m/d', strtotime($this->start_date)))->getYear();
+        // $this->s_month  = Jalalian::fromDateTime(date('Y/m/d', strtotime($this->start_date)))->getMonth();
+        // $this->s_day    = Jalalian::fromDateTime(date('Y/m/d', strtotime($this->start_date)))->getDay();
+        // $this->now_date_en = $this->s_year.'/'.$this->s_month.'/'.$this->s_day;
+        
+        $this->now_date_en   = Jalalian::fromFormat('d/m/Y', $this->start_date)->toCarbon();
+        
+
+        
+
         $validatedData = $this->validate();
         try{
             // Sessions::create($validatedData);
             $this->session_id = DB::table('sessions')->insertGetId([ 
                 'name'         =>  $validatedData['name'],
                 'start_time'   => $validatedData['start_time'],
-                'start_date'   => $validatedData['start_date'],
+                'start_date'   => $this->now_date_en,
                 'session_type' => $this->session_type,
                 'sess_token'   => $this->sess_token,
                 'video_link'   => $this->video_link,

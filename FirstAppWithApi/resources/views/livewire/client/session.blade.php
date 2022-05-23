@@ -49,6 +49,7 @@
                 </div>
             </div>
             @if($this->level===1)
+            
             <div class="boxes">
                 <form class="box" wire:submit.prevent="createSession">
                     <div class="title">
@@ -82,8 +83,9 @@
                             </svg>
                             <p>تاریخ جلسه</p>
                             <div class="input_wrapper" >
-                                <input id="input1" type="date" placeholder="12 فروردین"  wire:model="start_date"  class="time_input @error('start_date') is-invalid @enderror" >
-                                
+                                {{-- <input  id="datepicker" type="text" placeholder="12 فروردین" data-provide="datepicker" data-date-autoclose="true" data-date-format="mm/dd/yyyy"  onchange="this.dispatchEvent(new InputEvent('input'))"  wire:model="start_date"  class="time_input @error('start_date') is-invalid @enderror" > --}}
+                                <input  id="datepicker" type="text" placeholder="12 فروردین"  onchange="this.dispatchEvent(new InputEvent('input'))"  wire:model="start_date"  class="time_input @error('start_date') is-invalid @enderror" >
+                                  
                                 @error('start_date') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
                         </div>
@@ -126,6 +128,7 @@
                         </div>
                     </div> -->
                 </form>
+
                 <div class="box2">
                 <div class="inside-box">
                 <img src="./client/assets/images/Conference-pana (1) 1.png" width="250" height="250" alt="">
@@ -266,4 +269,11 @@
 
     </div>
     @endif
+
+
+
+
 </div>
+
+
+
