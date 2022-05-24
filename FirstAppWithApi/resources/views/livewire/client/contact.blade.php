@@ -4,11 +4,11 @@
             <div class="item-contacts">
                 <h5>مخاطبین</h5>
                 
-                <select style="width:180px;background-color:#f7f7f7;font-size:15px;" class="dropdown-content link-mouse-hover">
+                <select  style="width:180px;background-color:#f7f7f7;font-size:15px;" class="dropdown-content link-mouse-hover">
                     @if(!$this->categories==null)
                     <option wire:click="getAllContacts">همه دسته بندی ها</option>
-                        @foreach ($categories as $category)
-                            <option wire:click="selectedCategory({{ $category->id }})" >{{ $category->name }}</option>
+                        @foreach ($categories as $cat)
+                            <option wire:click="selectedCategory({{ $cat->id }})" >{{ $cat->name }}</option>
                         @endforeach
                     @else
                         <option >دسنه بندی وجود ندارد</option>
@@ -131,7 +131,7 @@
         </a>
     </div>
     @elseif($contacts_visablity)
-    <div class="table" wire:poll.1000ms>
+    <div class="table" >
         <table class="tablecontacts">
             <tr>
                 <th>نام مخاطبین</th>

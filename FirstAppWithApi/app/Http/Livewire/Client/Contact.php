@@ -33,18 +33,7 @@ class Contact extends Component
     ];
     public function render()
     {
-        return view('livewire.client.contact',[
-            'contacts' => Contacts::where([
-                    ['u_id', '=', $this->u_id],
-                    ['username', 'like', '%'.$this->search.'%']
-                ])->orWhere([
-                    ['u_id', '=', $this->u_id],
-                    ['phone', 'like', '%'.$this->search.'%']
-                ])->orWhere([
-                    ['u_id', '=', $this->u_id],
-                    ['semat', 'like', '%'.$this->search.'%']
-                ])->paginate(100)
-        ]);
+        return view('livewire.client.contact');
     }
 
     public function mount()
@@ -55,7 +44,7 @@ class Contact extends Component
             $this->categories = null;
             
             $this->getAllCategories();
-            // $this->getAllContacts();
+            $this->getAllContacts();
             
             if($this->contactsVisibility()){
                 $this->contacts_visablity = true;
@@ -110,6 +99,11 @@ class Contact extends Component
         $this->categories = Categories::where([
             ['u_id', '=', $this->u_id],
         ])->get();    
+    }
+    public function selectedCategory($id)
+    {
+        $this->contacts = Categories::find($id)->contacts;
+        
     }
     public function getAllContacts()
     {
@@ -209,9 +203,5 @@ class Contact extends Component
         }
     }
 
-    public function selectedCategory($id)
-    {
-        $this->contacts = Categories::find($id)->contacts;
-        
-    }
+    
 }
