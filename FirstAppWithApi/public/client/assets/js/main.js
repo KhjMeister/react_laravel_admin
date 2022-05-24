@@ -4215,12 +4215,12 @@ var FullCalendar = (function (exports) {
         // Includes things we don't want other locales to inherit,
         // things that derive from other translatable strings.
         buttonHints: {
-            prev: 'Previous $0',
-            next: 'Next $0',
+            prev: '$0 قبلی ',
+            next: ' $0 بعدی',
             today: function (buttonText, unit) {
                 return (unit === 'day')
                     ? 'Today'
-                    : "This " + buttonText;
+                    : "این " + buttonText;
             },
         }, viewHint: '$0 view', navLinkHint: 'Go to $0', moreLinkHint: function (eventCnt) {
             return "Show " + eventCnt + " more event" + (eventCnt === 1 ? '' : 's');

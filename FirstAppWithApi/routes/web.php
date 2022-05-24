@@ -13,6 +13,7 @@ Route::get('/profile', [App\Http\Controllers\Client\ProfileController::class, 'p
 Route::get('/category', [App\Http\Controllers\Client\CategoryController::class, 'category'])->name('category');
 Route::get('/contact', [App\Http\Controllers\Client\ContactController::class, 'contact'])->name('contact');
 Route::get('/session', [App\Http\Controllers\Client\SessionController::class, 'session'])->name('session');
+Route::get('/calender', [App\Http\Controllers\Client\CalenderController::class, 'calender'])->name('calender');
 Route::get('/listsession', [App\Http\Controllers\Client\SessionController::class, 'listSession'])->name('listSession');
 Route::get('/historymetting', [App\Http\Controllers\Client\SessionController::class, 'historyMetting'])->name('historyMetting');
 Route::get('/metting/{link}', [App\Http\Controllers\Client\MettingController::class, 'metting'])->name('metting');

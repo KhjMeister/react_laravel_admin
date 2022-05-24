@@ -68,12 +68,12 @@ document.addEventListener('DOMContentLoaded', function () {
             {
                 id: 'a',
                 title: 'قرار کاری',
-                start: '2022-04-01'
+                start: '2022-02-01'
             },
             {
                 id: 'a',
                 title: 'قرار کاری',
-                start: '2022-04-02'
+                start: '2022-02-02'
             },
         ],
         eventColor: "#000",

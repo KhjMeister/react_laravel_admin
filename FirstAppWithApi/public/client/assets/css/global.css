@@ -26,6 +26,7 @@ th,td{
   --body-200: #000;
   --body-300: #333333;
   --body-400: #aaaaaa;
+  
 }
 
 h1 {
@@ -61,4 +62,9 @@ a {
 }
 ul {
   list-style: none;
+}
+
+
+.nav-link:hover{
+
 }
