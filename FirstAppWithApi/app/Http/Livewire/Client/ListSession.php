@@ -44,9 +44,8 @@ class ListSession extends Component
         'start_time'  =>'required',
         'start_date'  =>'required|date_format:d/m/Y',         
     ];
-    protected $listeners = [
-        
-   ];
+    protected $listeners = ['backToListChild' => 'backToList'];
+
     protected $messages = [
         'name.required'         => 'عنوان جلسه را باید وارد کنید',
         'name.min'         => 'عنوان جلسه را باید بیشتر از 4 کاراکتر باشد',
@@ -57,6 +56,10 @@ class ListSession extends Component
         
     ];
     
+    public function backToList()
+    {
+        $this->editSessionFlag = false;
+    }
     public function updatingSearch()
     {
         $this->resetPage();

@@ -66,7 +66,7 @@
         </table>
     </div>
 @elseif($editSessionFlag===True)
-    <livewire:client.edite.editesession  :wire:key="12">
+    <livewire:client.edite.editesession :session_id="$this->session_id" :wire:key="12">
 @endif
 
 </div>

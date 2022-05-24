@@ -81,6 +81,7 @@ class Editesession extends Component
     public function mount()
     {
         $this->u_id = Auth::user()->id;
+        $this->editeSessionContacts();
         $this->getAllCategories();
         $this->getAllContacts();
     }
@@ -119,11 +120,9 @@ class Editesession extends Component
             ['name', 'like', '%'.$this->search.'%']
         ])->orderBy('start_date','desc')->get();
     }
-    public function editeSessionContacts($sid)
+    public function editeSessionContacts()
     {
-        $this->editSessionFlag = True;
-        $this->session_id =$sid;
-        $this->session  = Sessions::find($sid);
+        $this->session  = Sessions::find($this->session_id);
         $this->session_type = $this->session->session_type;  
         $this->name = $this->session->name;  
         $this->start_time = $this->session->start_time;  
