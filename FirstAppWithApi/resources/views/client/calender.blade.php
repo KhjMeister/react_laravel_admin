@@ -1,111 +1,38 @@
 @extends('layouts.client.client')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('client/assets/css/main.css') }}">
-<style>
-        #external-events {
-          width: 200px;
-          padding: 0 10px;
-          background: #eee;
-          text-align: right;
-          border-radius: 4px;
-          width: 20%;
-        }
-    
-        #external-events h4 {
-          font-size: 16px;
-          margin-top: 0;
-          padding-top: 1em;
-        }
-    
-        #external-events .fc-event {
-          margin: 3px 0;
-          cursor: move;
-          padding: 1rem;
-        }
-    
-        #external-events p {
-          margin: 1.5em 0;
-          font-size: 11px;
-          color: #666;
-        }
-    
-        #external-events p input {
-          margin: 0;
-          vertical-align: middle;
-        }
-    
-        #calendar-wrap {
-          width: 60%;
-        }
-    
-        #calendar {
-          width: 100%;
-          margin: 0 auto;
-          direction: ltr !important;
-        }
-    
-        .my-calendare {
-          display: flex;
-          justify-content: space-around;
-          flex-direction: row-reverse;
-        }
-    
-        .fc-scrollgrid {
-          border-radius: 8px;
-        }
-    
-        .fc-direction-ltr {
-          text-align: right;
-        }
-    
-        .btn-sidebar {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: rgb(250, 250, 250);
-          border-radius: 4px;
-          overflow: hidden;
-        }
-    
-        .btn-sidebar input {
-          width: 80%;
-          padding: .7rem;
-          border: none;
-          background-color: transparent;
-          direction: rtl;
-          font-family: "Sahel" !important;
-        }
-    
-        .btn-sidebar button {
-          width: 20%;
-          padding: .7rem;
-          border: none;
-          background-color: rgb(0, 0, 0);
-          color: whitesmoke;
-          cursor: pointer;
-          font-family: "Sahel" !important;
-        }
-    
-        .colors ul {
-          list-style: none;
-          display: flex;
-          justify-content: space-between;
-          background-color: #eee;
-        }
-    
-        .colors ul li {
-          width: 10px;
-          padding: 1rem;
-          border-radius: 8px;
-          cursor: pointer;
-        }
-      </style>
+    <link rel="stylesheet" href="{{ asset('client/calender/css/core.css') }}" class="template-customizer-core-css">
+    <link rel="stylesheet" href="{{ asset('client/calender/css/theme-default.css') }}" class="template-customizer-theme-css">
+    {{-- <link rel="stylesheet" href="{{ asset('client/calender/css/demo.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('client/calender/css/rtl.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/calender/css/fullcalendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/calender/css/flatpickr.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/calender/css/app-calendar.css') }}">
+
+    <script src="{{ asset('client/calender/js/helpers.js') }}"></script>
+    <script src="{{ asset('client/calender/js/config.js') }}"></script>
+    <style>
+      .panel-layout main .container {
+        width: 100%;
+        margin: auto;
+      }
+    </style>
 @endpush
 @push('scripts')
-    {{-- <script src="{{ asset('client/assets/js/main.js') }}"></script>
-    <script src="{{ asset('client/assets/js/js-cale-fa.js') }}"></script> --}}
+     
+     <script src="{{ asset('client/calender/js/jquery.js') }}"></script>
+    <!-- <script src="{{ asset('client/calender/js/popper.js') }}"></script> -->
+    <script src="{{ asset('client/calender/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('client/calender/js/fullcalendar.js') }}"></script>
+    <script src="{{ asset('client/calender/js/select2.js') }}"></script>
+    <script src="{{ asset('client/calender/js/i18n/fa.js') }}"></script>
+    <script src="{{ asset('client/calender/js/jdate.js') }}"></script>
+    <script src="{{ asset('client/calender/js/flatpickr-jdate.js') }}"></script>
+    <script src="{{ asset('client/calender/js/l10n/fa-jdate.js') }}"></script>
+    <script src="{{ asset('client/calender/js/main.js') }}"></script>
+    <script src="{{ asset('client/calender/js/app-calendar.js') }}"></script>
+    {{-- <script src="{{ asset('client/calender/js/app-calendar-events.js') }}"></script> --}}
+    
 @endpush
 @section('content')
     <livewire:client.calender />

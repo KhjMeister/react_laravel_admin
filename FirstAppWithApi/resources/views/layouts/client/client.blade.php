@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="light-style layout-navbar-fixed layout-menu-fixed" dir="rtl" data-theme="theme-default" data-assets-path="assets/" data-template="vertical-menu-template" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,10 +23,10 @@
     <title>{{ config('app.name', 'صفحه اصلی') }}</title>
 
     
+    @livewireStyles
     
     @stack('styles')
 
-    @livewireStyles
 
 </head>
 <body>
@@ -81,7 +81,7 @@
             <div class="list-aside">
                 <ul>
                     <li>
-                        <a href="/profile">
+                        <a class="active" href="/profile">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -400,13 +400,9 @@
 
     
     
-    @livewireScripts
 
 
     <script src="{{ asset('client/assets/js/navbar.js') }}"></script>
-    
-    
-    @stack('scripts')
     <script src="{{ asset('client/assets/js/sweetalert2.js') }}"></script>
     <script>
         const Toast = Swal.mixin({
@@ -429,6 +425,10 @@
             })
         })
     </script> 
+    
+    @stack('scripts')
+    @livewireScripts
+    
 
 </body>
 </html>

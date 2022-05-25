@@ -18,6 +18,9 @@ th,td{
 
 :root {
   --primery: #ff4a4f;
+  --primery-hover: #fd7d82;
+    --primery-not-selected:#ffa9ac;
+  
   --secondary: #ff9928;
   --neutral-50: #fff;
   --neutral-100: #f7f7f7;

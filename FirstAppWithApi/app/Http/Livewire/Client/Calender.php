@@ -3,10 +3,17 @@
 namespace App\Http\Livewire\Client;
 
 use Livewire\Component;
-use App\Models\Session as Sessions;
 use Illuminate\Support\Facades\Auth;
 use \Morilog\Jalali\Jalalian;
 use Carbon\Carbon;
+
+use App\Models\User;
+use App\Models\Category as Categories;
+use App\Models\Contacts;
+use App\Models\Session as Sessions;
+use App\Models\Session_contact;
+
+
 
 class Calender extends Component
 {
@@ -20,17 +27,24 @@ class Calender extends Component
     public function mount()
     {
         $this->u_id = Auth::user()->id;
+        $this->getAllCategories();
         $this->allsessions = Sessions::where([['u_id',$this->u_id]])->get();
         
-        // foreach($this->allsessions as $sess){
+        foreach($this->allsessions as $sess){
 
-        //     $start_date = Jalalian::fromFormat('d/m/Y', $sess->start_date)->toCarbon();
-        //     $this->selectedSessions['id']   = $sess->id;
-        //     $this->selectedSessions['name']  = $sess->name;
-        //     $this->selectedSessions['start'] = $start_date;
+            $sess->start_date = Jalalian::fromFormat('d/m/Y', $sess->start_date)->toCarbon();
+            // $this->selectedSessions['id']   = $sess->id;
+            // $this->selectedSessions['name']  = $sess->name;
+            // $this->selectedSessions['start'] = $start_date;
 
-        //     $this->items = array($this->selectedSessions);
+            // $this->items = array($this->selectedSessions);
 
-        // }
+        }
+    }
+    public function getAllCategories()
+    {
+        $this->categories = Categories::where([
+            ['u_id', '=', $this->u_id],
+        ])->get();    
     }
 }
