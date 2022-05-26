@@ -17,6 +17,21 @@ use App\Models\Session_contact;
 
 class Calender extends Component
 {
+    public $session_type=0;
+    public $session_id,
+           $jalase_type,
+           $name,
+           $sess_token,
+           $video_link,
+           $total_number,
+           $end_at,
+           $is_started,
+           $is_ended,
+           $start_time,
+           $start_date,
+           $thisSession;      
+    public $start_date_en;
+
     public $allsessions, $selectedSessions;
     public $items = array() ;
 

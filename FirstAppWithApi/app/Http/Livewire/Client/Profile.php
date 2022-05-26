@@ -23,7 +23,7 @@ class Profile extends Component
     public function mount()
     {
         $this->user_id = Auth::user()->id;
-        $this->user    = User::find($this->user_id)->first();
+        $this->user    = Auth::user();
         $this->name   = $this->user->name;
         $this->family   = $this->user->family;
         $this->phone   = $this->user->phone;
@@ -52,7 +52,7 @@ class Profile extends Component
 
         try{
 
-            User::find($this->user_id)->fill([
+            User::find($this->user->id)->fill([
                 'username'=>$this->user->name,
                 'name'=>$this->name,
                 'family'=>$this->family,

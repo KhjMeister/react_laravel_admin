@@ -5,6 +5,7 @@ const closeAsideMobile = document.getElementById("close-aside-mobile");
 
 btnMenu.addEventListener("click", () => {
     asideMobile.style.display = "block";
+    asideMobile.style.zIndex = "999";
 })
 
 closeAsideMobile.addEventListener("click", () => {

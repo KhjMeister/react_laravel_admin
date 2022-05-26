@@ -1,3 +1,4 @@
+
 a:hover {
   color: #ff6c71;
 }
@@ -282,5 +283,10 @@ tr {
   }
 }
 
+@media only screen and (max-width: 992px) {
+ .app-calendar-sidebar{
+   /* margin-right: 19%; */
+ }
+}
 
 

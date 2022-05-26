@@ -12,10 +12,13 @@
                   <div class="col app-calendar-sidebar" id="app-calendar-sidebar">
                     <div class="border-bottom p-4 my-sm-0 mb-3">
                       <div class="d-grid">
-                        <button class="btn btn-primary btn-toggle-sidebar" data-bs-toggle="offcanvas" data-bs-target="#addEventSidebar" aria-controls="addEventSidebar">
+                        <button style="display:none;" class="btn btn-primary btn-toggle-sidebar" data-bs-toggle="offcanvas" data-bs-target="#addEventSidebar" aria-controls="addEventSidebar">
                           <i class="bx bx-plus"></i>
                           <span class="align-middle">افزودن جلسه</span>
                         </button>
+                        {{-- <button style="display:none;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewCCModal">
+                        افزودن جلسه
+                      </button> --}}
                       </div>
                     </div>
                     <div class="p-4">
@@ -72,37 +75,28 @@
                     <div class="app-overlay"></div>
                    
                     <div class="offcanvas offcanvas-end event-sidebar" tabindex="-1" id="addEventSidebar" aria-labelledby="addEventSidebarLabel">
-                      <div class="offcanvas-header border-bottom">
+                      
+                      <div  class="offcanvas-header border-bottom">
                         <h6 class="offcanvas-title" id="addEventSidebarLabel">افزودن جلسه</h6>
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                       </div>
                       <div class="offcanvas-body">
-                        <form class="event-form pt-0" id="eventForm" onsubmit="return false">
+                        <form class="event-form pt-0" id="eventForm" onsubmit="return false" >
                           <div class="mb-3">
                             <label class="form-label" for="eventTitle">عنوان جلسه</label>
-                            <input type="text" class="form-control" id="eventTitle" name="eventTitle" placeholder="عنوان رویداد">
+                            <input  type="text" class="form-control" id="eventTitle" name="eventTitle" placeholder="عنوان رویداد">
+                            
                           </div>
-                          <div class="mb-3">
-                            <label class="form-label" for="eventLabel1">دسته بندی</label>
-                            <select class="select2 select-event-label form-select" id="eventLabel1" name="eventLabel">
-                               @if(!$this->categories==null)
-                                        @foreach ($categories as $category)
-                                            <option  value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
-                                    @else
-                                        <option >دسنه بندی وجود ندارد</option>
-                                    @endif
-                              
-                            </select>
-                          </div>
+                          
                           <div class="mb-3">
                             <label class="form-label" for="eventStartDate">تاریخ شروع</label>
                             <input type="text" class="form-control" id="eventStartDate" name="eventStartDate" placeholder="تاریخ شروع">
                           </div>
+                          
                           <div class="mb-3">
-                            <label class="form-label" for="eventEndDate1">تاریخ پایان</label>
-                            <input type="time" class="form-control" id="eventEndDate1" name="eventEndDate" placeholder="ساعت شروع">
-                          </div>
+                          <label for="timepicker-24hours" class="form-label">ساعت شروع</label>
+                          <input type="time" id="timepicker-24hours" placeholder="20:00:00" class="form-control ui-timepicker-input" autocomplete="off">
+                        </div>
                           <div class="mb-3">
                             <label class="switch">
                               <input type="checkbox" class="switch-input allDay-switch">
@@ -119,14 +113,14 @@
                           <div class="mb-3 d-flex justify-content-sm-between justify-content-start my-4">
                             <div>
                               <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1">افزودن</button>
-                              <button type="submit" class="btn btn-primary btn-update-event d-none me-sm-3 me-1">
+                              <button style="display:none;" type="submit" class="btn btn-primary btn-update-event d-none me-sm-3 me-1">
                                 به‌روزرسانی
                               </button>
-                              <button type="reset" class="btn btn-label-secondary btn-cancel me-sm-0 me-1" data-bs-dismiss="offcanvas">
+                              <button style="display:none;" type="reset" class="btn btn-label-secondary btn-cancel me-sm-0 me-1" data-bs-dismiss="offcanvas">
                                 انصراف
                               </button>
                             </div>
-                            <div><button class="btn btn-label-danger btn-delete-event d-none">حذف</button></div>
+                            <div><button style="display:none;" class="btn btn-label-danger btn-delete-event d-none">حذف</button></div>
                           </div>
                         </form>
                       </div>
@@ -151,10 +145,33 @@
 
      
       <div class="drag-target"></div>
-  </div>
+  
+  {{-- <div class="modal fade" id="addNewCCModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered1 modal-simple modal-add-new-cc">
+      <div class="modal-content p-3 p-md-5">
+        <div class="modal-body">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="text-center mb-4">
+            <h3 class="secondary-font">افزودن جلسه جدید</h3>
+          </div>
+                <form>
+                  <div class="mb-3">
+                    <label class="form-label" for="basic-default-fullname">عنوان جلسه</label>
+                    <input type="text" class="form-control" id="basic-default-fullname" placeholder="جان اسنو">
+                  </div>
 
-
-
+                  <div class="mb-3">
+                      <label class="form-label" for="eventStartDate">تاریخ شروع</label>
+                      <input type="text" class="form-control" id="eventStartDate" name="eventStartDate" placeholder="تاریخ شروع">
+                    </div>
+                  
+                  <button type="submit" class="btn btn-primary " >مرحله بعد</button>
+                </form>
+        </div>
+      </div>
+    </div>
+  </div> --}}
+              
 <script>
     
 
@@ -167,7 +184,7 @@
     let nextMonth = date.getMonth() === 11 ? new Date(date.getFullYear() + 1, 0, 1) : new Date(date.getFullYear(), date.getMonth() + 1, 1);
     // prettier-ignore
     let prevMonth = date.getMonth() === 11 ? new Date(date.getFullYear() - 1, 0, 1) : new Date(date.getFullYear(), date.getMonth() - 1, 1);
-    console.log(date);
+    {{-- console.log(date); --}}
     let myobj = @js($allsessions);
 
    
@@ -196,117 +213,13 @@
         events.push(event);
     });
 
-console.log(events);
+{{-- console.log(events); --}}
 
-    {{-- let events = [
-      {
-        id: 1,
-        url: '',
-        title: 'بررسی طراحی',
-        start: date,
-        end: nextDay,
-        allDay: false,
-        extendedProps: {
-          calendar: 'Business'
-        }
-      },
-      {
-        id: 2,
-        url: '',
-        title: 'ملاقات با مشتری',
-        start: new Date(date.getFullYear(), date.getMonth() + 1, -11),
-        end: new Date(date.getFullYear(), date.getMonth() + 1, -10),
-        allDay: true,
-        extendedProps: {
-          calendar: 'Business'
-        }
-      },
-      {
-        id: 3,
-        url: '',
-        title: 'گردش خانوادگی',
-        allDay: true,
-        start: new Date(date.getFullYear(), date.getMonth() + 1, -9),
-        end: new Date(date.getFullYear(), date.getMonth() + 1, -7),
-        extendedProps: {
-          calendar: 'Holiday'
-        }
-      },
-      {
-        id: 4,
-        url: '',
-        title: "وقت ویزیت دکتر",
-        start: new Date(date.getFullYear(), date.getMonth() + 1, -11),
-        end: new Date(date.getFullYear(), date.getMonth() + 1, -10),
-        extendedProps: {
-          calendar: 'Personal'
-        }
-      },
-      {
-        id: 5,
-        url: '',
-        title: 'بازی دارت؟',
-        start: new Date(date.getFullYear(), date.getMonth() + 1, -13),
-        end: new Date(date.getFullYear(), date.getMonth() + 1, -12),
-        allDay: true,
-        extendedProps: {
-          calendar: 'ETC'
-        }
-      },
-      {
-        id: 6,
-        url: '',
-        title: 'مدیتیشن',
-        start: new Date(date.getFullYear(), date.getMonth() + 1, -13),
-        end: new Date(date.getFullYear(), date.getMonth() + 1, -12),
-        allDay: true,
-        extendedProps: {
-          calendar: 'Personal'
-        }
-      },
-      {
-        id: 7,
-        url: '',
-        title: 'شام',
-        start: new Date(date.getFullYear(), date.getMonth() + 1, -13),
-        end: new Date(date.getFullYear(), date.getMonth() + 1, -12),
-        extendedProps: {
-          calendar: 'Family'
-        }
-      },
-      {
-        id: 8,
-        url: '',
-        title: 'بررسی محصول',
-        start: new Date(date.getFullYear(), date.getMonth() + 1, -13),
-        end: new Date(date.getFullYear(), date.getMonth() + 1, -12),
-        allDay: true,
-        extendedProps: {
-          calendar: 'Business'
-        }
-      },
-      {
-        id: 9,
-        url: '',
-        title: 'جلسه ماهانه',
-        start: nextMonth,
-        end: nextMonth,
-        allDay: true,
-        extendedProps: {
-          calendar: 'Business'
-        }
-      },
-      {
-        id: 10,
-        url: '',
-        title: 'چک‌آپ ماهانه',
-        start: prevMonth,
-        end: prevMonth,
-        allDay: true,
-        extendedProps: {
-          calendar: 'Personal'
-        }
-      }
-    ]; --}}
 
 </script>
+
+
+  
+</div>
+
+

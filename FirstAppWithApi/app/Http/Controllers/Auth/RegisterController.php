@@ -99,6 +99,8 @@ class RegisterController extends Controller
 
         return User::create([
             'username' => $data['username'],
+            'name' => $data['username'],
+            'family' => $data['username'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             // 'image_url'=> Crypt::encryptString($data['password']),
