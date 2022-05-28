@@ -15,7 +15,8 @@ class calenderController extends Controller
 
     public function calender()
     {
-        return view('client.calender');
+        $thisRoute = "calender";
+        return view('client.calender',compact('thisRoute'));
         
     }
 }

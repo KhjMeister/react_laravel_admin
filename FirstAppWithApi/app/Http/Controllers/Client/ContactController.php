@@ -14,7 +14,8 @@ class ContactController extends Controller
 
     public function contact()
     {
-        return view('client.contact');
+        $thisRoute = "contact";
+        return view('client.contact',compact('thisRoute'));
         
     }
 }

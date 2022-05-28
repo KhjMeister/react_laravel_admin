@@ -15,7 +15,8 @@ class CategoryController extends Controller
 
     public function category()
     {
-        return view('client.category');
+        $thisRoute = "category";
+        return view('client.category',compact('thisRoute'));
         
     }
     

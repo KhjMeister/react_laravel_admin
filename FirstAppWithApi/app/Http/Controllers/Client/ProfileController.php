@@ -15,7 +15,8 @@ class ProfileController extends Controller
 
     public function profile()
     {
-        return view('client.profile');
+        $thisRoute = "profile";
+        return view('client.profile',compact('thisRoute'));
         
     }
 }

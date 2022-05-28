@@ -19,7 +19,8 @@ class DashboardController extends Controller
 
     public function dashboard()
     {
-        return view('client.dashboard');
+        $thisRoute = "dashboard";
+        return view('client.dashboard',compact('thisRoute'));
     }
 
     // public function change(Request $request)

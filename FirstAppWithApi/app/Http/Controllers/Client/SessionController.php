@@ -15,14 +15,19 @@ class SessionController extends Controller
 
     public function session()
     {
-        return view('client.session');   
+        $thisRoute = 'session';
+        return view('client.session',compact('thisRoute'));   
     }
     public function listSession()
     {
-        return view('client.list-session');   
+        $thisRoute = 'listSession';
+
+        return view('client.list-session',compact('thisRoute'));   
     }
     public function historyMetting()
     {
-        return view('client.history-metting');   
+        $thisRoute = 'historyMetting';
+
+        return view('client.history-metting',compact('thisRoute'));   
     }
 }

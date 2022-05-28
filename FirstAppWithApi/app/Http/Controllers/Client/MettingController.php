@@ -9,6 +9,7 @@ class MettingController extends Controller
 {
     public function metting($link)
     {
-        return view('client.metting',compact('link'));
+        $thisRoute = "metting";
+        return view('client.metting',compact(['link','thisRoute']));
     }
 }

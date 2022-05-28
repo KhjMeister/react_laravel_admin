@@ -81,7 +81,7 @@
             <div class="list-aside">
                 <ul>
                     <li>
-                        <a class="active" href="/profile">
+                        <a class="{{ $thisRoute == 'profile' ? 'active':'' }}" href="/profile">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -95,7 +95,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/category">
+                        <a class="{{ $thisRoute == 'category' ? 'active':'' }}" href="/category">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -106,7 +106,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/contact">
+                        <a class="{{ $thisRoute == 'contact' ? 'active':'' }}" href="/contact">
                             <svg width="20" height="22" viewBox="0 0 20 22" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -117,7 +117,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/session">
+                        <a class="{{ $thisRoute == 'session' ? 'active':'' }}" href="/session">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -129,7 +129,7 @@
                         </a>
                     </li>                  
                     <li>
-                        <a href="/listsession">
+                        <a class="{{ $thisRoute == 'listSession' ? 'active':'' }}" href="/listsession">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_129_88)">
@@ -153,7 +153,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/historymetting">
+                        <a class="{{ $thisRoute == 'historyMetting' ? 'active':'' }}" href="/historymetting">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_237_149)">
@@ -174,7 +174,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/calender">
+                        <a class="{{ $thisRoute == 'calender' ? 'active':'' }}" href="/calender">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
