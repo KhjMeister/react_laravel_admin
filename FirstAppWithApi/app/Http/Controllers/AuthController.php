@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Validator;
 
@@ -53,6 +54,21 @@ class AuthController extends Controller
     }
     public function userProfile() {
         return response()->json(auth('api')->user());
+    }
+    public function updateProfile(Reaquest $request)
+    {
+        $user = auth('api')->user();
+        $user->name = $request->input('name');
+        $user->family = $request->input('family');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->phone = $request->input('phone');
+        
+        if ($user->save()) {
+            return response()->json(['success' => true], 200);
+        } else {
+            return response()->json(['success' => false], 500);
+        }
     }
     protected function createNewToken($token){
         return response()->json([

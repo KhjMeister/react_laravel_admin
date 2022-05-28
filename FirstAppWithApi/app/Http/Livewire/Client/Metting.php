@@ -16,7 +16,7 @@ class Metting extends Component
 {
     public $is_time = 1; //1 for not started , 2 for started  , 3 for ended
     public $link,$now;
-    public $s_id,$session,$start_date,$start_time,$sesscunt,$c_id,$contact,$username;
+    public $s_id,$session,$start_date,$start_time,$sesscunt,$c_id,$contact,$username,$session_type;
     public  $its_now_date,
             $its_now_time,
             $carbon_date_start,
@@ -46,6 +46,7 @@ class Metting extends Component
     {
         if(Session::where([['sess_token','=',$this->link]])->first()){
             $this->session = Session::where([['sess_token','=',$this->link]])->first();
+            $this->session_type = $this->session->session_type;
             // if( session('c_id')){
             //     $this->c_id = session('c_id');
             //     $this->authenticated=True;

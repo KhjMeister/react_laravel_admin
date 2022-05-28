@@ -1,3 +1,10 @@
+.content section .boxes .box .name-session input{
+  font-size: 15px;
+}
+.content section .boxes .box .date-session .item input{
+  font-size: 15px;
+
+}
 
 a:hover {
   color: #ff6c71;
@@ -69,7 +76,7 @@ a:hover {
   /* background: #fbfbfb; */
   padding: 0.2rem;
   border-radius: 4px;
-  width: 100%;
+  width: 78%;
   margin-top: 0.5rem;
 }
 .time_input{
@@ -288,5 +295,15 @@ tr {
    /* margin-right: 19%; */
  }
 }
+@media only screen and (max-width: 600px) {
+  .input_wrapper{
+    width: 73%;
+  }
+ }
+ @media only screen and (max-width: 360px) {
+  .input_wrapper{
+    width: 50% !important;
+  }
+ }
 
 

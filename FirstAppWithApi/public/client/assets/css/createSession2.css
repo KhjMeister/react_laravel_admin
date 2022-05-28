@@ -23,7 +23,7 @@
 .content section .boxes .box {
   background-color: var(--neutral-50);
   padding: 1rem 1.5rem 1.5rem 1.5rem;
-  width: 80%;
+  width: 55%;
   margin-left: auto;
   height: 80vh;
   margin-top: 1rem;
@@ -264,11 +264,11 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1024px) {
   .content section .boxes .box {
     background-color: var(--neutral-50);
     padding: 1.5rem;
-    /* width: 80%; */
+    width: 80%;
     margin: auto;
   }
 

@@ -133,7 +133,7 @@
                 <div class="inside-box">
                 <img src="./client/assets/images/Conference-pana (1) 1.png" width="250" height="250" alt="">
                     <p style="color: var(--body-300);">کنفرانس</p>
-                    <span style="padding: inherit;color: var(--body-300);">روابط قوی‌تری ایجاد کنید، همکاری‌های فوق‌العاده‌ای ایجاد کنید و تجربه‌ای جذاب از جلسه را با ویدیو و صدای HD برای حداکثر 1000 شرکت‌کننده ایجاد کنید.</span>
+                    <span style="padding: inherit;color: var(--body-300);padding: 30px;">روابط قوی‌تری ایجاد کنید، همکاری‌های فوق‌العاده‌ای ایجاد کنید و تجربه‌ای جذاب از جلسه را با ویدیو و صدای HD برای حداکثر 1000 شرکت‌کننده ایجاد کنید.</span>
                    
                     </div>
                 </div>

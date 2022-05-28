@@ -131,7 +131,7 @@
         </a>
     </div>
     @elseif($contacts_visablity)
-    <div class="table" >
+    <div class="table" wire:poll.3000ms>
         <table class="tablecontacts">
             <tr>
                 <th>نام مخاطبین</th>
