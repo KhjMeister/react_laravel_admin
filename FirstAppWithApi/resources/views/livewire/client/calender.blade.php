@@ -84,7 +84,7 @@
                         <form class="event-form pt-0" id="eventForm" onsubmit="return false" >
                           <div class="mb-3">
                             <label class="form-label" for="eventTitle">عنوان جلسه</label>
-                            <input  type="text" class="form-control" id="eventTitle" name="eventTitle" placeholder="عنوان رویداد">
+                            <input  type="text" class="form-control" id="eventTitle" name="eventTitle" placeholder="عنوان جلسه">
                             
                           </div>
                           
@@ -93,23 +93,7 @@
                             <input type="text" class="form-control" id="eventStartDate" name="eventStartDate" placeholder="تاریخ شروع">
                           </div>
                           
-                          <div class="mb-3">
-                          <label for="timepicker-24hours" class="form-label">ساعت شروع</label>
-                          <input type="time" id="timepicker-24hours" placeholder="20:00:00" class="form-control ui-timepicker-input" autocomplete="off">
-                        </div>
-                          <div class="mb-3">
-                            <label class="switch">
-                              <input type="checkbox" class="switch-input allDay-switch">
-                              <span class="switch-toggle-slider">
-                                <span class="switch-on"></span>
-                                <span class="switch-off"></span>
-                              </span>
-                              <span class="switch-label">جلسه خصوصی</span>
-                            </label>
-                          </div>
-                          
-                         
-                         
+                       
                           <div class="mb-3 d-flex justify-content-sm-between justify-content-start my-4">
                             <div>
                               <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1">افزودن</button>
@@ -196,6 +180,7 @@
         };
        
     myobj.forEach(element => {
+   ;
        let event=[];
        let starting = new Date(element.start_date);
         event.id = element.id;
@@ -203,6 +188,7 @@
         event.start = starting;
         event.end = new Date(date.getFullYear(), date.getMonth() + 1, -12);
         event.url = '';
+        event.location = element.start_time;
         event.allDay = false;
         if(element.is_ended==0){
           event.extendedProps = notEnded;

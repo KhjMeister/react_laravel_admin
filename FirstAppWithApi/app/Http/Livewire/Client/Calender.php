@@ -46,8 +46,8 @@ class Calender extends Component
         $this->allsessions = Sessions::where([['u_id',$this->u_id]])->get();
         
         foreach($this->allsessions as $sess){
-
-            $sess->start_date = Jalalian::fromFormat('d/m/Y', $sess->start_date)->toCarbon();
+            $dateam = $sess->start_date .' '.$sess->start_time.':00';
+            $sess->start_date = Jalalian::fromFormat('d/m/Y H:i:s', $dateam)->toCarbon();
             // $this->selectedSessions['id']   = $sess->id;
             // $this->selectedSessions['name']  = $sess->name;
             // $this->selectedSessions['start'] = $start_date;

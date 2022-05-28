@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // For update event set offcanvas title text: Update Event
       if (offcanvasTitle) {
-        offcanvasTitle.innerHTML = 'به‌روزرسانی رویداد';
+        offcanvasTitle.innerHTML = 'نمایش';
       }
       btnDeleteEvent.classList.remove('d-none');
 
