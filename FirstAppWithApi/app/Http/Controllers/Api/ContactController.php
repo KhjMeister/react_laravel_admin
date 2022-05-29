@@ -56,10 +56,10 @@ class ContactController extends Controller
         $user_id = auth('api')->user()->id;   
 
         $validator = Validator::make($request->all(),[
-            'username' => 'required|string|max:255|min:4|unique:categories',
-            'ca_id' => 'required',
-            'phone'=>'required|digits:11|unique:contacts',
-            'semat'=>'required|min:5',
+            'username' => ['required','string','max:255','min:4','unique:contacts,username'],
+            'ca_id' => ['required'],
+            'phone'=>['required','digits:11','unique:contacts,phone'],
+            'semat'=>['required','min:5'],
         ]);
 
         if($validator->fails()){
@@ -84,7 +84,7 @@ class ContactController extends Controller
         if (is_null($contact)) {
             return response()->json(' مخاطب پیدا نشد', 404); 
         }
-        return response()->json(["categorie"=>new ContactResource($contact)]);
+        return response()->json(["contact"=>new ContactResource($contact)]);
     }
 
     public function destroy(Contacts $contact)
