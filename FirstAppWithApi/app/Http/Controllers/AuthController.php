@@ -52,24 +52,7 @@ class AuthController extends Controller
     public function refresh() {
         return $this->createNewToken(auth('api')->refresh());
     }
-    public function userProfile() {
-        return response()->json(auth('api')->user());
-    }
-    public function updateProfile(Reaquest $request)
-    {
-        $user = auth('api')->user();
-        $user->name = $request->input('name');
-        $user->family = $request->input('family');
-        $user->email = $request->input('email');
-        $user->password = bcrypt($request->input('password'));
-        $user->phone = $request->input('phone');
-        
-        if ($user->save()) {
-            return response()->json(['success' => true], 200);
-        } else {
-            return response()->json(['success' => false], 500);
-        }
-    }
+   
     protected function createNewToken($token){
         return response()->json([
             'access_token' => $token,

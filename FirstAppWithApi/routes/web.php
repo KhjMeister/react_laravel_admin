@@ -20,14 +20,4 @@ Route::get('/metting/{link}', [App\Http\Controllers\Client\MettingController::cl
 
 
 
-// Route::get('/session', [App\Http\Controllers\SessionController::class, 'index'])->name('session');
-// Route::get('/sess/{sessid}', [App\Http\Controllers\SessionController::class, 'sessionedit'])->name('sess');
-// Route::get('/meetting/{link}', [App\Http\Controllers\SessController::class, 'index'])->name('meetting');
-
-
-// Route::get('auth/google', [App\Http\Controllers\GoogleSocialiteController::class, 'redirectToGoogle']);
-// Route::get('google/callback', [App\Http\Controllers\GoogleSocialiteController::class, 'handleCallback']);
-// Route::get('/change', [App\Http\Controllers\LangController::class, 'change'])->name('changeLang');
-
-
 

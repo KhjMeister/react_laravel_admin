@@ -70,17 +70,17 @@ class User extends Authenticatable implements JWTSubject
 
     public function category()
     {
-        return $this->hasMany(Category::class,'');
+        return $this->hasMany(Category::class,'u_id');
     }
 
     public function contacts()
     {
-        return $this->hasMany(Contacts::class,'');
+        return $this->hasMany(Contacts::class,'u_id');
     }
 
     public function session()
     {
-        return $this->hasMany(Session::class,'');
+        return $this->hasMany(Session::class,'u_id');
     }
 
 }

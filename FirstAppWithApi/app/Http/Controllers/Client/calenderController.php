@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 
-class calenderController extends Controller
+class CalenderController extends Controller
 {
     public function __construct()
     {
