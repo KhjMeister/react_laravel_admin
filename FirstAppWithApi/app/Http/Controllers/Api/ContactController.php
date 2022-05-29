@@ -47,40 +47,49 @@ class ContactController extends Controller
             'u_id' => $user_id,
          ]);
         
-        return response()->json(['دسته بندی با موفقیت ایجاد شد .', new ContactResource($category)]);
+        return response()->json([' مخاطب با موفقیت ایجاد شد .', new ContactResource($contact)]);
     
     }
 
-    public function update(Request $request,Categories $category)
+    public function update(Request $request,Contacts $contact)
     {
+        $user_id = auth('api')->user()->id;   
+
         $validator = Validator::make($request->all(),[
-            'name' => 'required|string|max:255|min:4|unique:categories',
+            'username' => 'required|string|max:255|min:4|unique:categories',
+            'ca_id' => 'required',
+            'phone'=>'required|digits:11|unique:contacts',
+            'semat'=>'required|min:5',
         ]);
 
         if($validator->fails()){
             return response()->json($validator->errors());       
         }
 
-        $category->name = $request->name;
-        $category->save();
+        $contact->username = $request->username;
+        $contact->ca_id = $request->ca_id;
+        $contact->phone = $request->phone;
+        $contact->semat = $request->semat;
+        $contact->u_id = $user_id;
+        $contact->save();
         
-        return response()->json(['دسته با موفقیت ویرایش شد .', new ContactResource($category)]);
+        return response()->json(['مخاطب با موفقیت ویرایش شد .', new ContactResource($contact)]);
    
     }
     
     public function show($id)
     {
         $user_id = auth('api')->user()->id; 
-        $categorys = User::find($user_id)->category()->find($id);
-        if (is_null($categorys)) {
-            return response()->json('دسته بندی پیدا نشد', 404); 
+        $contact = User::find($user_id)->contacts()->find($id);
+        if (is_null($contact)) {
+            return response()->json(' مخاطب پیدا نشد', 404); 
         }
-        return response()->json(["categorie"=>new ContactResource($categorys)]);
+        return response()->json(["categorie"=>new ContactResource($contact)]);
     }
 
-    public function destroy(Categories $category)
+    public function destroy(Contacts $contact)
     {
-        $category->delete();
-        return response()->json('دسته بندی با موفقیت حذف شد');
+        $contact->delete();
+        return response()->json(' مخاطب  با موفقیت حذف شد');
     }
 }
