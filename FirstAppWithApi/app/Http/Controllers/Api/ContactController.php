@@ -31,8 +31,8 @@ class ContactController extends Controller
         $validator = Validator::make($request->all(),[
             'username' => 'required|string|max:255|min:4|unique:contacts',
             'ca_id' => 'required',
-            'phone'=>'required|digits:11|unique:contacts',
-            'semat'=>'required|min:5',
+            'phone' => 'required|digits:11|unique:contacts',
+            'semat' => 'required|min:5',
         ]);
 
         if($validator->fails()){
@@ -41,10 +41,10 @@ class ContactController extends Controller
 
         $contact = Contacts::create([
             'username' => $request->username,
-            'ca_id' => $request->ca_id,
-            'phone' => $request->phone,
-            'semat' => $request->semat,
-            'u_id' => $user_id,
+            'ca_id'    => $request->ca_id,
+            'phone'    => $request->phone,
+            'semat'    => $request->semat,
+            'u_id'     => $user_id,
          ]);
         
         return response()->json([' مخاطب با موفقیت ایجاد شد .', new ContactResource($contact)]);
@@ -58,8 +58,8 @@ class ContactController extends Controller
         $validator = Validator::make($request->all(),[
             'username' => ['required','string','max:255','min:4','unique:contacts,username'],
             'ca_id' => ['required'],
-            'phone'=>['required','digits:11','unique:contacts,phone'],
-            'semat'=>['required','min:5'],
+            'phone' => ['required','digits:11','unique:contacts,phone'],
+            'semat' => ['required','min:5'],
         ]);
 
         if($validator->fails()){
@@ -67,10 +67,10 @@ class ContactController extends Controller
         }
 
         $contact->username = $request->username;
-        $contact->ca_id = $request->ca_id;
-        $contact->phone = $request->phone;
-        $contact->semat = $request->semat;
-        $contact->u_id = $user_id;
+        $contact->ca_id =  $request->ca_id;
+        $contact->phone =  $request->phone;
+        $contact->semat =  $request->semat;
+        $contact->u_id  =  $user_id;
         $contact->save();
         
         return response()->json(['مخاطب با موفقیت ویرایش شد .', new ContactResource($contact)]);

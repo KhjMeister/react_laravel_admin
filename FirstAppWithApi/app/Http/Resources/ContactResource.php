@@ -20,7 +20,7 @@ class ContactResource extends JsonResource
             'phone' => $this->phone,
             'semat' => $this->semat,
             'ca_id' => $this->ca_id,
-            'u_id' => $this->u_id,
+            'u_id'  => $this->u_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
