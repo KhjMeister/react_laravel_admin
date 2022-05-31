@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ContactController;
+use App\Http\Controllers\Api\SessionController;
 
 Route::group([
     'middleware' => 'api',
@@ -23,6 +24,7 @@ Route::group([
        
     Route::resource('categories', CategoryController::class); 
     Route::resource('contacts', ContactController::class); 
+    Route::resource('sessions', SessionController::class); 
 
 
 });
