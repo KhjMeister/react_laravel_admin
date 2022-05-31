@@ -78,7 +78,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Contacts::class,'u_id');
     }
 
-    public function session()
+    public function sessions()
     {
         return $this->hasMany(Session::class,'u_id');
     }

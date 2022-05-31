@@ -22,6 +22,10 @@ class SessionResource extends JsonResource
             'session_type' => $this->session_type,
             'u_id'  => $this->u_id,
             'is_ended'  => $this->is_ended,
+            'sess_token'  => $this->sess_token,
+            'video_link'  => $this->video_link,
+            'total_number'  => $this->total_number,
+            
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

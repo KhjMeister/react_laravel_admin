@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\SessionResource;
+use Illuminate\Support\Str;
 use App\Models\Session;
 use App\Models\Contacts;
 use App\Models\User;
@@ -14,6 +15,8 @@ use Validator;
 
 class SessionController extends Controller
 {
+    public $baseUrl = "https://test.videorayan.com/metting/"; 
+
     public function __construct() {
         $this->middleware('auth:api');
     }
@@ -27,7 +30,18 @@ class SessionController extends Controller
 
     public function store(Request $request) {
         
-        $user_id = auth('api')->user()->id;   
+        $user_id = auth('api')->user()->id; 
+
+        $sess_token  = Str::random(20);
+        $video_link  = $this->baseUrl.$sess_token;
+        $total_number= 0;
+        $end_at      = "";
+        $is_ended    =  0;
+        $is_started  =  0;
+        $jalase_type =  1;
+
+        
+
         $validator = Validator::make($request->all(),[
             'name' => 'required|string|max:255|min:4|unique:sessions',
             'start_time' => 'required',
@@ -40,11 +54,19 @@ class SessionController extends Controller
         }
 
         $session = Session::create([
-            'name' => $request->name,
-            'start_time'    => $request->start_time,
-            'start_date'    => $request->start_date,
-            'session_type'    => $request->session_type,
-            'u_id'     => $user_id,
+            'name'         => $request->name,
+            'start_time'   => $request->start_time,
+            'start_date'   => $request->start_date,
+            'session_type' => $request->session_type,
+            'u_id'         => $user_id,
+            'sess_token'   => $sess_token,
+            'video_link'   => $video_link,
+            'total_number' => $total_number,
+            'end_at'       => $end_at,
+            'is_ended'     => $is_ended,
+            'is_started'   => $is_started,
+            'jalase_type'   => $jalase_type,
+            
          ]);
         
         return response()->json([' جلسه با موفقیت ایجاد شد .', new SessionResource($session)]);
@@ -56,7 +78,7 @@ class SessionController extends Controller
         $user_id = auth('api')->user()->id;   
 
         $validator = Validator::make($request->all(),[
-            'name' => ['required','string','max:255','min:4','unique:sessions,username'],
+            'name' => ['required','string','max:255','min:4','unique:sessions,name'],
             'start_time' => ['required'],
             'start_date' => ['required'],
             'session_type' => ['required'],
