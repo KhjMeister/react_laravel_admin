@@ -24,6 +24,12 @@ Route::group([
        
     Route::resource('categories', CategoryController::class); 
     Route::resource('contacts', ContactController::class); 
+
+    
+    Route::get('/sessions/ended',[SessionController::class, 'endedSessions']);
+    Route::get('/sessions/notended',[SessionController::class, 'notEndedSessions']);
+    Route::post('/sessions/addcontact',[SessionController::class, 'addContactToSession']);
+    Route::post('/sessions/setostad',[SessionController::class, 'setOstad']);
     Route::resource('sessions', SessionController::class); 
 
 

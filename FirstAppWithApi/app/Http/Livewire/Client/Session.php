@@ -341,7 +341,6 @@ class Session extends Component
     {
         $this->candidate_contacts = Session_contact::where('s_id',$this->session_id)->get();
     }
-
     public function changeSmsStatus($id)
     {
         Session_contact::where([['id',$id]])->update([
