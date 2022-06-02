@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\SessionResource;
+use App\Http\Resources\ContactResource;
+
 use Illuminate\Support\Str;
 use App\Models\Session;
 use App\Models\Contacts;
@@ -18,7 +20,7 @@ use Validator;
 class SessionController extends Controller
 {
     public $baseUrl = "https://test.videorayan.com/metting/";
-    public $user_id ; 
+    public $user_id,$candidate_contacts ; 
 
     public function __construct() {
         $this->middleware('auth:api');
@@ -51,7 +53,6 @@ class SessionController extends Controller
         if($validator->fails()){
             return response()->json($validator->errors());       
         }
-
         $session = Session::create([
             'name'         => $request->name,
             'start_time'   => $request->start_time,
@@ -79,20 +80,16 @@ class SessionController extends Controller
             'start_date' => ['required'],
             'session_type' => ['required'],
         ]);
-
         if($validator->fails()){
             return response()->json($validator->errors());       
         }
-
         $session->name   = $request->name;
         $session->session_type =  $request->session_type;
         $session->start_date =  $request->start_date;
         $session->start_time =  $request->start_time;
         $session->u_id  =  $this->user_id;
         $session->save();
-        
         return response()->json(['جلسه با موفقیت ویرایش شد .', new SessionResource($session)]);
-   
     }
     
     public function show($id)
@@ -140,8 +137,7 @@ class SessionController extends Controller
             return response()->json([' مخاطب با موفقیت به جلسه اضافه شد ']);
         }else{
             return response()->json([' مخاطب در جلسه موجود است  ']);
-        }
-        
+        }  
     }
 
     public function checkIfContactIn($contact_id,$session_id)
@@ -182,21 +178,25 @@ class SessionController extends Controller
                 $this->changOneFlag($request->c_id,1,$request->s_id);
                 return response()->json([' استاد تغییر کرد ']);
             }
-            
-            
         }
-        
     }
     public function changOneFlag($cid,$ostadFlag,$s_id)
     {
-        
         Session_contact::where([['c_id',$cid],['s_id',$s_id]])->update([
             'ostad_flag' => $ostadFlag
         ]); 
     }
 
-    public function sendMessageToContacts()
+    public function sendMessageToContacts(Request $request)
     {
+        $validator = Validator::make($request->all(),[
+            's_id' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors());       
+        }
+        $session = $this->getSession($request->s_id);
+        $this->getThisSessionContacts($request->s_id);
         $allreadySended = true;
         $client = new SoapClient("http://ippanel.com/class/sms/wsdlservice/server.php?wsdl");
 
@@ -209,8 +209,8 @@ class SessionController extends Controller
                     $fromNum = "+9850002040325721"; 
                     $toNum = array($receptor); 
                     $pattern_code = "vungc8h5x1jgg9z"; 
-                    $input_data = array( "jalaseName" => $this->thisSession->name,
-                                        "JalaseUrl"  => $this->video_link,
+                    $input_data = array( "jalaseName" => $session->name,
+                                        "JalaseUrl"  => $session->video_link,
                                         "verificationCode" => $key->token
                                         ); 
                     $client->sendPatternSms($fromNum,$toNum,$usersms,$passsms,$pattern_code,$input_data);
@@ -218,24 +218,30 @@ class SessionController extends Controller
                     
                 }
             }
-            $this->getThisSession();  
             return response()->json(['پیام به مخاطبان ارسال شد ']);
     }
-    public function checkSmsSended($cid)
+    public function checkSmsSended(Request $request)
     {
-        $var = Session_contact::where([['c_id',$cid],['s_id',$this->session_id]])->first();
+        $validator = Validator::make($request->all(),[
+            's_id' => 'required',
+            'c_id' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors());       
+        }
+        $var = Session_contact::where([['c_id',$request->c_id],['s_id',$request->s_id]])->first();
         if(isset($var)){
             if($var->sms_status==1)
-                return  True;
+            return response()->json([' ارسال شده ']);
             else
-                return False;
+            return response()->json([' ارسال نشده ']);
         }else{
-            return  false;
+            return response()->json([' کاربر در جلسه عضو نیست . ']);
         }
     }
-    public function getThisSessionContacts()
+    public function getThisSessionContacts($sid)
     {
-        $this->candidate_contacts = Session_contact::where('s_id',$this->session_id)->get();
+        $this->candidate_contacts = Session_contact::where('s_id',$sid)->get();
     }
     public function changeSmsStatus($id)
     {
@@ -243,5 +249,44 @@ class SessionController extends Controller
             'sms_status' => 1
         ]); 
     }
+    public function getSession($sid)
+    {
+        return Session::find($sid);
+    }
 
+    public function contacts(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            's_id' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors());       
+        }
+        $session  = Session::find($request->s_id);
+        return response()->json(["contacts"=>ContactResource::collection($session->contacts)]);
+    }
+    public function getByToken($token)
+    {
+        $session = Session::where([['sess_token','=',$token]])->first();
+        if (is_null($session)) {
+            return response()->json(' جلسه پیدا نشد', 404); 
+        }
+        return response()->json(["session"=>new SessionResource($session)]);
+    }
+
+    public function startSession($id)
+    {
+        $session = Session::find($id);
+        $session->is_started = 1;
+        $session->save();
+        return response()->json(['جلسه با موفقیت شروع شد .']);
+    
+    }
+    public function endSession($id)
+    {
+        $session = Session::find($id);
+        $session->is_ended = 1;
+        $session->save();
+        return response()->json(['جلسه با موفقیت پایان یافت شد .']);
+    }
 }
