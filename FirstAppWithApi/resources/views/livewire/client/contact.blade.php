@@ -54,7 +54,7 @@
                                 <input wire:model.debounce.1000ms="semat" class="@error('semat') is-invalid @enderror" type="text" placeholder="سمت را مشخص نمایید">
                                 @error('semat') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
-                            <button type="submit" class="btn-form">
+                            <button id="createBtn" type="submit" class="btn-form">
                                     اضافه کردن مخاطب
                             </button>
 
@@ -101,7 +101,7 @@
                                 <input wire:model.debounce.1000ms="semat" class="@error('semat') is-invalid @enderror" type="text" placeholder="سمت را مشخص نمایید">
                                 @error('semat') <span class="invalid-feedback">{{ $message }}</span> @enderror
                             </div>
-                            <button type="submit" class="btn-form">
+                            <button id="editeBtn" type="submit" class="btn-form">
                                     ویرایش مخاطب
                             </button>
 

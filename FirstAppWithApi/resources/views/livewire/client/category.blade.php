@@ -84,7 +84,7 @@
                     <input id="name" wire:model.debounce.1000ms="name" class="@error('name') is-invalid @enderror" type="text" placeholder="عنوان دسته بندی را وارد کنید">
                     @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
                 </div>
-                <button type="submit" class="link-mouse-hover" >ساخت دسته بندی</button>
+                <button id="createBtn" type="submit" class="link-mouse-hover" >ساخت دسته بندی</button>
             </div>
         </form>
     </div>
@@ -105,7 +105,7 @@
                     <input id="name" wire:model.debounce.1000ms="name" class="@error('name') is-invalid @enderror" type="text" placeholder="عنوان دسته بندی   ">
                     @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
                 </div>
-                <button type="submit" class="link-mouse-hover" >ویرایش دسته بندی</button>
+                <button id="editeBtn" type="submit" class="link-mouse-hover" >ویرایش دسته بندی</button>
             </div>
         </form>
     </div>

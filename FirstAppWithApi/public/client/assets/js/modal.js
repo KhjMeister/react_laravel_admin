@@ -2,9 +2,29 @@
   var modal = document.getElementById("myModal");
   var btn = document.getElementById("myBtn");
   var span = document.getElementsByClassName("close")[0];
+
+  var modalEditeContact = document.getElementById("myModalEditeCntact");
+  var btnEditeContact = document.getElementsByClassName("myBtnEditeContact");
+  var span1 = document.getElementsByClassName("close")[1];
+
+  const closeCreateBtn = document.getElementById("createBtn");
+  const closeEditeBtn = document.getElementById("editeBtn");
+  
+
+
   btn.onclick = function() {
     modal.style.display = "block";
   }
+
+
+
+closeCreateBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+})
+
+closeEditeBtn.addEventListener("click", () => {
+  modalEditeContact.style.display = "none";
+})
   // span.onclick = function() {
   //   modal.style.display = "none";
   // }
@@ -20,10 +40,6 @@
       modalEditeContact.style.display = "none";
     }
   }
-
-  var modalEditeContact = document.getElementById("myModalEditeCntact");
-  var btnEditeContact = document.getElementsByClassName("myBtnEditeContact");
-  var span1 = document.getElementsByClassName("close")[1];
 
 
   for (var i = 0; i < btnEditeContact.length; i++) {

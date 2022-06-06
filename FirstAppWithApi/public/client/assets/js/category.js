@@ -6,6 +6,11 @@ var btnModalCategory = document.getElementsByClassName("btn-category-modal");
 const closeCategoryEditeModal = document.getElementById("close-category-edite-modal");
 const categoryEditeModal = document.getElementById("modal-category-edite");
 var btnModalCategoryEdite = document.getElementsByClassName("btn-category-edite-modal");
+
+const closeCreateBtn = document.getElementById("createBtn");
+const closeEditeBtn = document.getElementById("editeBtn");
+
+
 // window.onclick = function(event) {
 //     if (event.target == categoryModal) {
 //       categoryModal.classList.remove("displayed");
@@ -16,6 +21,15 @@ var btnModalCategoryEdite = document.getElementsByClassName("btn-category-edite-
 //       categoryEditeModal.classList.add("notDisplayed");
 //     }
 //   }
+
+closeCreateBtn.addEventListener("click", () => {
+  categoryModal.style.display = "none";
+})
+
+closeEditeBtn.addEventListener("click", () => {
+  categoryEditeModal.style.display = "none";
+})
+
 window.onclick = function(event) {
   if (event.target == categoryModal) {
     categoryModal.style.display = "none";
