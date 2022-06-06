@@ -24,12 +24,13 @@ class SessionController extends Controller
 
     public function __construct() {
         $this->middleware('auth:api');
-        $this->user_id= auth('api')->user()->id;
+
     }
     
     public function index()
     { 
-        $sessions = Session::latest()->where([['u_id', '=', $this->user_id],])->get();
+        $user_id= auth('api')->user()->id;
+        $sessions = Session::latest()->where([['u_id', '=', $user_id],])->get();
         return response()->json(["sessions"=>SessionResource::collection($sessions)]);
     }
     
@@ -58,7 +59,7 @@ class SessionController extends Controller
             'start_time'   => $request->start_time,
             'start_date'   => $request->start_date,
             'session_type' => $request->session_type,
-            'u_id'         => $this->user_id,
+            'u_id'         => $user_id,
             'sess_token'   => $sess_token,
             'video_link'   => $video_link,
             'total_number' => $total_number,
@@ -73,7 +74,7 @@ class SessionController extends Controller
 
     public function update(Request $request,Session $session)
     { 
-
+        $user_id= auth('api')->user()->id;
         $validator = Validator::make($request->all(),[
             'name' => ['required','string','max:255','min:4','unique:sessions,name'],
             'start_time' => ['required'],
@@ -87,14 +88,15 @@ class SessionController extends Controller
         $session->session_type =  $request->session_type;
         $session->start_date =  $request->start_date;
         $session->start_time =  $request->start_time;
-        $session->u_id  =  $this->user_id;
+        $session->u_id  =  $user_id;
         $session->save();
         return response()->json(['جلسه با موفقیت ویرایش شد .', new SessionResource($session)]);
     }
     
     public function show($id)
     {
-        $session = User::find($this->user_id)->sessions()->find($id);
+        $user_id= auth('api')->user()->id;
+        $session = User::find($user_id)->sessions()->find($id);
         if (is_null($session)) {
             return response()->json(' جلسه پیدا نشد', 404); 
         }
@@ -109,12 +111,14 @@ class SessionController extends Controller
     
     public function notEndedSessions()
     { 
-        $sessions = Session::latest()->where([['u_id', '=', $this->user_id],['is_ended','=',0]])->get();
+        $user_id= auth('api')->user()->id;
+        $sessions = Session::latest()->where([['u_id', '=', $user_id],['is_ended','=',0]])->get();
         return response()->json(["started"=>SessionResource::collection($sessions)]);
     }
     public function endedSessions()
     { 
-        $sessions = Session::latest()->where([['u_id', '=', $this->user_id],['is_ended','=',1]])->get();
+        $user_id= auth('api')->user()->id;
+        $sessions = Session::latest()->where([['u_id', '=', $user_id],['is_ended','=',1]])->get();
         return response()->json(["ended"=>SessionResource::collection($sessions)]);
     }
 

@@ -61,4 +61,25 @@ class LoginController extends Controller
           return ['email' => $request->get('email'), 'password'=>$request->get('password')];
         }
       }
+
+      // public function login(Request $request)
+      // {   
+      //     $input = $request->all();
+
+      //     $this->validate($request, [
+      //         'email' => 'required|email',
+      //         'password' => 'required',
+      //     ]);
+  
+      //     if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
+      //     {
+      //         if (auth()->user()->role == "admin") {
+      //             return redirect()->route('adminDashboard');
+      //         }else{
+      //             return redirect()->route('dashboard');
+      //         }
+      //     }else{
+      //         return redirect()->route('login')->with('error','ایمیل یا پسورد اشتباه است');
+      //     }
+      // }
 }

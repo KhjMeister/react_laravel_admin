@@ -20,4 +20,11 @@ Route::get('/metting/{link}', [App\Http\Controllers\Client\MettingController::cl
 
 
 
+Route::get('admin/login',[App\Http\Controllers\Admin\Auth\AuthController::class, 'getLogin'])->name('adminLogin');
+Route::post('admin/login',[App\Http\Controllers\Admin\Auth\AuthController::class, 'postLogin'])->name('adminLoginPost');
+Route::get('admin/logout',[App\Http\Controllers\Admin\Auth\AuthController::class, 'logout'])->name('adminLogout');
+
+Route::get('admin/dashboard',[App\Http\Controllers\Admin\Pages\DashboardController::class, 'dashboard'])->name('adminDashboard')->middleware('is_admin');	
+
+
 
