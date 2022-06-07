@@ -113,9 +113,9 @@
     </div>
 
     <div  class="modal-create-category" style="{{ $this->delModal }}">
-        <form class="form" wire:submit.prevent="updateCategory">
+        <div class="form" >
             <div class="title">
-                <p>حذف دسته بندی</p>
+                <p>آیا از حذف {{ $this->name }} مطمعنید ؟</p>
                 <svg class="link-mouse-hover" wire:click="$emit('closeDeleteModal')" width="11" height="11" viewBox="0 0 11 11" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -124,12 +124,9 @@
                 </svg>
             </div>
             <div class="category-modal-form">
-                <div class="input">
-                    <label for="name">{{ $this->name }}</label>
-                    
-                </div>
-                <button wire:click="deleteCategory()" class="link-mouse-hover" >حذف دسته بندی</button>
+                
+                <button wire:click="deleteCategory()" style="background-color: #ff4a4f;"  class="link-mouse-hover" >حذف دسته بندی</button>
             </div>
-        </form>
+        </div>
     </div>
 </div>

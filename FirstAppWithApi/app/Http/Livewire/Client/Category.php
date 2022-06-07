@@ -96,20 +96,20 @@ class Category extends Component
     {
         $this->categories = Categories::where([
             ['u_id', '=', $this->u_id],
-        ])->paginate(2);
+        ])->paginate(18);
     }
     
     public function modalDeleteCategory($did)
     {
         $this->showDeleteModal();
         $this->del_id = $did;
-        // $this->name = $name;
-
+        $this->name = Categories::find($this->del_id)->name;
+        
     }
 
     public function deleteCategory()
     {
-        // try{
+        try{
             Categories::find($this->del_id)->delete();
             
             // $this->getAllCategories();
@@ -118,19 +118,20 @@ class Category extends Component
                 $this->categories_visablity = false;  
             }
 
-            // $this->closeDeleteModal();
+            $this->closeDeleteModal();
 
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
                 'message'=>"دسته با موفقیت حذف شد!!"
             ]);
-        // }catch(\Exception $e){
-        //     $this->dispatchBrowserEvent('alert',[
-        //         'type'=>'error',
-        //         'message'=>"مشکلی پیش آمده لطفا دوباره امتحان کنید!!"
-        //     ]);
+        }catch(\Exception $e){
+            $this->dispatchBrowserEvent('alert',[
+                'type'=>'error',
+                'message'=>"مشکلی پیش آمده لطفا دوباره امتحان کنید!!"
+            ]);
+         
+        }
         
-        // }
     }
     public function resetForm()
     {
