@@ -3,7 +3,7 @@
         <div class="categories">
             <div class="title">
                 <p>دسته بندی</p>
-                <button wire:click="resetForm" class="btn-category-modal">ساخت دسته بندی</button>
+                <button wire:click="$emit('showAddModal')" class="btn-category-modal">ساخت دسته بندی</button>
             </div>
             @if(!$categories_visablity)
                 <div class="noCategories">
@@ -20,9 +20,9 @@
                  <div class="spinner"></div>
             </div> -->
                 @foreach($categories as $category)
-                    <div class="item-categories">
+                    <div class="item-categories text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
                         <div class="ud-category">
-                            <svg wire:click.prevent="deleteCategory({{ $category->id }})" class="link-mouse-hover" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            <svg wire:click.prevent="modalDeleteCategory({{ $category->id }})" class="link-mouse-hover" width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M21 6.375C21 5.75368 20.4505 5.25 19.7727 5.25H16.6833C16.1663 3.90552 14.7824 3.00457 13.2273 3H10.7727C9.21759 3.00457 7.83372 3.90552 7.31673 5.25H4.22727C3.54947 5.25 3 5.75368 3 6.375C3 6.99632 3.54947 7.5 4.22727 7.5H4.63637V16.875C4.63637 19.1532 6.65109 21 9.13636 21H14.8636C17.3489 21 19.3636 19.1532 19.3636 16.875V7.5H19.7727C20.4505 7.5 21 6.99632 21 6.375ZM16.9091 16.875C16.9091 17.9105 15.9933 18.75 14.8636 18.75H9.13636C8.00669 18.75 7.09092 17.9105 7.09092 16.875V7.5H16.9091V16.875Z"
@@ -69,11 +69,11 @@
 
         {{ $categories->links() }}
     </section>
-     <div wire:ignore.self class="modal-create-category " id="modal-category">
+     <div class="modal-create-category " style="{{$this->addModal}}">
         <form class="form" wire:submit.prevent="storeCategory">
             <div class="title">
                 <p>ساخت دسته بندی</p>
-                <svg class="link-mouse-hover" id="close-category-modal" width="11" height="11" viewBox="0 0 11 11" fill="none"
+                <svg wire:click="$emit('closeAddModal')" class="link-mouse-hover"  width="11" height="11" viewBox="0 0 11 11" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M10.244 0.243989C10.0877 0.087763 9.8758 0 9.65483 0C9.43386 0 9.22194 0.087763 9.06566 0.243989L5.24399 4.06566L1.42232 0.243989C1.26605 0.087763 1.05413 0 0.833156 0C0.612186 0 0.400262 0.087763 0.243989 0.243989C0.087763 0.400262 0 0.612186 0 0.833156C0 1.05413 0.087763 1.26605 0.243989 1.42232L4.06566 5.24399L0.243989 9.06566C0.087763 9.22194 0 9.43386 0 9.65483C0 9.8758 0.087763 10.0877 0.243989 10.244C0.400262 10.4002 0.612186 10.488 0.833156 10.488C1.05413 10.488 1.26605 10.4002 1.42232 10.244L5.24399 6.42233L9.06566 10.244C9.22194 10.4002 9.43386 10.488 9.65483 10.488C9.8758 10.488 10.0877 10.4002 10.244 10.244C10.4002 10.0877 10.488 9.8758 10.488 9.65483C10.488 9.43386 10.4002 9.22194 10.244 9.06566L6.42233 5.24399L10.244 1.42232C10.4002 1.26605 10.488 1.05413 10.488 0.833156C10.488 0.612186 10.4002 0.400262 10.244 0.243989Z"
@@ -90,11 +90,11 @@
             </div>
         </form>
     </div>
-    <div wire:ignore.self class="modal-create-category " id="modal-category-edite">
+    <div  class="modal-create-category" style="{{ $this->editModal }}">
         <form class="form" wire:submit.prevent="updateCategory">
             <div class="title">
                 <p>ویرایش دسته بندی</p>
-                <svg class="link-mouse-hover" id="close-category-edite-modal" width="11" height="11" viewBox="0 0 11 11" fill="none"
+                <svg class="link-mouse-hover" wire:click="$emit('closeEditeModal')" width="11" height="11" viewBox="0 0 11 11" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M10.244 0.243989C10.0877 0.087763 9.8758 0 9.65483 0C9.43386 0 9.22194 0.087763 9.06566 0.243989L5.24399 4.06566L1.42232 0.243989C1.26605 0.087763 1.05413 0 0.833156 0C0.612186 0 0.400262 0.087763 0.243989 0.243989C0.087763 0.400262 0 0.612186 0 0.833156C0 1.05413 0.087763 1.26605 0.243989 1.42232L4.06566 5.24399L0.243989 9.06566C0.087763 9.22194 0 9.43386 0 9.65483C0 9.8758 0.087763 10.0877 0.243989 10.244C0.400262 10.4002 0.612186 10.488 0.833156 10.488C1.05413 10.488 1.26605 10.4002 1.42232 10.244L5.24399 6.42233L9.06566 10.244C9.22194 10.4002 9.43386 10.488 9.65483 10.488C9.8758 10.488 10.0877 10.4002 10.244 10.244C10.4002 10.0877 10.488 9.8758 10.488 9.65483C10.488 9.43386 10.4002 9.22194 10.244 9.06566L6.42233 5.24399L10.244 1.42232C10.4002 1.26605 10.488 1.05413 10.488 0.833156C10.488 0.612186 10.4002 0.400262 10.244 0.243989Z"
@@ -108,6 +108,27 @@
                     @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
                 </div>
                 <button id="editeBtn" type="submit" class="link-mouse-hover" >ویرایش دسته بندی</button>
+            </div>
+        </form>
+    </div>
+
+    <div  class="modal-create-category" style="{{ $this->delModal }}">
+        <form class="form" wire:submit.prevent="updateCategory">
+            <div class="title">
+                <p>حذف دسته بندی</p>
+                <svg class="link-mouse-hover" wire:click="$emit('closeDeleteModal')" width="11" height="11" viewBox="0 0 11 11" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M10.244 0.243989C10.0877 0.087763 9.8758 0 9.65483 0C9.43386 0 9.22194 0.087763 9.06566 0.243989L5.24399 4.06566L1.42232 0.243989C1.26605 0.087763 1.05413 0 0.833156 0C0.612186 0 0.400262 0.087763 0.243989 0.243989C0.087763 0.400262 0 0.612186 0 0.833156C0 1.05413 0.087763 1.26605 0.243989 1.42232L4.06566 5.24399L0.243989 9.06566C0.087763 9.22194 0 9.43386 0 9.65483C0 9.8758 0.087763 10.0877 0.243989 10.244C0.400262 10.4002 0.612186 10.488 0.833156 10.488C1.05413 10.488 1.26605 10.4002 1.42232 10.244L5.24399 6.42233L9.06566 10.244C9.22194 10.4002 9.43386 10.488 9.65483 10.488C9.8758 10.488 10.0877 10.4002 10.244 10.244C10.4002 10.0877 10.488 9.8758 10.488 9.65483C10.488 9.43386 10.4002 9.22194 10.244 9.06566L6.42233 5.24399L10.244 1.42232C10.4002 1.26605 10.488 1.05413 10.488 0.833156C10.488 0.612186 10.4002 0.400262 10.244 0.243989Z"
+                        fill="#777777" />
+                </svg>
+            </div>
+            <div class="category-modal-form">
+                <div class="input">
+                    <label for="name">{{ $this->name }}</label>
+                    
+                </div>
+                <button wire:click="deleteCategory()" class="link-mouse-hover" >حذف دسته بندی</button>
             </div>
         </form>
     </div>

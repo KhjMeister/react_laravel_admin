@@ -12,9 +12,49 @@ class Category extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'simple-tailwind';
-    public $cid,$name,$u_id;
+    public $cid,$name,$u_id,$del_id;
     public $categories_visablity=false;
     // public $isCreateClicked = false;
+    
+    public $delModal ='display:none;' ;
+    public $addModal ='display:none;' ;
+    public $editModal ='display:none;' ;
+
+    protected $listeners = [
+        'showDeleteModal' => 'showDeleteModal',
+        'closeDeleteModal' => 'closeDeleteModal',
+        'showAddModal' => 'showAddModal',
+        'closeAddModal' => 'closeAddModal',
+        'showEditeModal' => 'showEditeModal',
+        'closeEditeModal' => 'closeEditeModal',
+    ];
+
+    public function showAddModal()
+    {
+        $this->addModal = 'display:block;';
+        $this->resetForm();
+    }
+    public function closeAddModal()
+    {
+        $this->addModal = 'display:none;';
+    }
+
+    public function showEditeModal()
+    {
+        $this->editModal = 'display:block;';
+    }
+    public function closeEditeModal()
+    {
+        $this->editModal = 'display:none;';
+    }
+    public function showDeleteModal()
+    {
+        $this->delModal = 'display:block;';
+    }
+    public function closeDeleteModal()
+    {
+        $this->delModal = 'display:none;';
+    }
 
     protected $rules = [
         'name'=>'required|min:4|unique:categories',
@@ -25,7 +65,7 @@ class Category extends Component
         return view('livewire.client.category',[
             'categories'=> Categories::where([
                 ['u_id', '=', $this->u_id]
-            ])->paginate(2)
+            ])->paginate(18)
         ]);
     }
     public function updated($propertyName)
@@ -59,27 +99,38 @@ class Category extends Component
         ])->paginate(2);
     }
     
-    public function deleteCategory($id)
+    public function modalDeleteCategory($did)
     {
-        try{
-            Categories::find($id)->delete();
+        $this->showDeleteModal();
+        $this->del_id = $did;
+        // $this->name = $name;
+
+    }
+
+    public function deleteCategory()
+    {
+        // try{
+            Categories::find($this->del_id)->delete();
             
             // $this->getAllCategories();
             
             if(!$this->categoryVisibility()){
                 $this->categories_visablity = false;  
             }
+
+            // $this->closeDeleteModal();
+
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
                 'message'=>"دسته با موفقیت حذف شد!!"
             ]);
-        }catch(\Exception $e){
-            $this->dispatchBrowserEvent('alert',[
-                'type'=>'error',
-                'message'=>"مشکلی پیش آمده لطفا دوباره امتحان کنید!!"
-            ]);
+        // }catch(\Exception $e){
+        //     $this->dispatchBrowserEvent('alert',[
+        //         'type'=>'error',
+        //         'message'=>"مشکلی پیش آمده لطفا دوباره امتحان کنید!!"
+        //     ]);
         
-        }
+        // }
     }
     public function resetForm()
     {
@@ -97,11 +148,14 @@ class Category extends Component
 
         try{
             Categories::create($validatedData);
-            $this->getAllCategories();
+            // $this->getAllCategories();
 
             if($this->categoryVisibility()){
                 $this->categories_visablity = true;
             }
+
+            $this->closeAddModal();
+
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
                 'message'=>"دسته با موفقیت ثبت شد!!"
@@ -122,6 +176,8 @@ class Category extends Component
         $this->name = $category->name;
         $this->c_id = $id;
 
+        $this->showEditeModal();
+
     }     
     public function updateCategory()
     {
@@ -133,6 +189,8 @@ class Category extends Component
                 'name' => $this->name
             ]); 
             // $this->getAllCategories();
+            $this->closeEditeModal();
+
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
                 'message'=>"دسته با موفقیت ویرایش شد!!"
