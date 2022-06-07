@@ -30,7 +30,7 @@
                       <hr class="container-m-nx my-4">
 
                       <div class="mb-4">
-                        <small class="text-small text-muted text-uppercase align-middle">فیلتر</small>
+                        <small class="text-small text-muted text-uppercase align-middle"></small>
                       </div>
 
                       <div class="form-check mb-2 pb-1">
@@ -186,7 +186,7 @@
         event.id = element.id;
         event.title = element.name;
         event.start = starting;
-        event.end = new Date(date.getFullYear(), date.getMonth() + 1, -12);
+        event.end = new Date(date.getFullYear(), date.getMonth() , -12);
         event.url = '';
         event.location = element.start_time;
         event.allDay = false;

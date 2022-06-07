@@ -3,8 +3,7 @@
     <section>
         <div class="detail-profile">
             <div class="img-profile">
-                <img src="./client/assets/images/petyerheadshot7744252d68dc7099fb9dc016e4bbd540_thumb 5.png"
-                    alt="">
+                <img src="./client/assets/images/avatar.jpg" width="114" alt="">
             </div>
             
             <form wire:submit.prevent="updateProfile" class="profile-form">

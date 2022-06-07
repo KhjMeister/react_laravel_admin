@@ -57,7 +57,7 @@
                 <p>ویدیو <span>رایان</span></p>
             </div>
             <div class="navmobile-profile">
-                <img src="https://picsum.photos/200" alt="">
+                <img src="./client/assets/images/avatar.jpg"  alt="">
                 <p> {{ Auth::user()->name }}</p>
             </div>
         </div>
@@ -194,7 +194,7 @@
                 <!-- navbar -->
                 <nav>
                     <div class="detail">
-                        <img src="https://picsum.photos/200" alt="">
+                        <img src="./client/assets/images/avatar.jpg" alt="">
                         <p> {{ Auth::user()->name }}</p>
                         <div class="notify">
                             <svg width="20" height="22" viewBox="0 0 20 22" fill="none"

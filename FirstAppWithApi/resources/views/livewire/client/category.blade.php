@@ -66,6 +66,8 @@
             </div>
             @endif
         </div>
+
+        {{ $categories->links() }}
     </section>
      <div wire:ignore.self class="modal-create-category " id="modal-category">
         <form class="form" wire:submit.prevent="storeCategory">

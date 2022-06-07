@@ -5,10 +5,14 @@ use App\Models\User;
 use App\Models\Category as Categories;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithPagination;
+
 
 class Category extends Component
 {
-    public $categories,$cid,$name,$u_id;
+    use WithPagination;
+    protected $paginationTheme = 'simple-tailwind';
+    public $cid,$name,$u_id;
     public $categories_visablity=false;
     // public $isCreateClicked = false;
 
@@ -18,7 +22,11 @@ class Category extends Component
     ];
     public function render()
     {
-        return view('livewire.client.category');
+        return view('livewire.client.category',[
+            'categories'=> Categories::where([
+                ['u_id', '=', $this->u_id]
+            ])->paginate(2)
+        ]);
     }
     public function updated($propertyName)
     {
@@ -28,7 +36,7 @@ class Category extends Component
     {
         $this->u_id = Auth::user()->id;
 
-        $this->getAllCategories();
+        // $this->getAllCategories();
         
         if($this->categoryVisibility()){
             $this->categories_visablity = true;
@@ -48,7 +56,7 @@ class Category extends Component
     {
         $this->categories = Categories::where([
             ['u_id', '=', $this->u_id],
-        ])->get();
+        ])->paginate(2);
     }
     
     public function deleteCategory($id)
