@@ -12,12 +12,54 @@ use Livewire\WithPagination;
 class Contact extends Component
 {
     use WithPagination;
-    // protected $paginationTheme = 'bootstrap';
+    protected $paginationTheme = 'simple-tailwind';
 
     public $categories,$cid,$name,$u_id;
     public $contact_id,$username,$phone,$semat,$ca_id;
     public $contacts_visablity=false;
     public $search = '';
+
+
+
+    public $delModal ='display:none;' ;
+    public $addModal ='display:none;' ;
+    public $editModal ='display:none;' ;
+
+    protected $listeners = [
+        'showDeleteModal' => 'showDeleteModal',
+        'closeDeleteModal' => 'closeDeleteModal',
+        'showAddModal' => 'showAddModal',
+        'closeAddModal' => 'closeAddModal',
+        'showEditeModal' => 'showEditeModal',
+        'closeEditeModal' => 'closeEditeModal',
+    ];
+
+    public function showAddModal()
+    {
+        $this->addModal = 'display:block;';
+        $this->resetForm();
+    }
+    public function closeAddModal()
+    {
+        $this->addModal = 'display:none;';
+    }
+
+    public function showEditeModal()
+    {
+        $this->editModal = 'display:block;';
+    }
+    public function closeEditeModal()
+    {
+        $this->editModal = 'display:none;';
+    }
+    public function showDeleteModal()
+    {
+        $this->delModal = 'display:block;';
+    }
+    public function closeDeleteModal()
+    {
+        $this->delModal = 'display:none;';
+    }
 
     protected $rules = [
         'username'=>'required|min:4|unique:contacts',
@@ -33,7 +75,21 @@ class Contact extends Component
     ];
     public function render()
     {
-        return view('livewire.client.contact');
+        return view('livewire.client.contact',[
+            'contacts'=>Contacts::where([
+                ['u_id', '=', $this->u_id],
+                ['username', 'like', '%'.$this->search.'%']
+            ])->orWhere([
+                ['u_id', '=', $this->u_id],
+                ['phone', 'like', '%'.$this->search.'%']
+            ])->orWhere([
+                ['u_id', '=', $this->u_id],
+                ['semat', 'like', '%'.$this->search.'%']
+            ])->orWhere([
+                ['u_id', '=', $this->u_id],
+                ['ca_id', 'like', '%'.$this->search.'%']
+            ])->paginate(6)
+        ]);
     }
 
     public function mount()
@@ -44,7 +100,7 @@ class Contact extends Component
             $this->categories = null;
             
             $this->getAllCategories();
-            $this->getAllContacts();
+            // $this->getAllContacts();
             
             if($this->contactsVisibility()){
                 $this->contacts_visablity = true;
@@ -100,11 +156,7 @@ class Contact extends Component
             ['u_id', '=', $this->u_id],
         ])->get();    
     }
-    public function selectedCategory($id)
-    {
-        $this->contacts = Categories::find($id)->contacts;
-        
-    }
+   
     public function getAllContacts()
     {
         $this->contacts = Contacts::where([

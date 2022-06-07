@@ -6,9 +6,9 @@
                 
                 <select  style="width:180px;background-color:#f7f7f7;font-size:15px;" class="dropdown-content link-mouse-hover">
                     @if(!$this->categories==null)
-                    <option wire:click="getAllContacts">همه دسته بندی ها</option>
+                    <option wire:click="$set('search', '')">همه دسته بندی ها</option>
                         @foreach ($categories as $cat)
-                            <option wire:click="selectedCategory({{ $cat->id }})" >{{ $cat->name }}</option>
+                            <option wire:click.prevent="$set('search', '{{ $cat->id }}')" >{{ $cat->name }}</option>
                         @endforeach
                     @else
                         <option >دسنه بندی وجود ندارد</option>
@@ -16,12 +16,12 @@
                 </select>
 
             <div class="item-detail">
-                    <button wire:click="resetForm" class="btn-contacts" id="myBtn" >
+                    <button class="btn-contacts" wire:click="$emit('showAddModal')" >
                         اضافه کردن
                     </button>
-                    <div wire:ignore.self id="myModal" class="modal">
+                    <div style="{{ $this->addModal }}" class="modal">
                         <div class="modal-content">
-                            <span class="closecreate close">&times;</span>
+                            <span wire:click="$emit('closeAddModal')" class="closecreate close">&times;</span>
                             <form wire:submit.prevent="storeContact" class="form-group">
                                 <div > 
                                     <label  for="fullname">نام و نام خانوادگی:</label>
@@ -113,7 +113,7 @@
             </div>
             
             <div class="item-search" style="position: relative;">
-                <input wire:keydown="getAllContacts" wire:model.debounce.1000ms="search" type="search" class="search" placeholder="جستجو در مخاطبین ....">
+                <input wire:model="search" type="search" class="search" placeholder="جستجو در مخاطبین ....">
                     <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19.635 17.8725L15.7637 13.9996C18.6604 10.1286 17.8706 4.64234 13.9996 1.74566C10.1286 -1.15102 4.64234 -0.361187 1.74566 3.50978C-1.15102 7.38076 -0.361187 12.8671 3.50979 15.7637C6.61927 18.0906 10.8901 18.0906 13.9996 15.7637L17.8725 19.6366C18.3592 20.1233 19.1483 20.1233 19.635 19.6366C20.1217 19.1499 20.1217 18.3609 19.635 17.8742L19.635 17.8725ZM8.78697 15.0162C5.34663 15.0162 2.55772 12.2273 2.55772 8.78697C2.55772 5.34663 5.34663 2.55772 8.78697 2.55772C12.2273 2.55772 15.0162 5.34663 15.0162 8.78697C15.0126 12.2257 12.2258 15.0126 8.78697 15.0162Z" fill="#4D4D4D"/>
                         </svg>
@@ -177,6 +177,8 @@
             
             
         </table>
+
+        {{ $contacts->links() }}
     </div>
     @endif
     

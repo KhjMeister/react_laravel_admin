@@ -2,6 +2,8 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('client/assets/css/contacts.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/paginate.css') }}">
+
 @endpush
 
 @push('scripts')

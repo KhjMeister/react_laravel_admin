@@ -40,7 +40,7 @@ h6 {
     font-size: inherit;
     font-weight: inherit;
 } */
-a {
+/* a {
     color: inherit;
     text-decoration: inherit;
 }
@@ -246,7 +246,7 @@ video {
     --tw-backdrop-opacity: ;
     --tw-backdrop-saturate: ;
     --tw-backdrop-sepia: ;
-}
+} */
 .relative {
     position: relative;
 }
