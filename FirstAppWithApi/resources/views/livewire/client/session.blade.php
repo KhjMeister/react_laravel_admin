@@ -267,9 +267,11 @@
                         <img src="./client/assets/images/Get in touch-amico (1) 1.png" alt="">
                     </div>
                 </div>
+                
             </div>
             @endif
         </section>
+
 
     </div>
     @endif
