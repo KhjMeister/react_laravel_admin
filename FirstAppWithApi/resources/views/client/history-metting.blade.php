@@ -2,6 +2,13 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('client/assets/css/historymeeting.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/assets/css/paginate.css') }}">
+    <style>
+    .mypagination{
+        margin-top:1px;
+    }
+</style>
+
 @endpush
 
 @push('scripts')

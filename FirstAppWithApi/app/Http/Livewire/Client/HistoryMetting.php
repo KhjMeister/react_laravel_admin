@@ -12,6 +12,8 @@ use Livewire\WithPagination;
 class HistoryMetting extends Component
 {
     use WithPagination;
+    protected $paginationTheme = 'simple-tailwind';
+
     public $search="";
     public $descAsc=false;
     public $ostadFlag ;
@@ -26,7 +28,7 @@ class HistoryMetting extends Component
                 ['u_id',$this->u_id],
                 ['is_ended',1],
                 ['name', 'like', '%'.$this->search.'%']
-            ])->orderBy('start_date','desc')->paginate(100)
+            ])->orderBy('start_date','desc')->paginate(6)
         ]);
     }
     
