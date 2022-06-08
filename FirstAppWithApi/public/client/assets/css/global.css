@@ -11,9 +11,9 @@ body {
   background-color: var(--neutral-100) !important;
   direction: rtl;
 }
-th,td{
-  /* font-size: 0.85rem; */
-}
+/* th,td{
+  font-size: 0.85rem;
+} */
 
 
 :root {
@@ -68,6 +68,6 @@ ul {
 }
 
 
-.nav-link:hover{
+/* .nav-link:hover{
 
-}
+} */

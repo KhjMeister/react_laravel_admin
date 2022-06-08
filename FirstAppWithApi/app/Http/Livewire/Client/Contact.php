@@ -14,7 +14,7 @@ class Contact extends Component
     use WithPagination;
     protected $paginationTheme = 'simple-tailwind';
 
-    public $categories,$cid,$name,$u_id;
+    public $categories,$cid,$name,$u_id,$del_id;
     public $contact_id,$username,$phone,$semat,$ca_id;
     public $contacts_visablity=false;
     public $search = '';
@@ -33,6 +33,8 @@ class Contact extends Component
         'showEditeModal' => 'showEditeModal',
         'closeEditeModal' => 'closeEditeModal',
     ];
+
+ 
 
     public function showAddModal()
     {
@@ -60,7 +62,10 @@ class Contact extends Component
     {
         $this->delModal = 'display:none;';
     }
-
+    public function setSearchFun($cid)
+    {
+        $this->search = $cid;
+    }
     protected $rules = [
         'username'=>'required|min:4|unique:contacts',
         'u_id'=>'required',
@@ -180,11 +185,12 @@ class Contact extends Component
 
         try{
             Contacts::create($validatedData);
-            $this->getAllContacts();
+            // $this->getAllContacts();
             
             if($this->contactsVisibility()){
                 $this->contacts_visablity = true;
             }
+            $this->closeAddModal();
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
                 'message'=>"مخاطب با موفقیت ثبت شد!!"
@@ -196,16 +202,25 @@ class Contact extends Component
             ]);
         }
     }
-    public function deleteContact($id)
+    public function modalDeleteContact($did)
+    {
+        $this->showDeleteModal();
+        $this->del_id = $did;
+        $this->username = Contacts::find($this->del_id)->username;
+        
+    }
+    public function deleteContact()
     {
         try{
-            Contacts::find($id)->delete();
+            Contacts::find($this->del_id)->delete();
             
             // $this->getAllContacts();
             
             if(!$this->contactsVisibility()){
                 $this->contacts_visablity = false;  
             }
+            $this->closeDeleteModal();
+
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
                 'message'=>"مخاطب با موفقیت حذف شد!!"
@@ -227,6 +242,8 @@ class Contact extends Component
         $this->username= $contact->username;
         $this->phone= $contact->phone;
         $this->semat= $contact->semat;
+
+        $this->showEditeModal();
     } 
     public function updateContact()
     {
@@ -240,6 +257,8 @@ class Contact extends Component
                 'semat'=>$this->semat,
             ]); 
             // $this->getAllContacts();
+            $this->closeEditeModal();
+
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
                 'message'=>"مخاطب با موفقیت ویرایش شد!!"

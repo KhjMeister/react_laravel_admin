@@ -103,7 +103,29 @@ tr {
     scrollbar-width:3px; */
 }
 
-.modal {
+.close-btn-form{
+    color: #fff;
+    background-image: linear-gradient(#ff2930,#ff656a);
+    border: none;
+    padding: 0.7rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+    width: 98%;
+    cursor: pointer;
+}
+.close-modal-content{
+    
+    width: 350px;
+    height: 180px;
+    background-color: #fff;
+    border-radius: 4px;
+    margin: auto;
+    margin-top: 10rem;
+   
+    /* scrollbar-color:var(--primery) var(--body-400) ;
+    scrollbar-width:3px; */
+}
+.close-modal{
     position: absolute;
     top: 0;
     right: 0;
@@ -113,8 +135,20 @@ tr {
     display: none;
     z-index: 99;
     border: none;
-    /* background-color: #fff; */
-
+}
+.modal{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.24);
+    display: none;
+    z-index: 99;
+    border: none;
+}
+.close-modal .form > * {
+    margin-top: 1rem;
 }
 .modal .form > * {
      margin-top: 1rem;
