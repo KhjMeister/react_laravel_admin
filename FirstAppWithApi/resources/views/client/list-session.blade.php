@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{{ asset('client/assets/css/createSession2.css') }}">
     <link rel="stylesheet" href="{{ asset('client/assets/css/createMeet3.css') }}" >
     <link rel="stylesheet" href="{{ asset('client/assets/css/persian-datepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('client/assets/css/paginate.css') }}">
+
 
 @endpush
 

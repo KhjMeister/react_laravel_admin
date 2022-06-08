@@ -14,6 +14,22 @@
                         </svg>
             
             </div>
+            <div style="{{ $this->delModal }}" class="close-modal">
+                        <div class="close-modal-content">
+                            <span wire:click="$emit('closeDeleteModal')" class="link-mouse-hover closecreate close">&times;</span>
+                            <div  class="form-group">
+                                <div>
+                                    <label for="fullname"> حذف جلسه {{ $this->name }} </label>
+                                   
+                                </div>
+                                <button wire:click="deleteSession()"  class="close-btn-form">
+                                    حذف جلسه
+                                </button>
+
+                            </div>
+
+                        </div>
+                    </div>
         </div>
     </section>
     <div class="table">
@@ -52,7 +68,7 @@
                         </svg>
                     </td>
                     <td>
-                        <svg wire:click="deleteSession({{ $sess->id }})" class="link-mouse-hover" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg wire:click.prevent="modalDeleteSession({{ $sess->id }})" class="link-mouse-hover" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21 6.375C21 5.75368 20.4505 5.25 19.7727 5.25H16.6833C16.1663 3.90552 14.7824 3.00457 13.2273 3H10.7727C9.21759 3.00457 7.83372 3.90552 7.31673 5.25H4.22727C3.54947 5.25 3 5.75368 3 6.375C3 6.99632 3.54947 7.5 4.22727 7.5H4.63637V16.875C4.63637 19.1532 6.65109 21 9.13636 21H14.8636C17.3489 21 19.3636 19.1532 19.3636 16.875V7.5H19.7727C20.4505 7.5 21 6.99632 21 6.375ZM16.9091 16.875C16.9091 17.9105 15.9933 18.75 14.8636 18.75H9.13636C8.00669 18.75 7.09092 17.9105 7.09092 16.875V7.5H16.9091V16.875Z" fill="#F51100"/>
                             <path d="M9.95457 16.5C10.6324 16.5 11.1818 15.9963 11.1818 15.375V10.875C11.1818 10.2537 10.6324 9.75 9.95457 9.75C9.27677 9.75 8.72729 10.2537 8.72729 10.875V15.375C8.72729 15.9963 9.27677 16.5 9.95457 16.5Z" fill="#F51100"/>
                             <path d="M14.0454 16.5C14.7232 16.5 15.2727 15.9963 15.2727 15.375V10.875C15.2727 10.2537 14.7232 9.75 14.0454 9.75C13.3676 9.75 12.8182 10.2537 12.8182 10.875V15.375C12.8182 15.9963 13.3676 16.5 14.0454 16.5Z" fill="#F51100"/>
@@ -64,6 +80,8 @@
                 <tr >جلسه ای وجود ندارد</tr>
             @endif
         </table>
+
+        {{ $allsessions->links() }}
     </div>
 @elseif($editSessionFlag===True)
     <livewire:client.edite.editesession :session_id="$this->session_id" :wire:key="12">

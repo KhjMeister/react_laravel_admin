@@ -16,6 +16,8 @@ use SoapClient;
 class ListSession extends Component
 {
     use WithPagination;
+    protected $paginationTheme = 'simple-tailwind';
+
     public $level = 1;
     public $editSessionFlag= false;
 
@@ -35,16 +37,24 @@ class ListSession extends Component
            $start_time,
            $start_date,
            $categories,
-           $contacts;
+           $contacts,
+           $del_id;
     public $start_date_en;
     public $session;
+
+    public $delModal ='display:none;' ;   
+
 
     protected $rules = [
         'name'       =>'required|min:4',
         'start_time'  =>'required',
         'start_date'  =>'required|date_format:d/m/Y',         
     ];
-    protected $listeners = ['backToListChild' => 'backToList'];
+    protected $listeners = [
+        'backToListChild' => 'backToList',
+        'showDeleteModal' => 'showDeleteModal',
+        'closeDeleteModal' => 'closeDeleteModal',
+];
 
     protected $messages = [
         'name.required'         => 'عنوان جلسه را باید وارد کنید',
@@ -55,7 +65,14 @@ class ListSession extends Component
         'start_date.date_format'   => 'فرمت تاریخ اشتباه است',
         
     ];
-    
+    public function showDeleteModal()
+    {
+        $this->delModal = 'display:block;';
+    }
+    public function closeDeleteModal()
+    {
+        $this->delModal = 'display:none;';
+    }
     public function backToList()
     {
         $this->editSessionFlag = false;
@@ -77,15 +94,15 @@ class ListSession extends Component
                 ['u_id',$this->u_id],
                 ['is_ended',0],
                 ['name', 'like', '%'.$this->search.'%']
-            ])->orderBy('start_date','desc')->paginate(100)
+            ])->orderBy('start_date','desc')->paginate(6)
         ]);
     }
     
     public function mount()
     {
         $this->u_id = Auth::user()->id;
-        $this->getAllCategories();
-        $this->getAllContacts();
+        
+        // $this->getAllContacts();
     }
     public function getAllContacts()
     {
@@ -100,16 +117,7 @@ class ListSession extends Component
             ['semat', 'like', '%'.$this->search.'%']
         ])->get();  
     }
-    public function selectedCategory($id)
-    {
-        $this->contacts = Categories::find($id)->contacts;
-    }
-    public function getAllCategories()
-    {
-        $this->categories = Categories::where([
-            ['u_id', '=', $this->u_id],
-        ])->get();    
-    }
+    
     public function backTosessionList()
     {
         $this->editSessionFlag = False;
@@ -132,16 +140,23 @@ class ListSession extends Component
         $this->start_time = $this->session->start_time;  
         $this->start_date = $this->session->start_date;  
         $this->video_link = $this->session->video_link;  
-        
     }
 
-    public function deleteSession($sid)
+    public function modalDeleteSession($sid)
+    {
+        $this->showDeleteModal();
+        $this->del_id = $sid;
+        $this->name = Sessions::find($this->del_id)->name;
+    }
+
+    public function deleteSession()
     {
         try{
-            Sessions::find($sid)->delete();
+            Sessions::find($this->del_id)->delete();
             
-            $this->getAllSession();
+            // $this->getAllSession();
             
+            $this->closeDeleteModal();
             $this->dispatchBrowserEvent('alert',[
                 'type'=>'success',
                 'message'=>"جلسه با موفقیت حذف شد!!"

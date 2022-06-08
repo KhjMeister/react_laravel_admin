@@ -207,7 +207,6 @@ class Contact extends Component
         $this->showDeleteModal();
         $this->del_id = $did;
         $this->username = Contacts::find($this->del_id)->username;
-        
     }
     public function deleteContact()
     {
