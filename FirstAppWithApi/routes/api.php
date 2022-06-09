@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\CORS;
 
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\CategoryController;
@@ -13,10 +14,10 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
 ], function ($router) {
-    Route::post('/login',       [AuthController::class, 'login']);
-    Route::post('/register',    [AuthController::class, 'register']);
-    Route::post('/logout',      [AuthController::class, 'logout']);
-    Route::post('/refresh',     [AuthController::class, 'refresh']);
+    Route::post('/login',       [AuthController::class, 'login'])->middleware(CORS::class);
+    Route::post('/register',    [AuthController::class, 'register'])->middleware(CORS::class);
+    Route::post('/logout',      [AuthController::class, 'logout'])->middleware(CORS::class);
+    Route::post('/refresh',     [AuthController::class, 'refresh'])->middleware(CORS::class);
 
     Route::get('/user-profile', [ProfileController::class, 'userProfile']);    
     Route::put('/edite-profile/{id}',[ProfileController::class, 'updateProfile']);
