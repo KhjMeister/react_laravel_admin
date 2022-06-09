@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('client/assets/css/createMeet3.css') }}" />
     {{-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css"> --}}
     <link rel="stylesheet" href="{{ asset('client/assets/css/persian-datepicker.css') }}" />
+    <link rel="stylesheet" href="{{ asset('client/assets/css/formsession.css') }}" />
 
 @endpush
 

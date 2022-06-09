@@ -27,7 +27,7 @@
                     <input class="@error('name') is-invalid @enderror" wire:model.debounce.1000ms="name" name="name" type="search" placeholder="عنوان جلسه را وارد کنید">
                     @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
                 </div>
-                <div class="type-session">
+                {{-- <div class="type-session">
                     <label for="">نوع جلسه</label>
                     <div class="check-type">
                         <div class="item">
@@ -39,7 +39,7 @@
                             <span>جلسه خصوصی</span>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="date-session">
                     <div class="item">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none"

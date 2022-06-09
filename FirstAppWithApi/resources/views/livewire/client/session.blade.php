@@ -50,8 +50,66 @@
             </div>
             @if($this->level===1)
             
-            <div class="boxes">
-                <form class="box" wire:submit.prevent="createSession">
+            
+            <div class="flex -mx-2 ">
+    
+    <div class="w-full ml-1 w-2/3 px-2 ">
+      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" wire:submit.prevent="createSession">
+        <div class="mb-6">
+          <label class="block text-gray-700 text-sm font-bold mb-2 " for="username">
+            عنوان جلسه 
+          </label>
+          <input style="padding: 0.7rem;" wire:model.debounce.1000ms="name" name="name" class="@error('name') border-red-500 @enderror shadow appearance-none border rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="عنوان جلسه را وارد کنید">
+          
+          @error('name') <p class="text-red-500 text-xs italic">{{ $message }}</p> @enderror
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="datepicker">
+            تاریخ شروع
+          </label>
+          <input style="padding: 0.7rem;" id="datepicker" type="text" placeholder="01/03/1401"   onchange="this.dispatchEvent(new InputEvent('input'))"  wire:model="start_date" class="@error('start_date') border-red-500 @enderror shadow appearance-none border rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+       
+        @error('start_date') <p class="text-red-500 text-xs italic">{{ $message }}</p> @enderror
+        </div>
+
+        <div class="mb-6">
+          <label  class="block text-gray-700 text-sm font-bold mb-2" for="time">
+            زمان شروع
+          </label>
+          <input style="padding: 0.7rem;" id="time" type="time"  wire:model="start_time"  class="@error('start_time') border-red-500 @enderror shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"  >
+            @error('start_time') <p class="text-red-500 text-xs italic">{{ $message }}</p> @enderror
+          
+        </div>
+        <div class="flex items-center justify-end mb-1">
+          <button type="submit" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+            مرحله بعد
+          </button>
+         
+        </div>
+      </form>
+      
+    </div>
+
+
+    <div class="w-full mr-1 w-1/3 px-2 ">
+      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+       
+       <div class="max-w-sm rounded overflow-hidden">
+          <img class="w-full w-3/5" src="./client/assets/images/Conference-pana (1) 1.png" alt="Sunset in the mountains">
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">کنفرانس </div>
+            <p class="text-gray-700 text-base">
+              روابط قوی‌تری ایجاد کنید، همکاری‌های فوق‌العاده‌ای ایجاد کنید و تجربه‌ای جذاب از جلسه را با ویدیو و صدای HD برای حداکثر 1000 شرکت‌کننده ایجاد کنید.
+            </p>
+          </div>
+         
+      </div>
+      
+    </div>
+
+    
+</div>
+                {{-- <form class="box" wire:submit.prevent="createSession">
                     <div class="title">
                         <p>عنوان جلسه</p>
                         <button > بعدی</button>
@@ -83,7 +141,7 @@
                             </svg>
                             <p>تاریخ جلسه</p>
                             <div class="input_wrapper" >
-                                {{-- <input  id="datepicker" type="text" placeholder="12 فروردین" data-provide="datepicker" data-date-autoclose="true" data-date-format="mm/dd/yyyy"  onchange="this.dispatchEvent(new InputEvent('input'))"  wire:model="start_date"  class="time_input @error('start_date') is-invalid @enderror" > --}}
+                                
                                 <input  id="datepicker" type="text" placeholder="01/03/1401"   onchange="this.dispatchEvent(new InputEvent('input'))"  wire:model="start_date"  class="time_input @error('start_date') is-invalid @enderror" >
                                   
                                 @error('start_date') <span class="invalid-feedback">{{ $message }}</span> @enderror
@@ -136,8 +194,8 @@
                     <span style="padding: inherit;color: var(--body-300);padding: 30px;">روابط قوی‌تری ایجاد کنید، همکاری‌های فوق‌العاده‌ای ایجاد کنید و تجربه‌ای جذاب از جلسه را با ویدیو و صدای HD برای حداکثر 1000 شرکت‌کننده ایجاد کنید.</span>
                    
                     </div>
-                </div>
-            </div>
+                </div> --}}
+            
             @elseif($this->level===2)
 
             <div class="box-addContact" id="clsModal">
