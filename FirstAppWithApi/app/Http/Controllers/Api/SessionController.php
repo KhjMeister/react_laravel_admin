@@ -35,7 +35,7 @@ class SessionController extends Controller
     }
     
     public function store(Request $request) {
-
+        $user_id= auth('api')->user()->id;
         $sess_token   = Str::random(20);
         $video_link   = $this->baseUrl.$sess_token;
         $total_number = 0;
